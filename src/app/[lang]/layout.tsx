@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,13 +20,20 @@ export const viewport: Viewport = {
   themeColor: "#1c1c22",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutParams = {
   children: ReactNode;
-}>) {
+  params: {
+    lang: string;
+  };
+};
+
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "fr" }];
+}
+
+export default function RootLayout({ children, params: { lang } }: RootLayoutParams) {
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body className={inter.className}>{children}</body>
     </html>
   );
