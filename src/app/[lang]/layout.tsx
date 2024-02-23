@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { ReactNode } from "react";
 import Experience from "@/components/3d/Experience";
-import background from "@static/loading-bg-dark.jpg";
+import AudioPlayer from "@/components/audio-player/AudioPlayer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,7 +40,10 @@ export default function RootLayout({ children, params: { lang } }: RootLayoutPar
         <div className="background-canvas">
           <Experience />
         </div>
-        <div className="html-overlay bg-cover" style={{ backgroundImage: `url(${background.src})` }}>
+        <div className="html-overlay">
+          <div className="self-end p-10">
+            <AudioPlayer />
+          </div>
           {children}
         </div>
       </body>

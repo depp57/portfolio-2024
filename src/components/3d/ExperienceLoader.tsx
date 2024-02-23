@@ -1,11 +1,9 @@
-"use client";
-
-import { Html, useProgress } from "@react-three/drei";
-import { useRef } from "react";
+import { useProgress } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
 const progressTexts = ["Connecting the cables ...", "Launching the servers ...", "Deploying the application ..."];
 
-export default function ExperienceLoader() {
+export default function ExperienceLoader({ onLoaded }: { onLoaded: () => void }) {
   const progress = useProgress((selector) => selector.progress);
   const progressTextRef = useRef<HTMLSpanElement>(null!);
 
@@ -13,12 +11,19 @@ export default function ExperienceLoader() {
 
   const currentText = progressTexts[Math.floor((progressTexts.length * progressInterpolation) / 101)];
 
+  useEffect(() => {
+    if (progressInterpolation === 100) {
+      onLoaded();
+    }
+  });
+
   return (
-    <Html center className="flex flex-col items-center gap-5">
-      <span className="text-8xl" ref={progressTextRef}>
+    <>
+      <span className="text-6xl text-center w-full block" ref={progressTextRef}>
         {progressInterpolation}%
       </span>
+      <br />
       <span className="text-2xl text-nowrap">{currentText}</span>
-    </Html>
+    </>
   );
 }
