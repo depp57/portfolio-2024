@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { ReactNode } from "react";
+import Experience from "@/components/3d/Experience";
+import background from "@static/loading-bg-dark.jpg";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +36,14 @@ export async function generateStaticParams() {
 export default function RootLayout({ children, params: { lang } }: RootLayoutParams) {
   return (
     <html lang={lang}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="background-canvas">
+          <Experience />
+        </div>
+        <div className="html-overlay bg-cover" style={{ backgroundImage: `url(${background.src})` }}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

@@ -1,20 +1,21 @@
-import { getDictionary, Locale } from "@/lib/dictionary-i18n";
-import Test from "@/components/Test";
+import AudioPlayer from "@/components/audio-player/AudioPlayer";
+import SoundSettings from "@/components/SoundSettings";
+import ScrollHint from "@/components/ScrollHint";
 
-type HomeProps = {
-  params: {
-    lang: Locale;
-  };
-};
-
-export default async function Page({ params: { lang } }: HomeProps) {
-  const dict = await getDictionary(lang);
-
+export default async function Home() {
   return (
     <>
-      <h1>{lang}</h1>
-      <h2>Inside server: {dict.products.cart}</h2>
-      <Test lang={dict.products.cart} />
+      <div className="self-end p-10">
+        <AudioPlayer />
+      </div>
+
+      <div className="w-1/6 self-center">
+        <SoundSettings />
+      </div>
+
+      <div style={{ position: "relative", display: "flex", height: "80px" }}>
+        <ScrollHint />
+      </div>
     </>
   );
 }

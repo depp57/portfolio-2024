@@ -53,6 +53,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next|favicon.ico).*)",
+    "/((?!api|_next|favicon.ico|assets).*)",
   ],
 };
