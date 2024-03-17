@@ -1,19 +1,19 @@
-import create from "zustand";
-import { combine, devtools } from "zustand/middleware";
+import create from 'zustand';
+import { combine, devtools } from 'zustand/middleware';
 
-type HomeState = {
-  isOverlayDisplayed: boolean;
+type IntroState = {
+  isIntro: boolean;
 };
 
-type SetHomeState = {
-  hideOverlay: () => void;
+type setIntroState = {
+  endIntro: () => void;
 };
 
-export const useHomeStore = create(
+export const useIntroStore = create(
   devtools(
-    combine<HomeState, SetHomeState>({ isOverlayDisplayed: true }, (set) => ({
-      hideOverlay: () => set({ isOverlayDisplayed: false }),
+    combine<IntroState, setIntroState>({ isIntro: true }, (set) => ({
+      endIntro: () => set({ isIntro: false }),
     })),
-    { anonymousActionType: "homeStore" },
+    { anonymousActionType: 'introStore' },
   ),
 );

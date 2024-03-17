@@ -1,25 +1,29 @@
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "../globals.css";
-import { ReactNode } from "react";
-import Experience from "@/components/3d/Experience";
-import AudioPlayer from "@/components/audio-player/AudioPlayer";
+import type { Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import '../globals.css';
+import { ReactNode } from 'react';
+import Experience3D from '@/components/3d-experience/Experience3D';
+import { Providers } from '@/app/[lang]/Providers';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: {
-    template: "Sacha Thommet • %s",
-    default: "Sacha Thommet • Portfolio",
-  },
-  description:
-    "Passionate junior software engineer currently living in France. I love the DevOps culture and building cloud native apps",
-  keywords: ["Portfolio, Sacha Thommet, Software engineer, DevOps"],
-  authors: [{ name: "Sacha Thommet", url: "https://sachathommet.dev" }],
-};
+export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
+  const t = await getTranslations({ locale: lang, namespace: 'metadata' });
+
+  return {
+    title: {
+      template: 'Sacha Thommet • %s',
+      default: 'Sacha Thommet • Portfolio',
+    },
+    description: t('description'),
+    keywords: [`Portfolio, Sacha Thommet, ${t('keywords.role')}, DevOps`],
+    authors: [{ name: 'Sacha Thommet', url: 'https://sachathommet.dev' }],
+  };
+}
 
 export const viewport: Viewport = {
-  themeColor: "#1c1c22",
+  themeColor: '#1c1c22',
 };
 
 type RootLayoutParams = {
@@ -30,22 +34,21 @@ type RootLayoutParams = {
 };
 
 export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "fr" }];
+  return [{ lang: 'en' }, { lang: 'fr' }];
 }
 
 export default function RootLayout({ children, params: { lang } }: RootLayoutParams) {
+  unstable_setRequestLocale(lang);
+
   return (
-    <html lang={lang}>
+    <html lang={lang} suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="background-canvas">
-          <Experience />
-        </div>
-        <div className="html-overlay">
-          <div className="self-end p-10">
-            <AudioPlayer />
+        <Providers>
+          <div className="background-canvas">
+            <Experience3D />
           </div>
-          {children}
-        </div>
+          <div className="html-overlay">{children}</div>
+        </Providers>
       </body>
     </html>
   );

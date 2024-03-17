@@ -1,9 +1,16 @@
-import HomeOverlay from "@/components/HomeOverlay";
+import Home from '@/components/pages/home/Home';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { pick } from '@/lib/utils';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
-export default async function Home() {
+export default function Page({ params: { lang } }: { params: { lang: string } }) {
+  unstable_setRequestLocale(lang);
+
+  const messages = useMessages() as Messages;
+
   return (
-    <>
-      <HomeOverlay />
-    </>
+    <NextIntlClientProvider messages={pick(messages, 'home')}>
+      <Home />
+    </NextIntlClientProvider>
   );
 }

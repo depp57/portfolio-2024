@@ -9,4 +9,11 @@
     justify-content: space-between;
     z-index: 100;
     background-size: cover;
+    background-color: #9CBEE5;
+    background-image: url("/loading-bg-light.jpg");
+}
+
+html[data-theme="dark"] .overlay {
+    background-color: #0E1524;
+    background-image: url("/loading-bg-dark.jpg");
 }

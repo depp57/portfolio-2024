@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import styles from "./AudioPlayer.module.css";
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import { useMusicStore } from "@/stores/musicStore";
+import styles from './AudioPlayer.module.css';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
+import { useMusicStore } from '@/stores/musicStore';
 
 export default function AudioPlayer() {
   const isPlaying = useMusicStore((state) => state.isPlaying);
@@ -12,7 +12,7 @@ export default function AudioPlayer() {
   const [audio, setAudio] = useState<HTMLAudioElement>(null!);
 
   useEffect(() => {
-    setAudio(new Audio("/assets/ambient.mp3"));
+    setAudio(new Audio('/ambient.mp3'));
   }, []);
 
   if (isPlaying && audio) {

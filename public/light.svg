@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
+    <path
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8 10.667a2.666 2.666 0 1 0 0-5.333 2.666 2.666 0 0 0 0 5.333Z"
+    />
+    <path
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="m4.2 11.8-.467.467M2 8h.667M8 2v.667M13.333 8H14m-6 5.333V14M3.733 3.733 4.2 4.2m8.067-.467L11.8 4.2m0 7.6.467.467"
+    />
+</svg>
