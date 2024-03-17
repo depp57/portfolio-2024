@@ -4,6 +4,7 @@ import styles from './AudioPlayer.module.css';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useMusicStore } from '@/stores/musicStore';
+import ButtonCircle from '@/components/shared/button-circle';
 
 export default function AudioPlayer() {
   const isPlaying = useMusicStore((state) => state.isPlaying);
@@ -26,10 +27,12 @@ export default function AudioPlayer() {
   }
 
   return (
-    <div className={styles.container} onClick={onClick}>
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div key={i} className={cn(styles.wave, { [styles.paused]: !isPlaying })} />
-      ))}
-    </div>
+    <ButtonCircle onClick={onClick}>
+      <div className={styles.container}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className={cn(styles.wave, { [styles.paused]: !isPlaying })} />
+        ))}
+      </div>
+    </ButtonCircle>
   );
 }

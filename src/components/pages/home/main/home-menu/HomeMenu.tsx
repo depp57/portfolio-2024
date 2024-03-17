@@ -56,7 +56,7 @@ export default function HomeMenu() {
   return (
     <DropdownMenu onOpenChange={(isOpened) => onMenuOpenChange(isOpened)}>
       <DropdownMenuTrigger asChild className="pointer-events-auto">
-        <button className="rounded-full outline outline-2 outline-secondary-text hover:outline-primary-text transition-[outline-color]">
+        <button className="rounded-full border-2 border-secondary-text hover:border-primary-text transition-[border-color] w-11 h-11">
           <HamburgerCrossIcon opened={menuOpened} />
         </button>
       </DropdownMenuTrigger>
