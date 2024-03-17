@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "description": "Ingénieur logiciel junior vivant actuellement en France. J'adore la culture DevOps et créer des applications Cloud",
+    "keywords": {
+      "role": "Ingénieur logiciel"
+    }
+  },
+  "home": {
+    "progressExpressions": {
+      "expression1": "Branchement des câbles ...",
+      "expression2": "Démarrage des serveurs ...",
+      "expression3": "Déploiement de l'application ..."
+    },
+    "audioChoices": {
+      "enterWithSound": "Entrer avec le son",
+      "enterWithoutSound": "Entrer sans le son"
+    },
+    "scrollHint": "Scrollez pour découvrir mes projets",
+    "openToWork": "Une question ?",
+    "contactMe": "Me contacter",
+    "shortDescription": {
+      "role": "Ingénieur logiciel",
+      "catchPhrase": "Passionné par les infrastructures Cloud",
+      "discoverWork": "Découvrir mes projets"
+    },
+    "menu": {
+      "projects": "Projets",
+      "blog": "Blog",
+      "about": "A propos",
+      "settings": "Paramètres",
+      "subMenu": {
+        "music": "Musique",
+        "enableMusic": "Activer la musique :",
+        "theme": "Thème",
+        "realTime": "Temps réel",
+        "displayTheme": "Thème d'affichage :"
+      }
+    }
+  }
+}

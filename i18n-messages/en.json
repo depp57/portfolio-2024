@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "description": "Passionate junior software engineer currently living in France.I love the DevOps culture and building cloud native apps",
+    "keywords": {
+      "role": "Software Engineer"
+    }
+  },
+  "home": {
+    "progressExpressions": {
+      "expression1": "Connecting the cables ...",
+      "expression2": "Launching the servers ...",
+      "expression3": "Deploying the application ..."
+    },
+    "audioChoices": {
+      "enterWithSound": "Enter with sound",
+      "enterWithoutSound": "Enter without sound"
+    },
+    "scrollHint": "Scroll to navigate the scene",
+    "openToWork": "Open to work",
+    "contactMe": "Contact me",
+    "shortDescription": {
+      "role": "Software Engineer",
+      "catchPhrase": "Passionate about Cloud infrastructure",
+      "discoverWork": "Discover my work"
+    },
+    "menu": {
+      "projects": "Projects",
+      "blog": "Blog",
+      "about": "About",
+      "settings": "Settings",
+      "subMenu": {
+        "music": "Music",
+        "enableMusic": "Enable music:",
+        "theme": "Theme",
+        "realTime": "Real time",
+        "displayTheme": "Display theme:"
+      }
+    }
+  }
+}
