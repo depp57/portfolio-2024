@@ -1,5 +1,5 @@
-import create from "zustand";
-import { combine, devtools } from "zustand/middleware";
+import { create } from 'zustand';
+import { combine, devtools } from 'zustand/middleware';
 
 type MusicState = {
   isPlaying: boolean;
@@ -18,6 +18,6 @@ export const useMusicStore = create(
       stopMusic: () => set({ isPlaying: false }),
       toggleMusic: () => set((state) => ({ isPlaying: !state.isPlaying })),
     })),
-    { anonymousActionType: "musicStore" },
+    { name: 'musicStore', store: 'musicStore' },
   ),
 );

@@ -3,6 +3,9 @@
     "description": "Passionate junior software engineer currently living in France.I love the DevOps culture and building cloud native apps",
     "keywords": {
       "role": "Software Engineer"
+    },
+    "titles": {
+      "about": "About"
     }
   },
   "home": {
@@ -22,19 +25,76 @@
       "role": "Software Engineer",
       "catchPhrase": "Passionate about Cloud infrastructure",
       "discoverWork": "Discover my work"
-    },
-    "menu": {
-      "projects": "Projects",
-      "blog": "Blog",
-      "about": "About",
-      "settings": "Settings",
-      "subMenu": {
-        "music": "Music",
-        "enableMusic": "Enable music:",
-        "theme": "Theme",
-        "realTime": "Real time",
-        "displayTheme": "Display theme:"
+    }
+  },
+  "about": {
+    "welcome": "Hello",
+    "namePrefix": "My name is",
+    "catchPhrase": "I am a software engineer passionate about cloud technologies, based in France.",
+    "experience": {
+      "experience1": {
+        "company": "SII, France",
+        "role": "DevOps Engineer",
+        "date": "2023 - 2024 · 1 year",
+        "description": "In the same project as before at SII, I switched to a DevOps role to help the team migrate the application to a Kubernetes cluster.",
+        "mainTasks": {
+          "task1": "Developed CI/CD pipelines using Gitlab CI.",
+          "task2": "Helped the team to make the application more cloud-native (stateless, scalable, resilient to failures, etc).",
+          "task3": "Deployed the application on a Kubernetes cluster.",
+          "task4": "The goals are to reduce the cost of the infrastructure and improve the quality of service for the users."
+        }
+      },
+      "experience2": {
+        "company": "ITS4U, Luxembourg",
+        "role": "Kubernetes consultant",
+        "date": "2023 · 6 months",
+        "description": "As part of a team of Kubernetes consultants, I helped a major client in Luxembourg (financial sector) to build a private cloud platform.",
+        "mainTasks": {
+          "task1": "Installed Openshift on different infrastructures (bare-metal, VMware, Nutanix).",
+          "task2": "Configured Openshift to meet the client's requirements (LDAP integration, external storage and monitoring, security policies).",
+          "task3": "Wrote a technical documentation to help the client start using the platform."
+        }
+      },
+      "experience3": {
+        "company": "SII, France",
+        "role": "Software Engineer",
+        "date": "2021 - 2023 · 2 years",
+        "description": "As a member of Agile scrum team, I contributed to the full-stack development of a web application used by thousands of users.",
+        "mainTasks": {
+          "task1": "Migrated a web front-end from Perl to Angular and developed new UI features.",
+          "task2": "Maintained a large Perl backend (1,000,000+ lines of code, 15+ years of history) using a MVC architecture.",
+          "task3": "Developed new back-end features using Typescript with Next.js"
+        }
+      },
+      "experience4": {
+        "company": "INRS, France",
+        "role": "Java developper",
+        "date": "2020 · 3 months",
+        "description": "Full time internship. Work with my supervisor on a research project aiming to develop an app to protect workers' eyes.",
+        "mainTasks": {
+          "task1": "Developed an Android augmented reality application using Java and OpenGL ES.",
+          "task2": {
+            "text1": "Co-authored a ",
+            "link": "scientific paper",
+            "text2": " with my supervisor detailing the application."
+          }
+        }
       }
+    },
+    "socialLinksDescription": "Or reach me through here:"
+  },
+  "menu": {
+    "home": "Home",
+    "projects": "Projects",
+    "blog": "Blog",
+    "about": "About",
+    "settings": "Settings",
+    "subMenu": {
+      "music": "Music",
+      "enableMusic": "Enable music:",
+      "theme": "Theme",
+      "realTime": "Real time",
+      "displayTheme": "Display theme:"
     }
   }
 }

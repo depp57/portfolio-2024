@@ -1,19 +1,19 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { combine, devtools } from 'zustand/middleware';
 
-type IntroState = {
+type HomeState = {
   isIntro: boolean;
 };
 
-type setIntroState = {
+type SetHomeState = {
   endIntro: () => void;
 };
 
-export const useIntroStore = create(
+export const useHomeStore = create(
   devtools(
-    combine<IntroState, setIntroState>({ isIntro: true }, (set) => ({
+    combine<HomeState, SetHomeState>({ isIntro: true }, (set) => ({
       endIntro: () => set({ isIntro: false }),
     })),
-    { anonymousActionType: 'introStore' },
+    { name: 'homeStore', store: 'homeStore' },
   ),
 );

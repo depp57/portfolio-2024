@@ -3,6 +3,9 @@
     "description": "Ingénieur logiciel junior vivant actuellement en France. J'adore la culture DevOps et créer des applications Cloud",
     "keywords": {
       "role": "Ingénieur logiciel"
+    },
+    "titles": {
+      "about": "A propos"
     }
   },
   "home": {
@@ -22,19 +25,76 @@
       "role": "Ingénieur logiciel",
       "catchPhrase": "Passionné par les infrastructures Cloud",
       "discoverWork": "Découvrir mes projets"
-    },
-    "menu": {
-      "projects": "Projets",
-      "blog": "Blog",
-      "about": "A propos",
-      "settings": "Paramètres",
-      "subMenu": {
-        "music": "Musique",
-        "enableMusic": "Activer la musique :",
-        "theme": "Thème",
-        "realTime": "Temps réel",
-        "displayTheme": "Thème d'affichage :"
+    }
+  },
+  "about": {
+    "welcome": "Bienvenue",
+    "namePrefix": "Je m'appelle",
+    "catchPhrase": "Je suis un ingénieur logiciel junior, passionné par les technologies Cloud.",
+    "experience": {
+      "experience1": {
+        "company": "SII, Toulouse",
+        "role": "Ingénieur DevOps",
+        "date": "2023 - 2024 · 1 an",
+        "description": "Au sein du même projet que précédemment chez SII, j'ai rejoins l'équipe DevOps/infrastructure pour assister à la migration de l'application vers un cluster Kubernetes.",
+        "mainTasks": {
+          "task1": "Développement de pipelines CI/CD avec Gitlab CI.",
+          "task2": "Contribué à rendre l'application plus orientée Cloud (stateless, scalable, résiliente aux pannes, etc.) en aidant les équipes de développement.",
+          "task3": "Déployé l'application dans un cluster Kubernetes.",
+          "task4": "Les buts sont multiples, allant de la réduction du coût de l'infrastructure jusqu'à une qualité de service améliorée."
+        }
+      },
+      "experience2": {
+        "company": "ITS4U, Luxembourg",
+        "role": "Consultant Kubernetes",
+        "date": "2023 · 6 mois",
+        "description": "Au sein d'une équipe de consultants Kubernetes, j'ai accompagné un client majeur au Luxembourg (secteur financier) à mettre en place une plateforme de Cloud privé.",
+        "mainTasks": {
+          "task1": "Installation d'Openshift sur différentes infrastructures (bare-metal, VMware, Nutanix).",
+          "task2": "Configuration d'Openshift pour répondre aux exigences du client (intégration LDAP, stockage et monitoring externe, règles de sécurité).",
+          "task3": "Rédaction d'un document technique en anglais, afin d'aider le client à commencer à utiliser Openshift."
+        }
+      },
+      "experience3": {
+        "company": "SII, Toulouse",
+        "role": "Ingénieur logiciel",
+        "date": "2021 - 2023 · 2 ans",
+        "description": "Au sein d'une équipe Scrum, j'ai contribué au développement full-stack d'une application web utilisée par des milliers d'utilisateurs.",
+        "mainTasks": {
+          "task1": "Migration d'un front-end en Perl vers Angular, et développement de nouvelles fonctionnalités.",
+          "task2": "Maintenance d'un back-end en Perl (1.000.000+ lignes de code, 15+ années d'historique), suivant une architecture MVC.",
+          "task3": "Développement de nouvelles fonctionnalités back-end en Typescript avec le framework Next.js."
+        }
+      },
+      "experience4": {
+        "company": "INRS, Nancy",
+        "role": "Développeur Java",
+        "date": "2020 · 3 mois",
+        "description": "Stage de fin de DUT informatique. J'ai travaillé avec mon tuteur sur un projet de recherche ayant pour but de développer une application protégeant la vue de techniciens au contact de LED.",
+        "mainTasks": {
+          "task1": "Développement d'une application Android en réalité augmenté avec Java et OpenGL ES.",
+          "task2": {
+            "text1": "Co-publication d'un ",
+            "link": "article scientifique",
+            "text2": " avec mon tuteur."
+          }
+        }
       }
+    },
+    "socialLinksDescription": "Ou retrouvez-moi sur ces réseaux :"
+  },
+  "menu": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "blog": "Blog",
+    "about": "A propos",
+    "settings": "Paramètres",
+    "subMenu": {
+      "music": "Musique",
+      "enableMusic": "Activer la musique :",
+      "theme": "Thème",
+      "realTime": "Temps réel",
+      "displayTheme": "Thème d'affichage :"
     }
   }
 }

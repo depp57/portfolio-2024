@@ -1,6 +1,6 @@
 import { Button } from '@/components/shared/button';
 import { EnvelopeClosedIcon } from '@radix-ui/react-icons';
-import HomeMenu from '@/components/pages/home/main/home-menu/HomeMenu';
+import Menu from '@/components/shared/menu/Menu';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 
@@ -38,7 +38,7 @@ export default function HomeHeader() {
           </motion.span>
         </div>
       </MotionButton>
-      <HomeMenu />
+      <Menu />
     </>
   );
 }

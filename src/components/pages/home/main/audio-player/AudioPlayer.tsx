@@ -3,8 +3,8 @@
 import styles from './AudioPlayer.module.css';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { useMusicStore } from '@/stores/musicStore';
 import ButtonCircle from '@/components/shared/button-circle';
+import { useMusicStore } from '@/stores/musicStore';
 
 export default function AudioPlayer() {
   const isPlaying = useMusicStore((state) => state.isPlaying);

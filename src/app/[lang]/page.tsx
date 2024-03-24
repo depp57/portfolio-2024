@@ -9,7 +9,7 @@ export default function Page({ params: { lang } }: { params: { lang: string } })
   const messages = useMessages() as Messages;
 
   return (
-    <NextIntlClientProvider messages={pick(messages, 'home')}>
+    <NextIntlClientProvider messages={pick(messages, 'home', 'menu')}>
       <Home />
     </NextIntlClientProvider>
   );

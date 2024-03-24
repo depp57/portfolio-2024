@@ -1,17 +1,17 @@
 'use client';
 
 import { Button } from '@/components/shared/button';
-import { useMusicStore } from '@/stores/musicStore';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
-import { useIntroStore } from '@/stores/homeStore';
 import { useTranslations } from 'next-intl';
+import { useMusicStore } from '@/stores/musicStore';
+import { useHomeStore } from '@/stores/homeStore';
 
 export default function HomeEntry() {
   const t = useTranslations('home.audioChoices');
 
   const playMusic = useMusicStore((state) => state.playMusic);
   const stopMusic = useMusicStore((state) => state.stopMusic);
-  const hideOverlay = useIntroStore((state) => state.endIntro);
+  const hideOverlay = useHomeStore((state) => state.endIntro);
 
   function onClick(music: boolean) {
     hideOverlay();

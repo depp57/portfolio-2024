@@ -1,3 +1,5 @@
+'use client';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -5,19 +7,26 @@ import {
   DropdownMenuTrigger,
 } from '@/components/shared/dropdown-menu';
 import HamburgerCrossIcon from '@/components/shared/hamburger-cross-icon/hamburger-cross-icon';
-import { useMusicStore } from '@/stores/musicStore';
 import React, { MouseEvent, useMemo, useState } from 'react';
 import { ArrowTopRightIcon, GearIcon } from '@radix-ui/react-icons';
-import styles from './HomeMenu.module.css';
+import styles from './Menu.module.css';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import LightIcon from '@static/light.svg';
 import DarkIcon from '@static/dark.svg';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useMusicStore } from '@/stores/musicStore';
 
-export default function HomeMenu() {
-  const t = useTranslations('home');
+export default function Menu() {
+  const t = useTranslations('menu');
+
+  const currentPath = usePathname().split('/').slice(1);
+  const lang = currentPath[0];
+  const currentPathName = currentPath[1] ?? '';
+  const subRoutes = (['', 'projects', 'blog', 'about'] as const).filter((route) => route !== currentPathName);
 
   const { isPlaying, toggleMusic } = useMusicStore((state) => state);
   const [settingsOpened, setSettingsOpened] = useState(false);
@@ -65,18 +74,14 @@ export default function HomeMenu() {
         align="end"
       >
         <div className="bg-primary rounded-lg p-3">
-          <DropdownMenuItem className={cn('group', styles.dropDownMenuItem)}>
-            {t('menu.projects')}
-            <ArrowTopRightIcon className="ml-auto scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </DropdownMenuItem>
-          <DropdownMenuItem className={cn('group', styles.dropDownMenuItem)}>
-            {t('menu.blog')}
-            <ArrowTopRightIcon className="ml-auto scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </DropdownMenuItem>
-          <DropdownMenuItem className={cn('group', styles.dropDownMenuItem)}>
-            {t('menu.about')}
-            <ArrowTopRightIcon className="ml-auto scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </DropdownMenuItem>
+          {subRoutes.map((route) => (
+            <DropdownMenuItem className={cn('group', styles.dropDownMenuItem)} key={route}>
+              <Link href={`/${lang}/${route}`} className="flex items-center w-full">
+                {t(route !== '' ? route : 'home')}
+                <ArrowTopRightIcon className="ml-auto scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
+            </DropdownMenuItem>
+          ))}
         </div>
 
         <span className="h-0.5" />
@@ -85,7 +90,7 @@ export default function HomeMenu() {
           onClick={(e) => onOpenSettingsMenu(e)}
           className="bg-primary rounded-lg p-3 text-4xl cursor-pointer group hover:bg-pPrimary focus:bg-pPrimary focus:text-pPrimary-text"
         >
-          {t('menu.settings')}
+          {t('settings')}
           <GearIcon className="ml-auto scale-150 group-hover:rotate-12" />
         </DropdownMenuItem>
 
@@ -95,18 +100,18 @@ export default function HomeMenu() {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-primary rounded-lg p-3 absolute top-0 w-full flex flex-col gap-2 h-full"
           >
-            <p className="text-4xl">{t('menu.settings')}</p>
+            <p className="text-4xl">{t('settings')}</p>
 
-            <p className="text-xl">{t('menu.subMenu.music')}</p>
+            <p className="text-xl">{t('subMenu.music')}</p>
             <div className="flex justify-between pl-3 pr-3">
-              <label className="text-sm text-secondary-text">{t('menu.subMenu.enableMusic')}</label>
+              <label className="text-sm text-secondary-text">{t('subMenu.enableMusic')}</label>
               <input type="checkbox" checked={isPlaying} onChange={toggleMusic} className={styles.checkbox} />
             </div>
 
-            <p className="text-xl">{t('menu.subMenu.theme')}</p>
+            <p className="text-xl">{t('subMenu.theme')}</p>
             <div className="flex justify-between pl-3 pr-3">
               <label className="text-sm text-secondary-text">
-                {t('menu.subMenu.realTime')}
+                {t('subMenu.realTime')}
                 <br />
                 (CET - {currentTime})
               </label>
@@ -114,7 +119,7 @@ export default function HomeMenu() {
             </div>
 
             <div className="flex justify-between pl-3 pr-3">
-              <label className="text-sm text-secondary-text">{t('menu.subMenu.displayTheme')}</label>
+              <label className="text-sm text-secondary-text">{t('subMenu.displayTheme')}</label>
               <div className="flex gap-4">
                 <label
                   className={cn(
