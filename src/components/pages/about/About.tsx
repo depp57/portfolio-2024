@@ -33,7 +33,7 @@ export default function About() {
             <h2 className="text-7xl font-semibold">Area of expertise</h2>
             <span className="block w-full h-0.5 bg-gray-500" />
 
-            <div className="border-2 border-tertiary-text rounded-xl w-full h-[80vh] cursor-pointer">
+            <div className="border-2 border-tertiary-text rounded-xl w-full h-[80vh]">
               <SkillsSection />
             </div>
           </section>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Matter from 'matter-js';
+import { motion } from 'framer-motion';
 import { Skill } from '@/components/pages/about/skills/Skill';
 
 function createWalls(containerElement: HTMLDivElement) {
@@ -40,7 +41,7 @@ function createWalls(containerElement: HTMLDivElement) {
 
 function createBodies(elements: HTMLDivElement[]) {
   const bodies = elements.map((currentElement, i) => ({
-    body: Matter.Bodies.circle(90 * i, 100, 80),
+    body: Matter.Bodies.circle(160 * i, 80, 80),
     element: currentElement,
     render() {
       const { x, y } = this.body.position;
@@ -65,14 +66,12 @@ export default function SkillsSection() {
     'PostgreSQL',
     'Gitlab CI',
     'Kubernetes Openshift',
-    'Terraform',
-    'Ansible',
+    'IaaC (Terraform, Ansible',
+    'Gitops (ArgoCD)',
     'Linux',
     'Basic networking',
-    'ArgoCD',
   ];
-  const ref = useRef<HTMLDivElement>(null!);
-
+  const containerRef = useRef<HTMLDivElement>(null!);
   const requestRef = useRef<number>(null!);
   const divRefs = useRef<HTMLDivElement[]>([]);
 
@@ -103,19 +102,17 @@ export default function SkillsSection() {
     const engine = Matter.Engine.create({ enableSleeping: true });
 
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
-      mouse: Matter.Mouse.create(ref.current),
+      mouse: Matter.Mouse.create(containerRef.current),
       constraint: {
-        stiffness: 0.2,
+        stiffness: 1,
       },
     });
 
-    const { walls, resizeWalls } = createWalls(ref.current);
+    const { walls, resizeWalls } = createWalls(containerRef.current);
 
     Matter.World.add(engine.world, [...walls, ...bodies.map(({ body }) => body), mouseConstraint]);
 
     animate(engine, bodies);
-
-    ref.current.classList.remove('hidden');
 
     const handleResize = () => {
       resizeWalls();
@@ -132,10 +129,16 @@ export default function SkillsSection() {
   }, []);
 
   return (
-    <div ref={ref} className="w-full h-full cursor-grab relative overflow-hidden hidden">
+    <motion.div
+      ref={containerRef}
+      className="w-full h-full relative overflow-hidden cursor-grab"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease: 'easeIn', duration: 1 }}
+    >
       {skills.map((skill, i) => (
         <Skill key={skill} name={skill} ref={(el) => (divRefs.current[i] = el!)} />
       ))}
-    </div>
+    </motion.div>
   );
 }
