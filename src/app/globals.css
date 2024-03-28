@@ -17,6 +17,9 @@
     --text-shadow: 0px 0px 17px hsla(0,0%,100%,.2);
     --fade-primary: hsla(0,0%,100%,.35);
     --fade-secondary: hsla(0,0%,100%,0);
+
+    --destructive: 210 31 60;
+    --success: 41 171 135;
   }
 
   [data-theme='dark'] {
@@ -31,6 +34,9 @@
     --text-shadow: none;
     --fade-primary: rgba(0, 0, 0, .35);
     --fade-secondary: transparent;
+
+    --destructive: 124 10 2;
+    --success: 11 102 35;
   }
 }
 

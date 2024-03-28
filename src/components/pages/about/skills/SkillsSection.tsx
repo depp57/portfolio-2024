@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Matter from 'matter-js';
 import { motion } from 'framer-motion';
 import { Skill } from '@/components/pages/about/skills/Skill';
+import { useTranslations } from 'next-intl';
 
 function createWalls(containerElement: HTMLDivElement) {
   const canvasWidth = containerElement.getBoundingClientRect().width;
@@ -58,19 +59,27 @@ function createBodies(elements: HTMLDivElement[]) {
   return { bodies, wakeUpBodies };
 }
 
+/**
+ * Fix scroll issue with Matter.js
+ * https://github.com/liabru/matter-js/issues/929
+ */
+function reEnableMouseScroll(mouseConstraint: Matter.MouseConstraint) {
+  // @ts-ignore
+  mouseConstraint.mouse.element.removeEventListener('mousewheel', mouseConstraint.mouse['mousewheel']);
+  // @ts-ignore
+  mouseConstraint.mouse.element.removeEventListener('DOMMouseScroll', mouseConstraint.mouse['mousewheel']);
+  // @ts-ignore
+  mouseConstraint.mouse.element.removeEventListener('touchmove', mouseConstraint.mouse['touchmove']);
+  // @ts-ignore
+  mouseConstraint.mouse.element.removeEventListener('touchstart', mouseConstraint.mouse['touchstart']);
+  // @ts-ignore
+  mouseConstraint.mouse.element.removeEventListener('touchend', mouseConstraint.mouse['touchend']);
+}
+
 export default function SkillsSection() {
-  const skills = [
-    'Java (Spring)',
-    'Web (Node.js, Angular, React.js)',
-    'Docker',
-    'PostgreSQL',
-    'Gitlab CI',
-    'Kubernetes Openshift',
-    'IaaC (Terraform, Ansible',
-    'Gitops (ArgoCD)',
-    'Linux',
-    'Basic networking',
-  ];
+  const t = useTranslations('about.skills');
+  const skills: string[] = t.raw('skillsList');
+
   const containerRef = useRef<HTMLDivElement>(null!);
   const requestRef = useRef<number>(null!);
   const divRefs = useRef<HTMLDivElement[]>([]);
@@ -108,6 +117,8 @@ export default function SkillsSection() {
       },
     });
 
+    reEnableMouseScroll(mouseConstraint);
+
     const { walls, resizeWalls } = createWalls(containerRef.current);
 
     Matter.World.add(engine.world, [...walls, ...bodies.map(({ body }) => body), mouseConstraint]);
@@ -129,16 +140,22 @@ export default function SkillsSection() {
   }, []);
 
   return (
-    <motion.div
-      ref={containerRef}
-      className="w-full h-full relative overflow-hidden cursor-grab"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ ease: 'easeIn', duration: 1 }}
-    >
-      {skills.map((skill, i) => (
-        <Skill key={skill} name={skill} ref={(el) => (divRefs.current[i] = el!)} />
-      ))}
-    </motion.div>
+    <>
+      <h2 className="text-7xl font-semibold">{t('title')}</h2>
+      <span className="block w-full h-0.5 bg-gray-500" />
+      <div className="border-2 border-tertiary-text rounded-xl w-full h-[80vh]">
+        <motion.div
+          ref={containerRef}
+          className="w-full h-full relative overflow-hidden cursor-grab"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ ease: 'easeIn', duration: 1 }}
+        >
+          {skills.map((skill, i) => (
+            <Skill key={skill} name={skill} ref={(el) => (divRefs.current[i] = el!)} />
+          ))}
+        </motion.div>
+      </div>
+    </>
   );
 }

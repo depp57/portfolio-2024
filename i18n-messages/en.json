@@ -9,11 +9,11 @@
     }
   },
   "home": {
-    "progressExpressions": {
-      "expression1": "Connecting the cables ...",
-      "expression2": "Launching the servers ...",
-      "expression3": "Deploying the application ..."
-    },
+    "progressExpressions": [
+      "Connecting the cables ...",
+      "Launching the servers ...",
+      "Deploying the application ..."
+    ],
     "audioChoices": {
       "enterWithSound": "Enter with sound",
       "enterWithoutSound": "Enter without sound"
@@ -79,6 +79,34 @@
             "text2": " with my supervisor detailing the application."
           }
         }
+      }
+    },
+    "skills": {
+      "title": "Area of expertise",
+      "skillsList": [
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO"
+      ]
+    },
+    "contact":{
+      "title": "Let's work together.",
+      "hello": "Hi Sacha!",
+      "placeholder": "Hello Sacha! We have an interesting project we would like to discuss with you. Reach us at our email address:",
+      "messageStatus": {
+        "success": {
+          "title": "Message sent!",
+          "description": "I will get back to you as soon as possible."
+        },
+        "error": {
+          "title": "The email could not be sent."
+        },
+        "emptyMessage": "Please enter a message.",
+        "internal": "Sorry, an error occurred while sending the email."
       }
     },
     "socialLinksDescription": "Or reach me through here:"

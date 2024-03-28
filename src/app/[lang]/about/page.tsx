@@ -14,7 +14,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: s
 export default function Page({ params: { lang } }: { params: { lang: string } }) {
   unstable_setRequestLocale(lang);
 
-  const messages = useMessages() as Messages;
+  const messages = useMessages();
 
   return (
     <NextIntlClientProvider messages={pick(messages, 'about', 'menu')}>

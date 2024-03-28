@@ -81,6 +81,34 @@
         }
       }
     },
+    "skills": {
+      "title": "Compétences",
+      "skillsList": [
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO"
+      ]
+    },
+    "contact":{
+      "title": "Travaillons ensemble !",
+      "hello": "Bonjour Sacha !",
+      "placeholder": "Bonjour Sacha, nous avons un projet intéressant à discuter ensemble. Contactez-nous à l'adresse mail suivante :",
+      "messageStatus": {
+        "success": {
+          "title": "Message envoyé !",
+          "description": "Merci pour votre message. Je vous répondrai dès que possible."
+        },
+        "error": {
+          "title": "Le message n'a pas pu être envoyé."
+        },
+        "emptyMessage": "Veuillez entrer un message.",
+        "internal": "Une erreur interne est survenue. Veuillez réessayer plus tard."
+      }
+    },
     "socialLinksDescription": "Ou retrouvez-moi sur ces réseaux :"
   },
   "menu": {
