@@ -5,6 +5,7 @@ import Matter from 'matter-js';
 import { motion } from 'framer-motion';
 import { Skill } from '@/components/pages/about/skills/Skill';
 import { useTranslations } from 'next-intl';
+import SectionTitle from '@/components/pages/about/SectionTitle';
 
 function createWalls(containerElement: HTMLDivElement) {
   const canvasWidth = containerElement.getBoundingClientRect().width;
@@ -40,13 +41,20 @@ function createWalls(containerElement: HTMLDivElement) {
   return { walls: [topWall, rightWall, bottomWall, leftWall], resizeWalls };
 }
 
-function createBodies(elements: HTMLDivElement[]) {
+function createBodies(containerElement: HTMLDivElement, elements: HTMLDivElement[]) {
+  const elementSize = elements[0].getBoundingClientRect().width;
+  const containerWidth = containerElement.getBoundingClientRect().width;
+
   const bodies = elements.map((currentElement, i) => ({
-    body: Matter.Bodies.circle(160 * i, 80, 80),
+    body: Matter.Bodies.circle(
+      (elementSize * i) % containerWidth,
+      elementSize / 2 + Math.floor((elementSize * i) / containerWidth) * elementSize,
+      elementSize / 2,
+    ),
     element: currentElement,
     render() {
       const { x, y } = this.body.position;
-      this.element.style.transform = `translate(${x - 80}px, ${y - 80}px)`;
+      this.element.style.transform = `translate(${x - elementSize / 2}px, ${y - elementSize / 2}px)`;
     },
   }));
 
@@ -107,7 +115,7 @@ export default function SkillsSection() {
   };
 
   useEffect(() => {
-    const { bodies, wakeUpBodies } = createBodies(divRefs.current);
+    const { bodies, wakeUpBodies } = createBodies(containerRef.current, divRefs.current);
     const engine = Matter.Engine.create({ enableSleeping: true });
 
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
@@ -141,8 +149,8 @@ export default function SkillsSection() {
 
   return (
     <>
-      <h2 className="text-7xl font-semibold">{t('title')}</h2>
-      <span className="block w-full h-0.5 bg-gray-500" />
+      <SectionTitle title={t('title')} />
+
       <div className="border-2 border-tertiary-text rounded-xl w-full h-[80vh]">
         <motion.div
           ref={containerRef}

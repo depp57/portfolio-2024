@@ -10,14 +10,14 @@ type InlineExperienceProps = {
 
 export default function InlineExperience({ company, role, date, description, children }: InlineExperienceProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1 lg:gap-2 text-lg lg:text-xl 2xl:text-2xl">
       <div className="flex items-center gap-2">
-        <h3 className="text-lg font-medium">{company}</h3>
+        <h3 className="font-medium">{company}</h3>
         <span className="text-gray-500">{date}</span>
       </div>
       <p className="text-gray-500">{role}</p>
-      <p>{description}</p>
-      <ul className="list-disc pl-8">{children}</ul>
+      <p className="text-base lg:text-lg 2xl:text-xl">{description}</p>
+      <ul className="list-disc pl-6 lg:pl-8 text-base lg:text-lg 2xl:text-xl">{children}</ul>
     </div>
   );
 }

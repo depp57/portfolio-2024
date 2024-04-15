@@ -23,6 +23,13 @@ const nextConfig = {
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i
 
+
+    // Add support for GLSL files
+    config.module.rules.push({
+      test: /\.glsl$/,
+      loader: "raw-loader",
+    })
+
     return config
   },
 

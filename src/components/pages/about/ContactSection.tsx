@@ -6,6 +6,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/shared/button';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
+import SectionTitle from '@/components/pages/about/SectionTitle';
 
 export default function ContactSection() {
   const t = useTranslations('about.contact');
@@ -43,8 +44,8 @@ export default function ContactSection() {
 
   return (
     <>
-      <h2 className="text-7xl font-semibold">{t('title')}</h2>
-      <span className="block w-full h-0.5 bg-gray-500" />
+      <SectionTitle title={t('title')} />
+
       <form className="w-4/6" action={onSendEmail}>
         <p className="text-5xl font-light mb-12">{t('hello')}</p>
         <div className="relative">

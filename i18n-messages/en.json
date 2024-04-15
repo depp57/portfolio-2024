@@ -84,13 +84,14 @@
     "skills": {
       "title": "Area of expertise",
       "skillsList": [
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO"
+        "Backend (Java, Node.js)",
+        "Frontend (Angular, React)",
+        "Go",
+        "Software architecture",
+        "Databases (SQL, NoSQL)",
+        "DevOps (CI/CD, Kubernetes, Docker)",
+        "Linux (Debian, Red Hat)",
+        "Git"
       ]
     },
     "contact":{

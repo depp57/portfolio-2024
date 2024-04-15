@@ -1,14 +1,14 @@
 import InlineExperience from '@/components/pages/about/experiences/inline-experience';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import SectionTitle from '@/components/pages/about/SectionTitle';
 
 export default function ExperiencesSection() {
   const t = useTranslations('about');
 
   return (
     <>
-      <h2 className="text-7xl font-semibold">Experiences</h2>
-      <span className="block w-full h-0.5 bg-gray-500" />
+      <SectionTitle title={'Experiences'} />
 
       <InlineExperience
         company={t('experience.experience1.company')}

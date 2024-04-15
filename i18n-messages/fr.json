@@ -84,16 +84,17 @@
     "skills": {
       "title": "Compétences",
       "skillsList": [
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO"
+        "Backend (Java, Node.js)",
+        "Frontend (Angular, React)",
+        "Go",
+        "Architecture logicielle",
+        "Bases de données (SQL, NoSQL)",
+        "DevOps (CI/CD, Kubernetes, Docker, ArgoCD)",
+        "Linux (Debian, Red Hat)",
+        "Git"
       ]
     },
-    "contact":{
+    "contact": {
       "title": "Travaillons ensemble !",
       "hello": "Bonjour Sacha !",
       "placeholder": "Bonjour Sacha, nous avons un projet intéressant à discuter ensemble. Contactez-nous à l'adresse mail suivante :",
