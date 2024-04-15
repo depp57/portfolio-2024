@@ -9,11 +9,11 @@
     }
   },
   "home": {
-    "progressExpressions": [
-      "Connecting the cables ...",
-      "Launching the servers ...",
-      "Deploying the application ..."
-    ],
+    "progressExpressions": {
+      "expression1": "Connecting the cables ...",
+      "expression2": "Launching the servers ...",
+      "expression3": "Deploying the application ..."
+    },
     "audioChoices": {
       "enterWithSound": "Enter with sound",
       "enterWithoutSound": "Enter without sound"

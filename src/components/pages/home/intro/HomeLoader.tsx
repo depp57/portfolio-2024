@@ -1,17 +1,16 @@
 import { useProgress } from '@react-three/drei';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function HomeLoader({ onLoaded }: { onLoaded: () => void }) {
-  const t = useTranslations('home');
+  const t = useTranslations('home.progressExpressions');
 
   const progress = useProgress((selector) => selector.progress);
   const progressTextRef = useRef<HTMLSpanElement>(null!);
 
   const progressInterpolation = Math.floor(progress / 20) * 20;
 
-  // eslint-disable-next-line
-  const progressTexts = useMemo(() => t.raw('progressExpressions'), []);
+  const progressTexts = [t('expression1'), t('expression2'), t('expression3')];
 
   const currentText = progressTexts[Math.floor((progressTexts.length * progressInterpolation) / 101)];
 
