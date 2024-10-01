@@ -1,15 +1,13 @@
-import createNextIntlPlugin from "next-intl/plugin";
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin("./src/lib/i18n.ts");
+const withNextIntl = createNextIntlPlugin('./src/lib/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["three"],
+  transpilePackages: ['three'],
   webpack(config) {
     // Grab the existing rule that handles SVG imports
-    const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.('.svg'),
-    )
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
 
     config.module.rules.push(
       // Convert *.svg imports to React components
@@ -18,19 +16,18 @@ const nextConfig = {
         issuer: fileLoaderRule.issuer,
         use: ['@svgr/webpack'],
       },
-    )
+    );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i
-
+    fileLoaderRule.exclude = /\.svg$/i;
 
     // Add support for GLSL files
     config.module.rules.push({
       test: /\.glsl$/,
-      loader: "raw-loader",
-    })
+      loader: 'raw-loader',
+    });
 
-    return config
+    return config;
   },
 
   experimental: {
@@ -40,12 +37,16 @@ const nextConfig = {
           loaders: ['@svgr/webpack'],
           as: '*.js',
         },
-      }
-    }
+        '*.glsl': {
+          loaders: ['raw-loader'],
+          as: '*.js',
+        },
+      },
+    },
   },
 
   // https://nextjs.org/docs/app/api-reference/next-config-js/output#automatically-copying-traced-files
-  output: "standalone"
+  output: 'standalone',
 };
 
 export default withNextIntl(nextConfig);

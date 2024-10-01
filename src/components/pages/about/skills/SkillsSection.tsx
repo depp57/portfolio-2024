@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Matter from 'matter-js';
+import Matter from '@depp57/matter-js';
 import { motion } from 'framer-motion';
 import { Skill } from '@/components/pages/about/skills/Skill';
 import { useTranslations } from 'next-intl';
@@ -45,10 +45,15 @@ function createBodies(containerElement: HTMLDivElement, elements: HTMLDivElement
   const elementSize = elements[0].getBoundingClientRect().width;
   const containerWidth = containerElement.getBoundingClientRect().width;
 
+  const elementXMax = elementSize + elementSize * 0.9 * (elements.length - 1);
+  const centerXOffset = Math.max((containerWidth - elementXMax) / 2, 0);
+
   const bodies = elements.map((currentElement, i) => ({
     body: Matter.Bodies.circle(
-      (elementSize * i) % containerWidth,
-      elementSize / 2 + Math.floor((elementSize * i) / containerWidth) * elementSize,
+      centerXOffset + ((elementSize * 0.9 * i) % containerWidth),
+      elementSize / 2 +
+        Math.floor((elementSize * i) / containerWidth) * elementSize +
+        (Math.random() * elementSize) / 2,
       elementSize / 2,
     ),
     element: currentElement,
@@ -67,22 +72,10 @@ function createBodies(containerElement: HTMLDivElement, elements: HTMLDivElement
   return { bodies, wakeUpBodies };
 }
 
-/**
- * Fix scroll issue with Matter.js
- * https://github.com/liabru/matter-js/issues/929
- */
-function reEnableMouseScroll(mouseConstraint: Matter.MouseConstraint) {
-  // @ts-ignore
-  mouseConstraint.mouse.element.removeEventListener('mousewheel', mouseConstraint.mouse['mousewheel']);
-  // @ts-ignore
-  mouseConstraint.mouse.element.removeEventListener('DOMMouseScroll', mouseConstraint.mouse['mousewheel']);
-  // @ts-ignore
-  mouseConstraint.mouse.element.removeEventListener('touchmove', mouseConstraint.mouse['touchmove']);
-  // @ts-ignore
-  mouseConstraint.mouse.element.removeEventListener('touchstart', mouseConstraint.mouse['touchstart']);
-  // @ts-ignore
-  mouseConstraint.mouse.element.removeEventListener('touchend', mouseConstraint.mouse['touchend']);
-}
+const physics: { engine: Matter.Engine; bodies: { render: () => void }[] } = {
+  engine: null!,
+  bodies: [],
+};
 
 export default function SkillsSection() {
   const t = useTranslations('about.skills');
@@ -92,7 +85,7 @@ export default function SkillsSection() {
   const requestRef = useRef<number>(null!);
   const divRefs = useRef<HTMLDivElement[]>([]);
 
-  const animate = (engine: Matter.Engine, elements: { render: () => void }[]) => {
+  const animate = () => {
     let previousTime: number;
 
     requestAnimationFrame(firstFrame);
@@ -105,8 +98,8 @@ export default function SkillsSection() {
     function render(currentTime: number) {
       const deltaTime = currentTime - previousTime;
 
-      elements.forEach((element) => element.render());
-      Matter.Engine.update(engine, deltaTime);
+      physics.bodies.forEach((element) => element.render());
+      Matter.Engine.update(physics.engine, deltaTime);
 
       previousTime = currentTime;
 
@@ -116,22 +109,19 @@ export default function SkillsSection() {
 
   useEffect(() => {
     const { bodies, wakeUpBodies } = createBodies(containerRef.current, divRefs.current);
-    const engine = Matter.Engine.create({ enableSleeping: true });
+    physics.bodies = bodies;
+    physics.engine = Matter.Engine.create({ enableSleeping: true });
 
-    const mouseConstraint = Matter.MouseConstraint.create(engine, {
+    const mouseConstraint = Matter.MouseConstraint.create(physics.engine, {
       mouse: Matter.Mouse.create(containerRef.current),
       constraint: {
         stiffness: 1,
       },
     });
 
-    reEnableMouseScroll(mouseConstraint);
-
     const { walls, resizeWalls } = createWalls(containerRef.current);
 
-    Matter.World.add(engine.world, [...walls, ...bodies.map(({ body }) => body), mouseConstraint]);
-
-    animate(engine, bodies);
+    Matter.World.add(physics.engine.world, [...walls, ...bodies.map(({ body }) => body), mouseConstraint]);
 
     const handleResize = () => {
       resizeWalls();
@@ -143,7 +133,7 @@ export default function SkillsSection() {
     return () => {
       cancelAnimationFrame(requestRef.current);
       removeEventListener('resize', handleResize);
-      Matter.Engine.clear(engine);
+      Matter.Engine.clear(physics.engine);
     };
   }, []);
 
@@ -156,8 +146,10 @@ export default function SkillsSection() {
           ref={containerRef}
           className="w-full h-full relative overflow-hidden cursor-grab"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ ease: 'easeIn', duration: 1 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.1, delay: 0.5 }}
+          onViewportEnter={() => animate()}
+          viewport={{ once: true }}
         >
           {skills.map((skill, i) => (
             <Skill key={skill} name={skill} ref={(el) => (divRefs.current[i] = el!)} />
