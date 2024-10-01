@@ -61,12 +61,12 @@ export default function ContactSection() {
             value={message}
             onKeyDown={onKeyDown}
             onChange={(e) => setMessage(e.target.value)}
-            className="text-3xl font-light bg-transparent appearance-none outline-none text-primary-text w-full"
+            className="text-xl lg:text-3xl font-light bg-transparent appearance-none outline-none text-primary-text w-full"
             placeholder={placeholder}
           />
         </div>
         <Button type="submit" size="lg" className="text-lg 2xl:text-xl">
-          Send message
+          {t('send')}
           <ArrowTopRightIcon className="ml-2 h-6 w-6" />
         </Button>
       </form>

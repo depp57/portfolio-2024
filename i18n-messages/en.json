@@ -20,10 +20,12 @@
     },
     "scrollHint": "Scroll to navigate the scene",
     "openToWork": "Open to work",
+    "closedToWork": "Currently on projects",
     "contactMe": "Contact me",
+    "contactMeAnyway": "Contact me anyway",
     "shortDescription": {
       "role": "Software Engineer",
-      "catchPhrase": "Passionate about Cloud infrastructure",
+      "catchPhrase": "Passionate about cloud infrastructure",
       "discoverWork": "Discover my work"
     }
   },
@@ -68,7 +70,7 @@
       },
       "experience4": {
         "company": "INRS, France",
-        "role": "Java developper",
+        "role": "Java developer",
         "date": "2020 · 3 months",
         "description": "Full time internship. Work with my supervisor on a research project aiming to develop an app to protect workers' eyes.",
         "mainTasks": {
@@ -84,20 +86,22 @@
     "skills": {
       "title": "Area of expertise",
       "skillsList": [
-        "Backend (Java, Node.js)",
+        "Backend (Java, Node.js, Go)",
         "Frontend (Angular, React)",
-        "Go",
         "Software architecture",
         "Databases (SQL, NoSQL)",
-        "DevOps (CI/CD, Kubernetes, Docker)",
+        "DevOps (CI/CD, IaC)",
+        "Docker",
+        "Kubernetes & Openshift",
         "Linux (Debian, Red Hat)",
         "Git"
       ]
     },
-    "contact":{
+    "contact": {
       "title": "Let's work together.",
       "hello": "Hi Sacha!",
       "placeholder": "Hello Sacha! We have an interesting project we would like to discuss with you. Reach us at our email address:",
+      "send": "Send message",
       "messageStatus": {
         "success": {
           "title": "Message sent!",

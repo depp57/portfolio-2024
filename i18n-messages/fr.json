@@ -20,17 +20,19 @@
     },
     "scrollHint": "Scrollez pour découvrir mes projets",
     "openToWork": "Une question ?",
+    "closedToWork": "Actuellement occupé",
     "contactMe": "Me contacter",
+    "contactMeAnyway": "Discuter quand même",
     "shortDescription": {
       "role": "Ingénieur logiciel",
-      "catchPhrase": "Passionné par les infrastructures Cloud",
+      "catchPhrase": "Passionné par les infrastructures cloud",
       "discoverWork": "Découvrir mes projets"
     }
   },
   "about": {
-    "welcome": "Bienvenue",
+    "welcome": "Bonjour",
     "namePrefix": "Je m'appelle",
-    "catchPhrase": "Je suis un ingénieur logiciel junior, passionné par les technologies Cloud.",
+    "catchPhrase": "Je suis un ingénieur logiciel junior, passionné par les technologies cloud.",
     "experience": {
       "experience1": {
         "company": "SII, Toulouse",
@@ -84,12 +86,13 @@
     "skills": {
       "title": "Compétences",
       "skillsList": [
-        "Backend (Java, Node.js)",
+        "Backend (Java, Node.js, Go)",
         "Frontend (Angular, React)",
-        "Go",
         "Architecture logicielle",
         "Bases de données (SQL, NoSQL)",
-        "DevOps (CI/CD, Kubernetes, Docker, ArgoCD)",
+        "DevOps (CI/CD, IaC)",
+        "Docker",
+        "Kubernetes & Openshift",
         "Linux (Debian, Red Hat)",
         "Git"
       ]
@@ -98,6 +101,7 @@
       "title": "Travaillons ensemble !",
       "hello": "Bonjour Sacha !",
       "placeholder": "Bonjour Sacha, nous avons un projet intéressant à discuter ensemble. Contactez-nous à l'adresse mail suivante :",
+      "send": "Envoyer",
       "messageStatus": {
         "success": {
           "title": "Message envoyé !",
