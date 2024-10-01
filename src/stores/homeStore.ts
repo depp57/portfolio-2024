@@ -1,19 +1,17 @@
 import { create } from 'zustand';
-import { combine, devtools } from 'zustand/middleware';
+import { devtools } from 'zustand/middleware';
 
 type HomeState = {
   isIntro: boolean;
-};
-
-type SetHomeState = {
   endIntro: () => void;
 };
 
-export const useHomeStore = create(
+export const useHomeStore = create<HomeState>()(
   devtools(
-    combine<HomeState, SetHomeState>({ isIntro: true }, (set) => ({
-      endIntro: () => set({ isIntro: false }),
-    })),
+    (set) => ({
+      isIntro: true,
+      endIntro: () => set(() => ({ isIntro: false }), undefined, 'endIntro'),
+    }),
     { name: 'homeStore', store: 'homeStore' },
   ),
 );
