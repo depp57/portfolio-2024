@@ -6,7 +6,7 @@ export const Skill = forwardRef(function Skill({ name }: { name: string }, ref: 
   return (
     <div
       ref={ref}
-      className="w-[100px] lg:w-[160px] h-[100px] lg:h-[160px] rounded-full text-center text-base lg:text-2xl border-2 border-tertiary-text cursor-grabbing select-none absolute
+      className="w-[120px] lg:w-[160px] h-[120px] lg:h-[160px] rounded-full text-center text-base lg:text-2xl border-2 border-tertiary-text cursor-grabbing select-none absolute
       hover:border-primary-text flex flex-col justify-center"
     >
       {name}

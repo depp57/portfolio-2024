@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 
-export default function LinkHover({ text, href }: { text: string; href: string }) {
+export default function LinkHover({ text, href }: Readonly<{ text: string; href: string }>) {
   return (
     <Link
-      className="border-b-2 border-gray-500 flex flex-wrap items-center
+      className="text-base w-fit lg:text-2xl
+                border-b-2 border-gray-500 flex flex-wrap items-center
                 after:w-full
                 after:block after:content-[''] after:border-b-2 after:border-white
                 after:[transform:scaleX(0)_translateY(100%)] after:transition-transform after:origin-right
@@ -12,7 +13,7 @@ export default function LinkHover({ text, href }: { text: string; href: string }
       href={href}
     >
       {text}
-      <ArrowTopRightIcon className="ml-2 h-6 w-6" />
+      <ArrowTopRightIcon className="ml-0.5 lg:ml-2 lg:h-6 lg:w-6" />
     </Link>
   );
 }

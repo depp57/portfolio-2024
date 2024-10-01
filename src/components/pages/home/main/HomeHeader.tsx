@@ -3,6 +3,7 @@ import { EnvelopeClosedIcon } from '@radix-ui/react-icons';
 import Menu from '@/components/shared/menu/Menu';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 const variants = {
   initial: { x: 0, y: '-50%', opacity: 1 },
@@ -20,13 +21,18 @@ export default function HomeHeader() {
   const MotionButton = motion(Button);
 
   return (
-    <>
+    <header className="flex w-full justify-between items-center p-10">
       <MotionButton
         initial="initial"
         whileHover="hidden"
         size="lg"
         variant="outline"
-        className={'justify-start gap-1 min-w-56 text-xl items-center text-primary-text overflow-hidden'}
+        className={cn(
+          'justify-start gap-1 min-w-56 max-h-11 lg:max-h-none text-xl items-center text-primary-text overflow-hidden',
+          {
+            'min-w-72': !isOpenToWork,
+          },
+        )}
       >
         <EnvelopeClosedIcon className="mr-2 h-6 w-6 font-extrabold" />
         <div className="relative">
@@ -38,7 +44,8 @@ export default function HomeHeader() {
           </motion.span>
         </div>
       </MotionButton>
+
       <Menu />
-    </>
+    </header>
   );
 }

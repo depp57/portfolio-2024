@@ -16,6 +16,9 @@ const config = {
       DEFAULT: '200ms',
     },
     extend: {
+      screens: {
+        '3xl': '2000px',
+      },
       colors: {
         primary: {
           DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
