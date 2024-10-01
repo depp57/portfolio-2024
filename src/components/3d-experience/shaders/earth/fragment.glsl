@@ -25,7 +25,7 @@ void main() {
 
     // Clouds
     vec2 specularCloudsColor = texture(uSpecularCloudsTexture, vUv).rg;
-    float cloudMix = smoothstep(0.5, 1.0, specularCloudsColor.g);
+    float cloudMix = smoothstep(0.08, 1.0, specularCloudsColor.g);
     cloudMix *= dayMix;
     color = mix(color, vec3(1.0), cloudMix);
 

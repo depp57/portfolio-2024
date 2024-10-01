@@ -4,6 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { Group, MeshBasicMaterial } from 'three';
 import cloudTexture from '@static/cloud.png';
 import { useTheme } from 'next-themes';
+import { motion } from 'framer-motion-3d';
 
 export default function SkyClouds() {
   const ref = useRef<Group>(null!);
@@ -68,27 +69,29 @@ export default function SkyClouds() {
   };
 
   return (
-    <Clouds material={MeshBasicMaterial} texture={cloudTexture.src}>
-      <Cloud
-        key={1}
-        ref={ref}
-        position={[0, -1.7, 2]}
-        seed={2}
-        speed={0.1}
-        scale={0.5}
-        color={cloudColors.mid[theme]}
-        fade={2.6}
-      />
-      <Cloud
-        key={2}
-        ref={ref2}
-        seed={5}
-        speed={0.1}
-        scale={0.5}
-        position={[0, -1.7, 2 + 1.5]}
-        color={cloudColors.mid[theme]}
-        fade={2.6}
-      />
-    </Clouds>
+    <motion.group initial={{ y: 6 }} animate={{ y: 0 }} exit={{ y: 6 }} transition={{ duration: 1.3 }}>
+      <Clouds material={MeshBasicMaterial} texture={cloudTexture.src}>
+        <Cloud
+          key={1}
+          ref={ref}
+          position={[0, -1.7, 2]}
+          seed={2}
+          speed={0.1}
+          scale={0.5}
+          color={cloudColors.mid[theme]}
+          fade={2.6}
+        />
+        <Cloud
+          key={2}
+          ref={ref2}
+          seed={5}
+          speed={0.1}
+          scale={0.5}
+          position={[0, -1.7, 2 + 1.5]}
+          color={cloudColors.mid[theme]}
+          fade={2.6}
+        />
+      </Clouds>
+    </motion.group>
   );
 }
