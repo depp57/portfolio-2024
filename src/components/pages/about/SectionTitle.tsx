@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-export default function SectionTitle({ title }: { title: string }) {
+export default function SectionTitle({ title }: Readonly<{ title: string }>) {
   return (
     <>
       <div className="overflow-hidden pb-1.5">

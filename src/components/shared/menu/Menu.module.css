@@ -1,20 +1,20 @@
 .dropDownMenuItem {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition-property: opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
 .dropDownMenuItem:hover ~ .dropDownMenuItem {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .dropDownMenuItem:has(~ .dropDownMenuItem:hover) {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .checkbox {
@@ -27,11 +27,13 @@
   cursor: pointer;
   background: rgb(140, 140, 140);
   border: 1px solid var(--text-quaternary);
-  transition: background 0.3s ease 0s, border-color 0.3s ease 0s, box-shadow 0.2s ease 0s;
+  transition:
+    background 0.3s ease 0s,
+    border-color 0.3s ease 0s,
+    box-shadow 0.2s ease 0s;
   border-radius: 30px;
   appearance: none;
 }
-
 
 .checkbox:checked {
   background: rgb(var(--secondary));
@@ -42,7 +44,7 @@
 }
 
 .checkbox::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   left: 3px;
@@ -54,23 +56,25 @@
   transition: transform 0.2s ease 0s;
 }
 
-.lightTheme input[type="radio"], .darkTheme input[type="radio"] {
-    appearance: none;
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
+.lightTheme input[type='radio'],
+.darkTheme input[type='radio'] {
+  appearance: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
 }
 
-.lightTheme:has(input[type="radio"]:checked) {
-    background: linear-gradient(131deg, rgb(255, 206, 82) 15.39%, rgb(234, 129, 32) 85.57%);
+.lightTheme:has(input[type='radio']:checked) {
+  background: linear-gradient(131deg, rgb(255, 206, 82) 15.39%, rgb(234, 129, 32) 85.57%);
 }
 
-.darkTheme:has(input[type="radio"]:checked) {
-    background: linear-gradient(129deg, rgb(8, 9, 41) 13.01%, rgb(0, 0, 0) 85.63%);
+.darkTheme:has(input[type='radio']:checked) {
+  background: linear-gradient(129deg, rgb(8, 9, 41) 13.01%, rgb(0, 0, 0) 85.63%);
 }
 
-.lightTheme:has(input[type="radio"]:disabled), .darkTheme:has(input[type="radio"]:disabled) {
-    opacity: 0.5;
-    pointer-events: none;
+.lightTheme:has(input[type='radio']:disabled),
+.darkTheme:has(input[type='radio']:disabled) {
+  opacity: 0.5;
+  pointer-events: none;
 }

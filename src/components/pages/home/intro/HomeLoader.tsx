@@ -2,7 +2,7 @@ import { useProgress } from '@react-three/drei';
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 
-export default function HomeLoader({ onLoaded }: { onLoaded: () => void }) {
+export default function HomeLoader({ onLoaded }: Readonly<{ onLoaded: () => void }>) {
   const t = useTranslations('home.progressExpressions');
 
   const progress = useProgress((selector) => selector.progress);

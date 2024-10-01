@@ -11,7 +11,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: s
   };
 }
 
-export default function Page({ params: { lang } }: { params: { lang: string } }) {
+export default function Page({ params: { lang } }: Readonly<{ params: { lang: string } }>) {
   unstable_setRequestLocale(lang);
 
   const messages = useMessages();

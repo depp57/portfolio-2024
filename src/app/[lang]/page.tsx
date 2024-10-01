@@ -3,7 +3,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { pick } from '@/lib/utils';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
-export default function Page({ params: { lang } }: { params: { lang: string } }) {
+export default function Page({ params: { lang } }: Readonly<{ params: { lang: string } }>) {
   unstable_setRequestLocale(lang);
 
   const messages = useMessages();

@@ -37,7 +37,7 @@ export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'fr' }];
 }
 
-export default function RootLayout({ children, params: { lang } }: RootLayoutParams) {
+export default function RootLayout({ children, params: { lang } }: Readonly<RootLayoutParams>) {
   unstable_setRequestLocale(lang);
 
   return (

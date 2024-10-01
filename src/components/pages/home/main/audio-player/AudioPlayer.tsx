@@ -17,7 +17,7 @@ export default function AudioPlayer() {
   }, []);
 
   if (isPlaying && audio) {
-    audio.play();
+    void audio.play();
   } else if (audio) {
     audio.pause();
   }

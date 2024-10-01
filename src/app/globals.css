@@ -11,12 +11,12 @@
     --tertiary: 235 243 246;
     --text-primary: 40 66 94;
 
-    --text-secondary: rgba(15,40,70,.5);
-    --text-tertiary: rgba(15,40,70,.3);
-    --text-quaternary: rgba(15,40,70,.1);
-    --text-shadow: 0px 0px 17px hsla(0,0%,100%,.2);
-    --fade-primary: hsla(0,0%,100%,.35);
-    --fade-secondary: hsla(0,0%,100%,0);
+    --text-secondary: rgba(15, 40, 70, 0.5);
+    --text-tertiary: rgba(15, 40, 70, 0.3);
+    --text-quaternary: rgba(15, 40, 70, 0.1);
+    --text-shadow: 0px 0px 17px hsla(0, 0%, 100%, 0.2);
+    --fade-primary: hsla(0, 0%, 100%, 0.35);
+    --fade-secondary: hsla(0, 0%, 100%, 0);
 
     --destructive: 210 31 60;
     --success: 41 171 135;
@@ -27,22 +27,21 @@
     --secondary: 0 0 0;
     --tertiary: 31 31 31;
     --text-primary: 255 255 255;
-    
-    --text-secondary: hsla(0, 0%, 100%, .5);
-    --text-tertiary: hsla(0, 0%, 100%, .3);
-    --text-quaternary: hsla(0, 0%, 100%, .1);
+
+    --text-secondary: hsla(0, 0%, 100%, 0.5);
+    --text-tertiary: hsla(0, 0%, 100%, 0.3);
+    --text-quaternary: hsla(0, 0%, 100%, 0.1);
     --text-shadow: none;
-    --fade-primary: rgba(0, 0, 0, .35);
+    --fade-primary: rgba(0, 0, 0, 0.35);
     --fade-secondary: transparent;
 
-    --destructive: 124 10 2;
-    --success: 11 102 35;
+    --destructive: 255 84 84;
+    --success: 25 136 104;
   }
 }
 
 html,
-body
-{
+body {
   position: fixed;
   top: 0;
   left: 0;
@@ -51,8 +50,9 @@ body
   background: var(--primary);
 }
 
-html[data-theme='light'] html, html[data-theme='light'] body {
-  background: #92B0CD;
+html[data-theme='light'] html,
+html[data-theme='light'] body {
+  background: #92b0cd;
 }
 
 .html-overlay {

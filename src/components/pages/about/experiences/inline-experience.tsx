@@ -8,7 +8,13 @@ type InlineExperienceProps = {
   children: ReactNode;
 };
 
-export default function InlineExperience({ company, role, date, description, children }: InlineExperienceProps) {
+export default function InlineExperience({
+  company,
+  role,
+  date,
+  description,
+  children,
+}: Readonly<InlineExperienceProps>) {
   return (
     <div className="flex flex-col gap-1 lg:gap-2 text-lg lg:text-xl 2xl:text-2xl">
       <div className="flex items-center gap-2">

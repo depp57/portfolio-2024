@@ -7,7 +7,13 @@ export default function ScrollHint() {
 
   return (
     <div className="flex gap-2 flex-col items-center ml-auto mr-auto p-6 absolute bottom-0 left-0 right-0">
-      <Image priority className="opacity-40 mix-blend-screen" src={scrollAnimation} alt="mouse scroll animation gif" />
+      <Image
+        unoptimized
+        priority
+        className="opacity-40 mix-blend-screen"
+        src={scrollAnimation}
+        alt="mouse scroll animation gif"
+      />
       <span className="text-secondary-text text-nowrap w-max">{t('scrollHint')}</span>
     </div>
   );

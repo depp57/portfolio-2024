@@ -7,7 +7,7 @@ function makeControls(vert: string, frag: string) {
   `
     .split('\n')
     .filter((x) => x.indexOf('uniform') > -1)
-    .map((x) => x.match(/uniform (.+?) (.+?);.+(\/\/.+)/m))
+    .map((x) => RegExp(/uniform (.+?) (.+?);.+(\/\/.+)/m).exec(x))
     .filter((x) => x)
     .map((match) => {
       return {

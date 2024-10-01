@@ -7,7 +7,7 @@ type ButtonCircleProps = {
   onClick?: () => void;
 };
 
-export default function ButtonCircle({ children, className, onClick }: ButtonCircleProps) {
+export default function ButtonCircle({ children, className, onClick }: Readonly<ButtonCircleProps>) {
   return (
     <button
       onClick={onClick}

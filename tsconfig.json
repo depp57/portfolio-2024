@@ -20,7 +20,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@static/*": ["./public/*"],
-      "@shader/*": ["./src/components/3d-experience/shaders/*"],
+      "@shader/*": ["./src/components/3d-experience/shaders/*"]
     }
   },
   "include": ["next-env.d.ts", "global.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
