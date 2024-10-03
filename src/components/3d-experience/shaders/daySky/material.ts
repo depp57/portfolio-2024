@@ -7,9 +7,9 @@ import daySkyFragmentShader from '@shader/daySky/fragment.glsl';
 export const DaySkyMaterial = shaderMaterial(
   {
     uTime: 0,
-    sunPosition: new Vector3(1, 1, -2),
-    rayleigh: 0.07,
-    turbidity: 0.1,
+    sunPosition: new Vector3(0.8, 0.75, -2),
+    rayleigh: 0.09,
+    turbidity: 0.09,
     mieCoefficient: 0.005,
     mieDirectionalG: 0.8,
     up: new Vector3(0, 1, 0),

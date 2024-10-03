@@ -22,11 +22,14 @@ export default function HomeLoader({ onLoaded }: Readonly<{ onLoaded: () => void
 
   return (
     <>
-      <span className="text-4xl sm:text-5xl lg:text-6xl text-center w-full block" ref={progressTextRef}>
+      <span
+        className="text-primary-text text-4xl sm:text-5xl lg:text-6xl text-center w-full block"
+        ref={progressTextRef}
+      >
         {progressInterpolation}%
       </span>
       <br />
-      <span className="text-lg sm:text-xl lg:text-2xl text-nowrap">{currentText}</span>
+      <span className="text-primary-text text-lg sm:text-xl lg:text-2xl text-nowrap">{currentText}</span>
     </>
   );
 }

@@ -10,7 +10,7 @@ export default function SkyClouds() {
   const ref = useRef<Group>(null!);
   const ref2 = useRef<Group>(null!);
   const { theme } = useTheme() as { theme: 'light' | 'dark' };
-  const speed = 0.1;
+  const speed = 0.25;
   const endZ = 5;
   const startZ = 2;
 

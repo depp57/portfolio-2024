@@ -16,7 +16,7 @@ const buttonVariants = cva(
         ghost: `!rounded-none !p-0 !h-auto flex-wrap
                 border-b-2 border-gray-500
                 after:w-full
-                after:block after:content-[''] after:border-b-2 after:border-white
+                after:block after:content-[''] after:border-b-2 after:border-primary-text
                 after:[transform:scaleX(0)_translateY(100%)] after:transition-transform after:origin-right
                 after:hover:[transform:scaleX(1)_translateY(100%)] after:hover:origin-left`,
         link: 'text-primary underline-offset-4 hover:underline',

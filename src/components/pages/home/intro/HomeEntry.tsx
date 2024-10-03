@@ -29,7 +29,7 @@ export default function HomeEntry() {
         <span className="text-lg font-normal text-secondary-text">or</span>
         <div className="h-px w-full bg-secondary-text"></div>
       </div>
-      <Button className="text-xl" size="lg" variant="ghost" onClick={() => onClick(false)}>
+      <Button className="text-primary-text text-xl" size="lg" variant="ghost" onClick={() => onClick(false)}>
         {t('enterWithoutSound')}
         <ArrowTopRightIcon className="ml-2 h-6 w-6" />
       </Button>

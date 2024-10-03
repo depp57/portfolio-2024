@@ -20,7 +20,7 @@ export default function About() {
 
       <div
         id="scroll-container"
-        className="flex flex-col overflow-y-auto pointer-events-auto p-3 lg:p-28 2xl:p-36 pb-10 gap-24 bg-gradient-to-b from-transparent to-30% to-primary/50 bg-local"
+        className="text-primary-text flex flex-col overflow-y-auto pointer-events-auto p-3 lg:p-28 2xl:p-36 pb-10 gap-24 bg-gradient-to-b from-transparent to-30% to-primary/50 bg-local"
       >
         <span className="lg:min-h-[50vh] 2xl:min-h-[55vh] 3xl:min-h-[65vh]" />
 

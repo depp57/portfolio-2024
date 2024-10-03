@@ -1,12 +1,12 @@
 import type { Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Bricolage_Grotesque } from 'next/font/google';
 import '../globals.css';
 import { ReactNode } from 'react';
 import Experience3D from '@/components/3d-experience/Experience3D';
 import { Providers } from '@/app/[lang]/Providers';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
-const inter = Inter({ subsets: ['latin'] });
+const bricolageGrotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
   const t = await getTranslations({ locale: lang, namespace: 'metadata' });
@@ -42,7 +42,7 @@ export default function RootLayout({ children, params: { lang } }: Readonly<Root
 
   return (
     <html lang={lang} suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={bricolageGrotesque.className}>
         <Providers>
           <div className="background-canvas">
             <Experience3D />
