@@ -5,7 +5,12 @@ import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { useHomeStore } from '@/stores/homeStore';
 
+let messageAlreadyShowed = false;
+
 function showBannerInConsole() {
+  if (messageAlreadyShowed) return;
+  messageAlreadyShowed = true;
+
   console.log('%cHello there, developer!', 'color: #32ffce');
   console.log(
     '%cIf you’d like to get in touch, please feel free to reach out via the contact section.',
