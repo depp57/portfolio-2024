@@ -7,27 +7,43 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { useHomeStore } from '@/stores/homeStore';
 import Earth from '@/components/3d-experience/Earth';
-import { Suspense } from 'react';
-import PreloadAllTextures from '@/components/3d-experience/PreloadAllTextures';
+import { Suspense, useEffect, useRef } from 'react';
+import TexturesPreloader from '@/components/3d-experience/TexturesPreloader';
+import FluidFX from '@/components/3d-experience/WaterSurface/InteractiveFX/FluidFX';
+import WaterSurface from '@/components/3d-experience/WaterSurface/WaterSurface';
+import { useThreeStore } from '@/stores/ThreeStore';
 
 export default function Experience3D() {
-  const fullPathName = usePathname().split('/');
-  const pathName = fullPathName.length > 2 ? fullPathName.pop() : 'home';
+  const pathSegments = usePathname().split('/');
+  const lastPathSegment = pathSegments.length > 2 ? pathSegments.pop() : 'home';
   const isIntro = useHomeStore((state) => state.isIntro);
 
+  const canvasRef = useRef<HTMLCanvasElement>(null!);
+
+  useEffect(() => {
+    useThreeStore.setState({ canvasRef });
+  }, []);
+
   return (
-    <Canvas>
+    <Canvas ref={canvasRef}>
       <color attach="background" args={['#08131D']} />
       {/*<StatsGl />*/}
       <Suspense fallback={null}>
-        {isIntro && <PreloadAllTextures />}
-
-        {!isIntro && (
+        {isIntro ? (
+          <TexturesPreloader />
+        ) : (
           <>
             <Sky />
             <AnimatePresence initial={false}>
-              {pathName === 'home' && <SkyClouds key="clouds" />}
-              {pathName === 'about' && <Earth key="earth" />}
+              {lastPathSegment === 'home' && <SkyClouds />}
+              {lastPathSegment === 'about' && (
+                <>
+                  <Earth key="earth" />
+                  <WaterSurface key="waterSurface">
+                    <FluidFX key="fluidFx" />
+                  </WaterSurface>
+                </>
+              )}
             </AnimatePresence>
           </>
         )}
