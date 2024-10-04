@@ -2,7 +2,7 @@ import { useBlending, useFluid, usePointer } from '@funtech-inc/use-shader-fx';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useContext } from 'react';
 import { Vector2, Vector3 } from 'three';
-import { WaterContext } from '../WaterContext';
+import { WaterContext } from './WaterContext';
 
 const fluidColorFn = (velocity: Vector2) => {
   const rCol = 0.005;

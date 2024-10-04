@@ -36,7 +36,7 @@ type WaterOptions = {
   fxDistortionFactor?: number;
 };
 
-class WaterComplex extends Mesh {
+class WaterMesh extends Mesh {
   static readonly WaterShader = {
     uniforms: {
       color: {
@@ -214,7 +214,7 @@ class WaterComplex extends Mesh {
     const flowSpeed = options.flowSpeed ?? 0.03;
     const reflectivity = options.reflectivity ?? 0.02;
     const scale = options.scale ?? 1;
-    const shader: any = options.shader ?? WaterComplex.WaterShader;
+    const shader: any = options.shader ?? WaterMesh.WaterShader;
     const encoding = options.encoding ?? 3000;
 
     const flowMap = options.flowMap || undefined;
@@ -359,4 +359,4 @@ class WaterComplex extends Mesh {
   }
 }
 
-export { WaterComplex };
+export { WaterMesh };

@@ -2,7 +2,7 @@ import { ReactNode, useMemo, useRef } from 'react';
 import { PlaneGeometry, Vector2 } from 'three';
 import { useThree } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
-import { WaterComplex } from './Water/WaterComplex';
+import { WaterMesh } from './WaterMesh';
 import { WaterContext } from './WaterContext';
 import { motion } from 'framer-motion-3d';
 import waterSurfaceNormal1 from '@static/waterSurface/Water_1_M_Normal.jpg';
@@ -76,7 +76,7 @@ export default function WaterSurface({
 
   //const refPointer = useRef(new Vector2(0, 0));
 
-  const waterObj = useMemo(() => new WaterComplex(geom, config), [geom, config]);
+  const waterObj = useMemo(() => new WaterMesh(geom, config), [geom, config]);
 
   const handlePointerMove = (e: any) => {
     refPointer.current = e.uv.multiplyScalar(2).subScalar(1);

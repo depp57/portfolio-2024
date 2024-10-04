@@ -9,8 +9,8 @@ import { useHomeStore } from '@/stores/homeStore';
 import Earth from '@/components/3d-experience/Earth';
 import { Suspense, useEffect, useRef } from 'react';
 import TexturesPreloader from '@/components/3d-experience/TexturesPreloader';
-import FluidFX from '@/components/3d-experience/WaterSurface/InteractiveFX/FluidFX';
-import WaterSurface from '@/components/3d-experience/WaterSurface/WaterSurface';
+import FluidFX from '@/components/3d-experience/waterSurface/FluidFX';
+import WaterSurface from '@/components/3d-experience/waterSurface/WaterSurface';
 import { useThreeStore } from '@/stores/ThreeStore';
 
 export default function Experience3D() {
