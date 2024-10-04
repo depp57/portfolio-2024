@@ -1,6 +1,7 @@
 import { Button } from '@/components/shared/button';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/lib/i18n/routing';
 
 export default function HomeMain() {
   const t = useTranslations('home');
@@ -16,10 +17,12 @@ export default function HomeMain() {
         {t('shortDescription.catchPhrase')}
       </h2>
       <div>
-        <Button size="lg" className="text-lg 2xl:text-xl">
-          {t('shortDescription.discoverWork')}
-          <ArrowTopRightIcon className="ml-2 h-6 w-6" />
-        </Button>
+        <Link href="/projects">
+          <Button size="lg" className="text-lg 2xl:text-xl">
+            {t('shortDescription.discoverWork')}
+            <ArrowTopRightIcon className="ml-2 h-6 w-6" />
+          </Button>
+        </Link>
       </div>
     </main>
   );

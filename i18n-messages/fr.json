@@ -5,7 +5,8 @@
       "role": "Ingénieur logiciel"
     },
     "titles": {
-      "about": "A propos"
+      "about": "A propos",
+      "projects": "Mes projets"
     }
   },
   "home": {
@@ -27,6 +28,20 @@
       "role": "Ingénieur logiciel",
       "catchPhrase": "Passionné par les infrastructures cloud",
       "discoverWork": "Découvrir mes projets"
+    }
+  },
+  "menu": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "blog": "Blog",
+    "about": "A propos",
+    "settings": "Paramètres",
+    "subMenu": {
+      "music": "Musique",
+      "enableMusic": "Activer la musique :",
+      "theme": "Thème",
+      "realTime": "Temps réel",
+      "displayTheme": "Thème d'affichage :"
     }
   },
   "about": {
@@ -116,18 +131,7 @@
     },
     "socialLinksDescription": "Ou retrouvez-moi sur ces réseaux :"
   },
-  "menu": {
-    "home": "Accueil",
-    "projects": "Projets",
-    "blog": "Blog",
-    "about": "A propos",
-    "settings": "Paramètres",
-    "subMenu": {
-      "music": "Musique",
-      "enableMusic": "Activer la musique :",
-      "theme": "Thème",
-      "realTime": "Temps réel",
-      "displayTheme": "Thème d'affichage :"
-    }
+  "projects": {
+
   }
 }

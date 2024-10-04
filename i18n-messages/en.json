@@ -5,7 +5,8 @@
       "role": "Software Engineer"
     },
     "titles": {
-      "about": "About"
+      "about": "About",
+      "projects": "My projects"
     }
   },
   "home": {
@@ -27,6 +28,20 @@
       "role": "Software Engineer",
       "catchPhrase": "Passionate about cloud infrastructure",
       "discoverWork": "Discover my work"
+    }
+  },
+  "menu": {
+    "home": "Home",
+    "projects": "Projects",
+    "blog": "Blog",
+    "about": "About",
+    "settings": "Settings",
+    "subMenu": {
+      "music": "Music",
+      "enableMusic": "Enable music:",
+      "theme": "Theme",
+      "realTime": "Real time",
+      "displayTheme": "Display theme:"
     }
   },
   "about": {
@@ -116,18 +131,7 @@
     },
     "socialLinksDescription": "Or reach me through here:"
   },
-  "menu": {
-    "home": "Home",
-    "projects": "Projects",
-    "blog": "Blog",
-    "about": "About",
-    "settings": "Settings",
-    "subMenu": {
-      "music": "Music",
-      "enableMusic": "Enable music:",
-      "theme": "Theme",
-      "realTime": "Real time",
-      "displayTheme": "Display theme:"
-    }
+  "projects": {
+
   }
 }

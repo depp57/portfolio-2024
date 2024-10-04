@@ -16,17 +16,15 @@ import LightIcon from '@static/light.svg';
 import DarkIcon from '@static/dark.svg';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMusicStore } from '@/stores/musicStore';
+import { Link } from '@/lib/i18n/routing';
 
 export default function Menu() {
   const t = useTranslations('menu');
 
-  const currentPath = usePathname().split('/').slice(1);
-  const lang = currentPath[0];
-  const currentPathName = currentPath[1] ?? '';
-  const subRoutes = (['', 'projects', 'blog', 'about'] as const).filter((route) => route !== currentPathName);
+  const lastPathSegment = usePathname().split('/').slice(1)[1] ?? '';
+  const availableRoutes = (['', 'projects', 'blog', 'about'] as const).filter((route) => route !== lastPathSegment);
 
   const { isPlaying, toggleMusic } = useMusicStore((state) => state);
   const [settingsOpened, setSettingsOpened] = useState(false);
@@ -74,9 +72,9 @@ export default function Menu() {
         align="end"
       >
         <div className="bg-primary rounded-lg p-3">
-          {subRoutes.map((route) => (
+          {availableRoutes.map((route) => (
             <DropdownMenuItem className={cn('group', styles.dropDownMenuItem)} key={route}>
-              <Link href={`/${lang}/${route}`} className="flex items-center w-full">
+              <Link href={`/${route}`} className="flex items-center w-full">
                 {t(route !== '' ? route : 'home')}
                 <ArrowTopRightIcon className="ml-auto scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
