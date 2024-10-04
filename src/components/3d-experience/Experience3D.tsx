@@ -12,6 +12,8 @@ import TexturesPreloader from '@/components/3d-experience/TexturesPreloader';
 import FluidFX from '@/components/3d-experience/waterSurface/FluidFX';
 import WaterSurface from '@/components/3d-experience/waterSurface/WaterSurface';
 import { useThreeStore } from '@/stores/ThreeStore';
+import ProjectView from '@/components/3d-experience/ProjectView';
+import { OrbitControls } from '@react-three/drei';
 
 export default function Experience3D() {
   const pathSegments = usePathname().split('/');
@@ -35,7 +37,7 @@ export default function Experience3D() {
           <>
             <Sky />
             <AnimatePresence initial={false}>
-              {lastPathSegment === 'home' && <SkyClouds />}
+              {(lastPathSegment === 'home' || lastPathSegment === 'projects') && <SkyClouds key="skyClouds" />}
               {lastPathSegment === 'about' && (
                 <>
                   <Earth key="earth" />
@@ -44,11 +46,12 @@ export default function Experience3D() {
                   </WaterSurface>
                 </>
               )}
+              {lastPathSegment === 'projects' && <ProjectView key="project" />}
             </AnimatePresence>
           </>
         )}
       </Suspense>
-      {/*<OrbitControls />*/}
+      <OrbitControls />
     </Canvas>
   );
 }

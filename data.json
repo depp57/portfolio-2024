@@ -1,0 +1,59 @@
+{
+  "projects": [
+    {
+      "title": "E-commerce Platform",
+      "description": "Developed a scalable e-commerce platform for small businesses.",
+      "keywords": ["Node.js", "React", "MongoDB", "AWS"],
+      "dateRange": "Jan 2021 - Dec 2021",
+      "githubLink": "https://github.com/fakeuser/ecommerce-platform",
+      "images": [
+        "https://picsum.photos/800/500",
+        "https://picsum.photos/800/500"
+      ]
+    },
+    {
+      "title": "Mobile Banking App",
+      "description": "Built a secure mobile app for online banking and transaction management.",
+      "keywords": ["Flutter", "Dart", "Firebase", "OAuth"],
+      "dateRange": "Mar 2022 - Oct 2022",
+      "githubLink": "https://github.com/fakeuser/mobile-banking-app",
+      "images": [
+        "https://picsum.photos/400/250",
+        "https://picsum.photos/800/500"
+      ]
+    },
+    {
+      "title": "Social Media Dashboard",
+      "description": "Created a dashboard to track social media analytics in real-time.",
+      "keywords": ["Vue.js", "Express", "PostgreSQL", "Chart.js"],
+      "dateRange": "May 2020 - Aug 2020",
+      "githubLink": "https://github.com/fakeuser/social-media-dashboard",
+      "images": [
+        "https://picsum.photos/600/375",
+        "https://picsum.photos/800/500"
+      ]
+    },
+    {
+      "title": "Real-time Chat Application",
+      "description": "Implemented a real-time chat application with WebSocket support.",
+      "keywords": ["Node.js", "Socket.io", "React", "Redis"],
+      "dateRange": "Sep 2019 - Nov 2019",
+      "githubLink": "https://github.com/fakeuser/chat-application",
+      "images": [
+        "https://picsum.photos/801/501",
+        "https://picsum.photos/800/500"
+      ]
+    },
+    {
+      "title": "Weather Forecast Website",
+      "description": "Developed a weather forecast website using third-party API integrations.",
+      "keywords": ["Next.js", "Tailwind CSS", "REST API", "Axios"],
+      "dateRange": "Feb 2023 - Apr 2023",
+      "githubLink": "https://github.com/fakeuser/weather-forecast-website",
+      "images": [
+        "https://picsum.photos/802/502",
+        "https://picsum.photos/800/500"
+      ]
+    }
+  ]
+}
