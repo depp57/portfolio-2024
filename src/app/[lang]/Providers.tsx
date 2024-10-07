@@ -1,31 +1,16 @@
-'use client';
-
 import { ThemeProvider } from 'next-themes';
 import { ReactNode } from 'react';
-import { usePathname } from 'next/navigation';
-import { useHomeStore } from '@/stores/homeStore';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
-let messageAlreadyShowed = false;
+export async function Providers({ children, lang }: Readonly<{ children: ReactNode; lang: string }>) {
+  const messages = await getMessages({ locale: lang });
 
-function showBannerInConsole() {
-  if (messageAlreadyShowed) return;
-  messageAlreadyShowed = true;
-
-  console.log('%cHello there, developer!', 'color: #32ffce');
-  console.log(
-    '%cIf you’d like to get in touch, please feel free to reach out via the contact section.',
-    'color: #32ffce',
+  return (
+    <ThemeProvider disableTransitionOnChange>
+      <NextIntlClientProvider locale={lang} messages={messages}>
+        {children}
+      </NextIntlClientProvider>
+    </ThemeProvider>
   );
-  console.log('%c— Sacha', 'color: #777777');
-}
-
-export function Providers({ children }: Readonly<{ children: ReactNode }>) {
-  showBannerInConsole();
-
-  const pathname = usePathname();
-  if (pathname.split('/').length > 2) {
-    useHomeStore.setState({ isIntro: false });
-  }
-
-  return <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>;
 }

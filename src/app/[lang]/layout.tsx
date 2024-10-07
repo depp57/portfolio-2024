@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import Experience3D from '@/components/3d-experience/Experience3D';
 import { Providers } from '@/app/[lang]/Providers';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { routing } from '@/lib/i18n/routing';
 
 const bricolageGrotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 
@@ -34,7 +35,7 @@ type RootLayoutParams = {
 };
 
 export async function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'fr' }];
+  return routing.locales.map((lang) => ({ lang }));
 }
 
 export default function RootLayout({ children, params: { lang } }: Readonly<RootLayoutParams>) {
@@ -43,7 +44,7 @@ export default function RootLayout({ children, params: { lang } }: Readonly<Root
   return (
     <html lang={lang} suppressHydrationWarning>
       <body className={bricolageGrotesque.className}>
-        <Providers>
+        <Providers lang={lang}>
           <div className="background-canvas">
             <Experience3D />
           </div>

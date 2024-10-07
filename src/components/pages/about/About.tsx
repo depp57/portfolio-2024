@@ -16,7 +16,7 @@ export default function About() {
   return (
     <ReactLenis root>
       <header className="fixed flex w-full justify-between items-center p-10 2xl:p-10 lg:h-32">
-        <Link href="/" className="text-3xl font-medium text-primary-text pointer-events-auto">
+        <Link href="/" className="text-3xl font-medium text-primary-text pointer-events-auto" scroll={false}>
           Sacha
         </Link>
 

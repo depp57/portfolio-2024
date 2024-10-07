@@ -10,6 +10,21 @@ import SkyClouds from '@/components/3d-experience/SkyClouds';
 import ScrollListener from '@/components/3d-experience/ScrollListener';
 import ProjectsView from '@/components/3d-experience/projects/ProjectsView';
 import About3D from '@/components/3d-experience/about/About3D';
+import { useHomeStore } from '@/stores/homeStore';
+
+let messageAlreadyShowed = false;
+
+function showBannerInConsole() {
+  if (messageAlreadyShowed) return;
+  messageAlreadyShowed = true;
+
+  console.log('%cHello there, developer!', 'color: #32ffce');
+  console.log(
+    '%cIf you’d like to get in touch, please feel free to reach out via the contact section.',
+    'color: #32ffce',
+  );
+  console.log('%c— Sacha', 'color: #777777');
+}
 
 export default function Experience3D() {
   const pathSegments = usePathname().split('/');
@@ -18,6 +33,12 @@ export default function Experience3D() {
   const canvasRef = useRef<HTMLCanvasElement>(null!);
 
   const scrollPagesCount = useThreeStore((state) => state.scrollPagesCount);
+
+  if (lastPathSegment !== 'home') {
+    useHomeStore.setState({ isIntro: false });
+  }
+
+  showBannerInConsole();
 
   return (
     <Canvas ref={canvasRef}>
