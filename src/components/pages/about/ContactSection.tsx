@@ -48,7 +48,7 @@ export default function ContactSection() {
 
       <form id="contact-form" className="lg:w-4/6" action={onSendEmail}>
         <p className="text-3xl lg:text-5xl font-light mb-12">{t('hello')}</p>
-        <div className="relative">
+        <div className="relative pointer-events-auto">
           {message === '' && (
             <span className="hidden lg:block absolute pt-1 pb-1 pl-2 pr-2 rounded border border-tertiary-text text-tertiary-text text-sm top-0 translate-y-[-110%]">
               Tab

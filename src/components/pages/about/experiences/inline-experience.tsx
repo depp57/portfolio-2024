@@ -16,7 +16,7 @@ export default function InlineExperience({
   children,
 }: Readonly<InlineExperienceProps>) {
   return (
-    <div className="flex flex-col gap-1 lg:gap-2 text-lg lg:text-xl 2xl:text-2xl">
+    <div className="flex flex-col gap-1 lg:gap-2 text-lg lg:text-xl 2xl:text-2xl pointer-events-auto">
       <div className="flex items-center gap-2">
         <h3 className="font-medium">{company}</h3>
         <span className="text-gray-500">{date}</span>

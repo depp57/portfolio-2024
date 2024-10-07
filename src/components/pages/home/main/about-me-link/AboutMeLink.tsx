@@ -4,7 +4,7 @@ import { Link } from '@/lib/i18n/routing';
 
 export default function AboutMeLink() {
   return (
-    <Link href="/about">
+    <Link href="/about" scroll={false}>
       <ButtonCircle className="flex items-center justify-center">
         <PersonIcon width="26" height="26" className="text-primary-text" />
       </ButtonCircle>

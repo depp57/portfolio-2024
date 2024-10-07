@@ -141,7 +141,7 @@ export default function SkillsSection() {
     <>
       <SectionTitle title={t('title')} />
 
-      <div className="border-2 border-tertiary-text rounded-xl w-full h-[80vh]">
+      <div className="border-2 border-tertiary-text rounded-xl w-full h-[80vh] pointer-events-auto">
         <motion.div
           ref={containerRef}
           className="w-full h-full relative overflow-hidden cursor-grab"

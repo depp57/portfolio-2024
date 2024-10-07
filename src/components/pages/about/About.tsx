@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import AboutFooter from '@/components/pages/about/AboutFooter';
 import SkillsSection from '@/components/pages/about/skills/SkillsSection';
 import WelcomeSection from '@/components/pages/about/WelcomeSection';
@@ -8,19 +7,15 @@ import ExperiencesSection from '@/components/pages/about/experiences/Experiences
 import ContactSection from '@/components/pages/about/ContactSection';
 import { Toaster } from '@/components/shared/toaster';
 import Menu from '@/components/shared/menu/Menu';
-import { useThreeStore } from '@/stores/ThreeStore';
-import { PointerEvent as ReactPointerEvent } from 'react';
+import { Link } from '@/lib/i18n/routing';
+import ReactLenis from 'lenis/react';
+import { cn } from '@/lib/utils';
+import styles from './About.module.css';
 
 export default function About() {
-  const canvasRef = useThreeStore((state) => state.canvasRef);
-
-  const handlePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
-    canvasRef.current.dispatchEvent(new PointerEvent('pointermove', e.nativeEvent));
-  };
-
   return (
-    <>
-      <header className="absolute flex w-full justify-between items-center p-10 2xl:p-10 lg:h-32">
+    <ReactLenis root>
+      <header className="fixed flex w-full justify-between items-center p-10 2xl:p-10 lg:h-32">
         <Link href="/" className="text-3xl font-medium text-primary-text pointer-events-auto">
           Sacha
         </Link>
@@ -29,10 +24,10 @@ export default function About() {
       </header>
 
       <div
-        id="scroll-container"
-        onPointerMove={handlePointerMove}
-        className="text-primary-text flex flex-col overflow-y-auto pointer-events-auto p-3 lg:p-28 2xl:p-36
-                   pb-10 gap-24 bg-gradient-to-b from-transparent to-30% to-primary/50 bg-local scroll-smooth"
+        className={cn(
+          'text-primary-text flex flex-col p-3 lg:p-28 2xl:p-36 pointer-events-none pb-10 gap-24',
+          styles.contrastBackground,
+        )}
       >
         <span className="lg:min-h-[50vh] 2xl:min-h-[55vh] 3xl:min-h-[65vh]" />
 
@@ -60,6 +55,6 @@ export default function About() {
       </div>
 
       <Toaster />
-    </>
+    </ReactLenis>
   );
 }
