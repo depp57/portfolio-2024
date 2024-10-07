@@ -3,15 +3,15 @@ import { devtools } from 'zustand/middleware';
 import { Project } from '@/components/pages/projects/ProjectPreview';
 
 type ProjectStore = {
-  currentProject: Project;
-  currentScrollFactor: number;
+  projects: Project[];
+  currentProjectIndex: number;
 };
 
 export const useProjectStore = create<ProjectStore>()(
   devtools(
     (_) => ({
-      currentProject: null!,
-      currentScrollFactor: 0,
+      projects: [],
+      currentProjectIndex: null!,
     }),
     { name: 'projectStore', store: 'projectStore' },
   ),
