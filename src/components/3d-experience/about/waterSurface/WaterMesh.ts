@@ -31,7 +31,6 @@ type WaterOptions = {
   flowMap?: Texture;
   normalMap0?: Texture;
   normalMap1?: Texture;
-  encoding?: 3000 | 3001;
   fxDisplayColorAlpha?: number;
   fxDistortionFactor?: number;
 };
@@ -215,7 +214,6 @@ class WaterMesh extends Mesh {
     const reflectivity = options.reflectivity ?? 0.02;
     const scale = options.scale ?? 1;
     const shader: any = options.shader ?? WaterMesh.WaterShader;
-    const encoding = options.encoding ?? 3000;
 
     const flowMap = options.flowMap || undefined;
     const normalMap0 = options.normalMap0;
@@ -245,14 +243,12 @@ class WaterMesh extends Mesh {
       textureWidth: textureWidth,
       textureHeight: textureHeight,
       clipBias: clipBias,
-      encoding: encoding,
     });
 
     const refractor = new Refractor(geometry, {
       textureWidth: textureWidth,
       textureHeight: textureHeight,
       clipBias: clipBias,
-      encoding: encoding,
     });
 
     reflector.matrixAutoUpdate = false;
