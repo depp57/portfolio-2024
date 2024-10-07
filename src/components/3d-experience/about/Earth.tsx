@@ -5,7 +5,6 @@ import { BackSide, SRGBColorSpace } from 'three';
 import { EarthAtmosphereMaterial } from '@shader/earth/atmosphere/material';
 import { useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion-3d';
-import { useRef } from 'react';
 import earthDayTextureJpg from '@static/earth/day.jpg';
 import earthNightTextureJpg from '@static/earth/night.jpg';
 import earthSpecularCloudsTextureJpg from '@static/earth/specularClouds.jpg';
@@ -14,9 +13,7 @@ extend({ EarthMaterial: EarthMaterial });
 extend({ EarthAtmosphereMaterial: EarthAtmosphereMaterial });
 
 function useMoveEarthToTopWhileScrolling(initialPositionY: number) {
-  const scrollContainer = document.getElementById('scroll-container');
-  const ref = useRef(scrollContainer);
-  const { scrollYProgress } = useScroll({ container: ref });
+  const { scrollYProgress } = useScroll({ offset: ['start', 'end 1.01'] }); // 1.01 to avoid strange behavior where the first value emitted is 1 (while no scroll has been done)
 
   return {
     positionY: useTransform(scrollYProgress, [0, 1], [initialPositionY, 5.3]),
@@ -37,14 +34,7 @@ export default function Earth() {
   const { positionY, rotationY } = useMoveEarthToTopWhileScrolling(INITIAL_POSITION_Y);
 
   return (
-    <motion.group
-      initial={{ y: -6 }}
-      animate={{ y: INITIAL_POSITION_Y }}
-      exit={{ y: -6 }}
-      transition={{ duration: 1.3 }}
-      position={[-0.35, positionY, 3.7]}
-      rotation={[0.4, rotationY, -0.2]}
-    >
+    <motion.group position={[-0.35, positionY, 3.7]} rotation-y={rotationY}>
       <Sphere args={[0.5, 32, 32]}>
         <earthMaterial
           attach="material"

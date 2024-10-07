@@ -1,57 +1,44 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import SkyClouds from '@/components/3d-experience/SkyClouds';
 import Sky from '@/components/3d-experience/Sky';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence } from 'framer-motion';
-import { useHomeStore } from '@/stores/homeStore';
-import Earth from '@/components/3d-experience/Earth';
-import { Suspense, useEffect, useRef } from 'react';
-import TexturesPreloader from '@/components/3d-experience/TexturesPreloader';
-import FluidFX from '@/components/3d-experience/waterSurface/FluidFX';
-import WaterSurface from '@/components/3d-experience/waterSurface/WaterSurface';
+import { Suspense, useRef } from 'react';
 import { useThreeStore } from '@/stores/ThreeStore';
-import ProjectView from '@/components/3d-experience/ProjectView';
-import { OrbitControls } from '@react-three/drei';
+import { ScrollControls } from '@react-three/drei';
+import SkyClouds from '@/components/3d-experience/SkyClouds';
+import ScrollListener from '@/components/3d-experience/ScrollListener';
+import ProjectsView from '@/components/3d-experience/projects/ProjectsView';
+import About3D from '@/components/3d-experience/about/About3D';
 
 export default function Experience3D() {
   const pathSegments = usePathname().split('/');
   const lastPathSegment = pathSegments.length > 2 ? pathSegments.pop() : 'home';
-  const isIntro = useHomeStore((state) => state.isIntro);
 
   const canvasRef = useRef<HTMLCanvasElement>(null!);
 
-  useEffect(() => {
-    useThreeStore.setState({ canvasRef });
-  }, []);
+  const scrollPagesCount = useThreeStore((state) => state.scrollPagesCount);
 
   return (
     <Canvas ref={canvasRef}>
       <color attach="background" args={['#08131D']} />
-      {/*<StatsGl />*/}
-      <Suspense fallback={null}>
-        {isIntro ? (
-          <TexturesPreloader />
-        ) : (
-          <>
-            <Sky />
-            <AnimatePresence initial={false}>
-              {(lastPathSegment === 'home' || lastPathSegment === 'projects') && <SkyClouds key="skyClouds" />}
-              {lastPathSegment === 'about' && (
-                <>
-                  <Earth key="earth" />
-                  <WaterSurface key="waterSurface">
-                    <FluidFX key="fluidFx" />
-                  </WaterSurface>
-                </>
-              )}
-              {lastPathSegment === 'projects' && <ProjectView key="project" />}
-            </AnimatePresence>
-          </>
-        )}
-      </Suspense>
-      <OrbitControls />
+      {/*<Perf />*/}
+      <ScrollControls
+        pages={scrollPagesCount}
+        distance={0.5}
+        infinite={true}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        <ScrollListener />
+
+        <Suspense fallback={null}>
+          <Sky />
+          <SkyClouds key="skyClouds" visible={lastPathSegment === 'home' || lastPathSegment === 'projects'} />
+          <About3D key="about" visible={lastPathSegment === 'about'} />
+          <ProjectsView key="project" visible={lastPathSegment === 'projects'} />
+        </Suspense>
+      </ScrollControls>
+      {/*<OrbitControls />*/}
     </Canvas>
   );
 }

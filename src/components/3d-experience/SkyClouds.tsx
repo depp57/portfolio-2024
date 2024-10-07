@@ -5,8 +5,9 @@ import { Group, MeshBasicMaterial } from 'three';
 import cloudTexture from '@static/cloud.png';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion-3d';
+import { useTransitionDisappear } from '@/hooks/use-transition-disappear';
 
-export default function SkyClouds() {
+export default function SkyClouds({ visible }: Readonly<{ visible: boolean }>) {
   const { theme } = useTheme() as { theme: 'light' | 'dark' };
 
   const cloud1 = useRef<Group>(null!);
@@ -44,8 +45,22 @@ export default function SkyClouds() {
     }
   });
 
+  const { render, startTransition, endTransition } = useTransitionDisappear(visible);
+
   return (
-    <motion.group initial={{ y: 6 }} animate={{ y: 0 }} exit={{ y: 6 }} transition={{ duration: 1.3 }}>
+    <motion.group
+      visible={render}
+      animate={{ y: visible ? 0 : 5 }}
+      transition={{ duration: 1 }}
+      onAnimationStart={() => {
+        startTransition();
+      }}
+      onAnimationComplete={(definition: { y: number }) => {
+        if (definition.y === 5) {
+          endTransition();
+        }
+      }}
+    >
       <Clouds material={MeshBasicMaterial} texture={cloudTexture.src}>
         <Cloud
           key={1}
