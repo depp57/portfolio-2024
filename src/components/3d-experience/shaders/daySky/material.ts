@@ -13,6 +13,7 @@ export const DaySkyMaterial = shaderMaterial(
     mieCoefficient: 0.005,
     mieDirectionalG: 0.8,
     up: new Vector3(0, 1, 0),
+    uFxTexture: null,
   },
   daySkyVertexShader,
   daySkyFragmentShader,

@@ -8,6 +8,7 @@ export const NightSkyMaterial = shaderMaterial(
   {
     uTime: 0,
     uTexture: null,
+    uFxTexture: null,
     uGlowBrightness: 0.9,
     uAuroraIteration: 15,
   },

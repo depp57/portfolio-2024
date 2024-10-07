@@ -3,6 +3,7 @@
 
 varying vec2 vUv;
 uniform sampler2D uTexture;
+uniform sampler2D uFxTexture;
 uniform float uGlowBrightness; // { "value": 0.9, "min": 0, "max": 2 }
 uniform float uTime;
 uniform float uAuroraIteration; // { "value": 15, "min": 0, "max": 30 }
@@ -266,7 +267,15 @@ void main() {
     finalColor += moonColor;
 
 
+
+    // Fx
+    float fxColor = texture2D(uFxTexture, vUv).r;
+    vec4 colorBright = finalColor * vec4(1.3);
+    finalColor = mix(finalColor, colorBright, fxColor);
+
+
     gl_FragColor = finalColor; // Set the output color of the pixel
+
 
     #include <tonemapping_fragment>
     #include <colorspace_fragment>

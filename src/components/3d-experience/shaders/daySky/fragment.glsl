@@ -4,9 +4,11 @@ varying float vSunfade;
 varying vec3 vBetaR;
 varying vec3 vBetaM;
 varying float vSunE;
+varying vec2 vUv;
 
 uniform float mieDirectionalG;
 uniform vec3 up;
+uniform sampler2D uFxTexture;
 
 const vec3 cameraPos = vec3( 0.0, 0.0, 5.0 );
 
@@ -74,9 +76,13 @@ void main() {
 
     vec3 retColor = pow( texColor, vec3( 1.0 / ( 1.2 + ( 1.2 * vSunfade ) ) ) );
 
+    // Fx
+    float fxColor = texture2D(uFxTexture, vUv).r;
+    vec3 colorBright = retColor * vec3(1.3);
+    retColor = mix(retColor, colorBright, fxColor);
+
     gl_FragColor = vec4( retColor, 1.0 );
 
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
-
 }
