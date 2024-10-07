@@ -13,10 +13,11 @@ export default function AudioPlayer() {
   const [audio, setAudio] = useState<HTMLAudioElement>(null!);
 
   useEffect(() => {
-    setAudio(new Audio('/ambient.mp3'));
+    setAudio(new Audio('/music.webm'));
   }, []);
 
   if (isPlaying && audio) {
+    audio.loop = true;
     void audio.play();
   } else if (audio) {
     audio.pause();
