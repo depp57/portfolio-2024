@@ -6,7 +6,8 @@
     },
     "titles": {
       "about": "About",
-      "projects": "My projects"
+      "projects": "My projects",
+      "blog": "Blog"
     }
   },
   "home": {
@@ -132,6 +133,9 @@
     "socialLinksDescription": "Or reach me through here:"
   },
   "projects": {
+
+  },
+  "blog": {
 
   }
 }

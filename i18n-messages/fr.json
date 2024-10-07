@@ -6,7 +6,8 @@
     },
     "titles": {
       "about": "A propos",
-      "projects": "Mes projets"
+      "projects": "Mes projets",
+      "blog": "Blog"
     }
   },
   "home": {
@@ -132,6 +133,9 @@
     "socialLinksDescription": "Ou retrouvez-moi sur ces réseaux :"
   },
   "projects": {
+
+  },
+  "blog": {
 
   }
 }
