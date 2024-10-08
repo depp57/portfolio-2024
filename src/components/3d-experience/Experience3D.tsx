@@ -46,7 +46,7 @@ export default function Experience3D() {
       {/*<Perf />*/}
       <ScrollControls
         pages={scrollPagesCount}
-        distance={0.5}
+        distance={0.75}
         infinite={true}
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
