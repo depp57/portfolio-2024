@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/shared/dropdown-menu';
 import HamburgerCrossIcon from '@/components/shared/hamburger-cross-icon/hamburger-cross-icon';
-import React, { MouseEvent, useMemo, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { ArrowTopRightIcon, GearIcon } from '@radix-ui/react-icons';
 import styles from './Menu.module.css';
 import { cn } from '@/lib/utils';
@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 import LightIcon from '@static/light.svg';
 import DarkIcon from '@static/dark.svg';
 import { useTheme } from 'next-themes';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useMusicStore } from '@/stores/musicStore';
 import { Link } from '@/lib/i18n/routing';
@@ -29,8 +29,8 @@ export default function Menu() {
   const { isPlaying, toggleMusic } = useMusicStore((state) => state);
   const [settingsOpened, setSettingsOpened] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
-  const [isRealTimeTheme, setIsRealTimeTheme] = useState(false);
   const { theme, setTheme } = useTheme();
+  const locale = useLocale();
 
   function onOpenSettingsMenu(e: MouseEvent<HTMLDivElement>) {
     e.preventDefault();
@@ -45,19 +45,9 @@ export default function Menu() {
     }, 100); // prevent flickering when closing the menu
   }
 
-  const currentTime = useMemo(() => {
-    return new Date().toLocaleTimeString('en-UK', { timeZone: 'CET', hour: '2-digit', minute: '2-digit' });
-  }, []);
-
-  function toggleRealTimeTheme() {
-    setIsRealTimeTheme((isRealTimeTheme) => !isRealTimeTheme);
-
-    const currentTime = new Date().getHours();
-    if (currentTime > 6 && currentTime < 20) {
-      setTheme('light');
-    } else {
-      setTheme('dark');
-    }
+  function switchLanguage() {
+    const newLocale = locale === 'en' ? 'fr' : 'en';
+    window.location.href = `/${newLocale}`;
   }
 
   return (
@@ -68,7 +58,7 @@ export default function Menu() {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="flex flex-col gap-2 border-none w-72 bg-transparent text-primary-text relative overflow-visible"
+        className="flex flex-col gap-3 border-none w-72 bg-transparent text-primary-text relative overflow-visible"
         align="end"
       >
         <div className="bg-primary rounded-lg p-3">
@@ -100,6 +90,12 @@ export default function Menu() {
           >
             <p className="text-4xl">{t('settings')}</p>
 
+            <p className="text-xl">{t('subMenu.language')}</p>
+            <div className="flex justify-between pl-3 pr-3">
+              <label className="text-sm text-secondary-text">{t('subMenu.languageList')}</label>
+              <input type="checkbox" checked={locale === 'en'} onChange={switchLanguage} className={styles.checkbox} />
+            </div>
+
             <p className="text-xl">{t('subMenu.music')}</p>
             <div className="flex justify-between pl-3 pr-3">
               <label className="text-sm text-secondary-text">{t('subMenu.enableMusic')}</label>
@@ -107,15 +103,6 @@ export default function Menu() {
             </div>
 
             <p className="text-xl">{t('subMenu.theme')}</p>
-            <div className="flex justify-between pl-3 pr-3">
-              <label className="text-sm text-secondary-text">
-                {t('subMenu.realTime')}
-                <br />
-                (CET - {currentTime})
-              </label>
-              <input type="checkbox" className={styles.checkbox} onClick={toggleRealTimeTheme} />
-            </div>
-
             <div className="flex justify-between pl-3 pr-3">
               <label className="text-sm text-secondary-text">{t('subMenu.displayTheme')}</label>
               <div className="flex gap-4">
@@ -129,7 +116,6 @@ export default function Menu() {
                     type="radio"
                     name="radio"
                     value="light-theme"
-                    disabled={isRealTimeTheme}
                     checked={theme === 'light'}
                     onChange={() => setTheme('light')}
                   />
@@ -145,7 +131,6 @@ export default function Menu() {
                     type="radio"
                     name="radio"
                     value="dark-theme"
-                    disabled={isRealTimeTheme}
                     checked={theme === 'dark'}
                     onChange={() => setTheme('dark')}
                   />

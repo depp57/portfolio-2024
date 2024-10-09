@@ -26,7 +26,7 @@ export default function HomeEntry() {
       </Button>
       <div className="flex text-gray-500 items-center gap-4 w-8/12">
         <div className="h-px w-full bg-secondary-text"></div>
-        <span className="text-lg font-normal text-secondary-text">or</span>
+        <span className="text-lg font-normal text-secondary-text">{t('or')}</span>
         <div className="h-px w-full bg-secondary-text"></div>
       </div>
       <Button className="text-primary-text text-xl" size="lg" variant="ghost" onClick={() => onClick(false)}>

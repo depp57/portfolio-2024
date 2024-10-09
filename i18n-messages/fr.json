@@ -18,7 +18,8 @@
     },
     "audioChoices": {
       "enterWithSound": "Entrer avec le son",
-      "enterWithoutSound": "Entrer sans le son"
+      "enterWithoutSound": "Entrer sans le son",
+      "or": "ou"
     },
     "scrollHint": "Scrollez pour découvrir mes projets",
     "openToWork": "Une question ?",
@@ -38,10 +39,11 @@
     "about": "A propos",
     "settings": "Paramètres",
     "subMenu": {
+      "language": "Langue",
+      "languageList": "Français / Anglais",
       "music": "Musique",
       "enableMusic": "Activer la musique :",
       "theme": "Thème",
-      "realTime": "Temps réel",
       "displayTheme": "Thème d'affichage :"
     }
   },

@@ -7,7 +7,7 @@ export async function Providers({ children, lang }: Readonly<{ children: ReactNo
   const messages = await getMessages({ locale: lang });
 
   return (
-    <ThemeProvider disableTransitionOnChange>
+    <ThemeProvider disableTransitionOnChange defaultTheme="dark">
       <NextIntlClientProvider locale={lang} messages={messages}>
         {children}
       </NextIntlClientProvider>

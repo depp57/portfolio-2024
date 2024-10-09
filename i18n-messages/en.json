@@ -18,7 +18,8 @@
     },
     "audioChoices": {
       "enterWithSound": "Enter with sound",
-      "enterWithoutSound": "Enter without sound"
+      "enterWithoutSound": "Enter without sound",
+      "or": "or"
     },
     "scrollHint": "Scroll to navigate the scene",
     "openToWork": "Open to work",
@@ -38,10 +39,11 @@
     "about": "About",
     "settings": "Settings",
     "subMenu": {
+      "language": "Language",
+      "languageList": "French / English",
       "music": "Music",
       "enableMusic": "Enable music:",
       "theme": "Theme",
-      "realTime": "Real time",
       "displayTheme": "Display theme:"
     }
   },
