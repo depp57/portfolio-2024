@@ -6,6 +6,7 @@ import { useMotionValue } from 'framer-motion';
 import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import ProjectView from '@/components/3d-experience/projects/ProjectView';
+import { isMobile } from '@/lib/utils';
 
 export default function ProjectsView({ visible }: Readonly<{ visible: boolean }>) {
   const { projects } = useProjectStore();
@@ -39,7 +40,7 @@ export default function ProjectsView({ visible }: Readonly<{ visible: boolean }>
         <ProjectView key={index} index={index} project={project} positionReferenceZ={carrouselZ} />
       ))}
 
-      {visible && <MouseMoveControls />}
+      {!isMobile && visible && <MouseMoveControls />}
     </group>
   );
 }

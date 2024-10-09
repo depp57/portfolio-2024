@@ -5,6 +5,7 @@ import { MotionValue, useTransform } from 'framer-motion';
 import { DoubleSide, Mesh } from 'three';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { isMobile } from '@/lib/utils';
 
 export default function ProjectView({
   index,
@@ -36,24 +37,27 @@ export default function ProjectView({
     }
   });
 
+  const planeSize: [number, number] = !isMobile ? [0.96, 0.54] : [0.64, 0.36];
+  const planeDistance = !isMobile ? 0.6 : 0.35;
+
   return (
     <motion.group position-z={positionZ}>
-      <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-0.6, 0, 0.25]}>
+      <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, 0.25]}>
         <Image ref={imageRef1} url={project?.images[0]} transparent>
-          <planeGeometry args={[0.96, 0.54]} />
+          <planeGeometry args={planeSize} />
         </Image>
       </Float>
 
-      <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[0.6, 0, 0]}>
+      <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[planeDistance, 0, 0]}>
         <Image ref={imageRef2} url={project?.images[1]} transparent side={DoubleSide}>
-          <planeGeometry args={[0.96, 0.54]} />
+          <planeGeometry args={planeSize} />
         </Image>
       </Float>
 
       {project.images.length === 3 && (
-        <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-0.6, 0, -0.25]}>
+        <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, -0.25]}>
           <Image ref={imageRef3} url={project?.images[2]} transparent>
-            <planeGeometry args={[0.96, 0.54]} />
+            <planeGeometry args={planeSize} />
           </Image>
         </Float>
       )}

@@ -35,7 +35,7 @@ export default function Earth() {
 
   return (
     <motion.group position={[-0.35, positionY, 3.7]} rotation-y={rotationY}>
-      <Sphere args={[0.5, 32, 32]}>
+      <Sphere args={[0.5, 32, 32]} rotation={[0, -0.1, -0.9]}>
         <earthMaterial
           attach="material"
           uDayTexture={earthDayTexture}

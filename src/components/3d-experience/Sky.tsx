@@ -5,8 +5,10 @@ import { DaySkyMaterial } from '@shader/daySky/material';
 import moonTextureJpg from '@static/moon.jpg';
 import { useTheme } from 'next-themes';
 import { useRef } from 'react';
-import { ShaderMaterial, Vector2, Vector3 } from 'three';
-import { useFluid, usePointer } from '@funtech-inc/use-shader-fx';
+import { ShaderMaterial, Vector2 } from 'three';
+import SkyFluidFX from '@/components/3d-experience/SkyFluidFX';
+import { useFluid } from '@funtech-inc/use-shader-fx';
+import { isMobile } from '@/lib/utils';
 
 extend({ NightSkyMaterial: NightSkyMaterial });
 extend({ DaySkyMaterial: DaySkyMaterial });
@@ -16,44 +18,31 @@ export default function Sky() {
   const { theme } = useTheme() as { theme: 'light' | 'dark' };
   const shaderRef = useRef<ShaderMaterial & { [key: string]: any }>(null!);
 
-  const { size, dpr } = useThree((state) => ({ size: state.size, dpr: state.viewport.dpr }));
-  const [updateFluid, setFluid, { output }] = useFluid({
-    size,
-    dpr,
-  });
-
-  setFluid({
-    densityDissipation: 0.98,
-    velocityDissipation: 0.99,
-    velocityAcceleration: 7.0,
-    pressureDissipation: 0.9,
-    pressureIterations: 1,
-    splatRadius: 0.0003,
-    curlStrength: 25.0,
-    fluidColor: new Vector3(1.0, 1.0, 1.0),
-  });
-
-  const updatePointer = usePointer();
   const refPointer = useRef(new Vector2(0, 0));
 
   const handlePointerMove = (e: any) => {
     refPointer.current = e.uv.multiplyScalar(2).subScalar(1);
   };
 
-  useFrame((state, delta) => {
+  const { size, dpr } = useThree((state) => ({ size: state.size, dpr: state.viewport.dpr }));
+  const [updateFluid, setFluid, { output }] = useFluid({
+    size,
+    dpr,
+  });
+
+  useFrame((_, delta) => {
     shaderRef.current.uniforms.uTime.value += delta;
-    updateFluid(state, {
-      pointerValues: updatePointer(refPointer.current),
-    });
   });
 
   return (
-    <Plane args={[8, 8]} position={[0, -1.2, 3]} onPointerMove={handlePointerMove}>
+    <Plane args={[8, 8]} position={[!isMobile ? 0 : -0.3, -1.2, 3]} onPointerMove={handlePointerMove}>
       {theme === 'dark' ? (
         <nightSkyMaterial ref={shaderRef} attach="material" uTexture={moonTexture} uFxTexture={output} />
       ) : (
         <daySkyMaterial ref={shaderRef} attach="material" uFxTexture={output} />
       )}
+
+      {!isMobile && <SkyFluidFX refPointer={refPointer} updateFluid={updateFluid} setFluid={setFluid} />}
     </Plane>
   );
 }

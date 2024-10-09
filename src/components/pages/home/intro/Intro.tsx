@@ -33,7 +33,7 @@ export default function Intro() {
         </AnimatePresence>
       </div>
 
-      <div style={{ position: 'relative', display: 'flex', height: '80px' }}>
+      <div className="h-32">
         <ScrollHint />
       </div>
     </div>

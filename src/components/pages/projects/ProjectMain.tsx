@@ -1,12 +1,12 @@
 'use client';
 
 import ProjectPreview, { Project } from '@/components/pages/projects/ProjectPreview';
-import ProgressIndicator from '@/components/pages/projects/ProgressIndicator';
 import ProjectInfo from '@/components/pages/projects/ProjectInfo';
 import { Fragment, useMemo, useState } from 'react';
 import { useThreeStore } from '@/stores/ThreeStore';
 import { useProjectStore } from '@/stores/projectStore';
 import { AnimatePresence, motion } from 'framer-motion';
+import ProgressIndicator from '@/components/pages/projects/ProgressIndicator';
 
 export default function ProjectMain({ projects }: Readonly<{ projects: Project[] }>) {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -26,7 +26,7 @@ export default function ProjectMain({ projects }: Readonly<{ projects: Project[]
   }, [projects, currentProjectIndex]);
 
   return (
-    <main className="w-full h-dvh flex flex-col justify-between p-10">
+    <main className="w-full h-dvh flex flex-col justify-between p-3 sm:p-10">
       <span className="h-16" />
 
       <AnimatePresence mode="wait">
@@ -34,7 +34,7 @@ export default function ProjectMain({ projects }: Readonly<{ projects: Project[]
           if (index !== currentProjectIndex) return null;
           return (
             <Fragment key={index}>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-center items-center">
                 <span />
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -44,7 +44,6 @@ export default function ProjectMain({ projects }: Readonly<{ projects: Project[]
                 >
                   <ProjectPreview project={currentProject} />
                 </motion.div>
-                <ProgressIndicator currentProjectIndex={currentProjectIndex} projectCount={projects.length} />
               </div>
 
               <motion.div
@@ -59,6 +58,10 @@ export default function ProjectMain({ projects }: Readonly<{ projects: Project[]
           );
         })}
       </AnimatePresence>
+
+      <div className="absolute bottom-3 right-3 sm:bottom-auto sm:right-10 sm:top-2/4 sm:-translate-y-1/2">
+        <ProgressIndicator currentProjectIndex={currentProjectIndex} projectCount={projects.length} />
+      </div>
     </main>
   );
 }

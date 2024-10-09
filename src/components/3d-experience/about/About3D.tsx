@@ -3,6 +3,7 @@ import WaterSurface from '@/components/3d-experience/about/waterSurface/WaterSur
 import FluidFX from '@/components/3d-experience/about/waterSurface/FluidFX';
 import { motion } from 'framer-motion-3d';
 import { useTransitionDisappear } from '@/hooks/use-transition-disappear';
+import { isMobile } from '@/lib/utils';
 
 export default function About3D({ visible }: Readonly<{ visible: boolean }>) {
   const { render, startTransition, endTransition } = useTransitionDisappear(visible);
@@ -22,9 +23,7 @@ export default function About3D({ visible }: Readonly<{ visible: boolean }>) {
       }}
     >
       <Earth key="earth" />
-      <WaterSurface key="waterSurface">
-        <FluidFX key="fluidFx" visible={visible} />
-      </WaterSurface>
+      <WaterSurface key="waterSurface">{!isMobile && <FluidFX key="fluidFx" visible={visible} />}</WaterSurface>
     </motion.group>
   );
 }

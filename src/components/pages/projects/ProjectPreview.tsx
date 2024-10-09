@@ -18,8 +18,8 @@ export default function ProjectPreview({ project }: Readonly<{ project: Project 
 
   return (
     <div className="z-10 flex flex-col items-center justify-center gap-2.5">
-      <h1 className="text-8xl text-primary-text">{project.title}</h1>
-      <div className="flex gap-3">
+      <h1 className="text-center text-4xl lg:text-7xl xl:text-8xl text-primary-text font-semibold">{project.title}</h1>
+      <div className="gap-3 grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col sm:auto-cols-max">
         {project.keywords.map((keyword) => (
           <Badge key={keyword}>{keyword}</Badge>
         ))}
