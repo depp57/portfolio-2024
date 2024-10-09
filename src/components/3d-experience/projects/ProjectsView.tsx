@@ -6,7 +6,7 @@ import { useMotionValue } from 'framer-motion';
 import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import ProjectView from '@/components/3d-experience/projects/ProjectView';
-import { isMobile } from '@/lib/utils';
+import useIsMobile from '@/hooks/use-is-mobile';
 
 export default function ProjectsView({ visible }: Readonly<{ visible: boolean }>) {
   const { projects } = useProjectStore();
@@ -33,6 +33,8 @@ export default function ProjectsView({ visible }: Readonly<{ visible: boolean }>
 
     carrouselZ.set(DEFAULT_Z + ((scroll.range(0, 1) * LENGTH) % Z_END));
   });
+
+  const isMobile = useIsMobile();
 
   return (
     <group visible={visible}>

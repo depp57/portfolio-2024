@@ -3,10 +3,11 @@ import WaterSurface from '@/components/3d-experience/about/waterSurface/WaterSur
 import FluidFX from '@/components/3d-experience/about/waterSurface/FluidFX';
 import { motion } from 'framer-motion-3d';
 import { useTransitionDisappear } from '@/hooks/use-transition-disappear';
-import { isMobile } from '@/lib/utils';
+import useIsMobile from '@/hooks/use-is-mobile';
 
 export default function About3D({ visible }: Readonly<{ visible: boolean }>) {
   const { render, startTransition, endTransition } = useTransitionDisappear(visible);
+  const isMobile = useIsMobile();
 
   return (
     <motion.group

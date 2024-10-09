@@ -5,7 +5,7 @@ import { MotionValue, useTransform } from 'framer-motion';
 import { DoubleSide, Mesh } from 'three';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { isMobile } from '@/lib/utils';
+import useIsMobile from '@/hooks/use-is-mobile';
 
 export default function ProjectView({
   index,
@@ -24,6 +24,8 @@ export default function ProjectView({
   const imageRef1 = useRef<Mesh>(null!);
   const imageRef2 = useRef<Mesh>(null!);
   const imageRef3 = useRef<Mesh>(null!);
+
+  const isMobile = useIsMobile();
 
   useFrame(() => {
     // @ts-ignore

@@ -8,7 +8,7 @@ import { useRef } from 'react';
 import { ShaderMaterial, Vector2 } from 'three';
 import SkyFluidFX from '@/components/3d-experience/SkyFluidFX';
 import { useFluid } from '@funtech-inc/use-shader-fx';
-import { isMobile } from '@/lib/utils';
+import useIsMobile from '@/hooks/use-is-mobile';
 
 extend({ NightSkyMaterial: NightSkyMaterial });
 extend({ DaySkyMaterial: DaySkyMaterial });
@@ -33,6 +33,8 @@ export default function Sky() {
   useFrame((_, delta) => {
     shaderRef.current.uniforms.uTime.value += delta;
   });
+
+  const isMobile = useIsMobile();
 
   return (
     <Plane args={[8, 8]} position={[!isMobile ? 0 : -0.3, -1.2, 3]} onPointerMove={handlePointerMove}>
