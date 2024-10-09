@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Projects from '@/components/pages/projects/Projects';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
@@ -9,6 +9,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: s
   };
 }
 
-export default function Page() {
+export default function Page({ params: { lang } }: Readonly<{ params: { lang: string } }>) {
+  unstable_setRequestLocale(lang);
+
   return <Projects />;
 }

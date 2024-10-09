@@ -1,6 +1,5 @@
 import { Float, Image } from '@react-three/drei';
 import { Project } from '@/components/pages/projects/ProjectPreview';
-import projectImage1 from '@static/projects/homelab/homelab_1.webp';
 import { motion } from 'framer-motion-3d';
 import { MotionValue, useTransform } from 'framer-motion';
 import { DoubleSide, Mesh } from 'three';
@@ -40,20 +39,20 @@ export default function ProjectView({
   return (
     <motion.group position-z={positionZ}>
       <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-0.6, 0, 0.25]}>
-        <Image ref={imageRef1} url={project?.images[0] ?? projectImage1.src} transparent>
+        <Image ref={imageRef1} url={project?.images[0]} transparent>
           <planeGeometry args={[0.96, 0.54]} />
         </Image>
       </Float>
 
       <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[0.6, 0, 0]}>
-        <Image ref={imageRef2} url={project?.images[1] ?? projectImage1.src} transparent side={DoubleSide}>
+        <Image ref={imageRef2} url={project?.images[1]} transparent side={DoubleSide}>
           <planeGeometry args={[0.96, 0.54]} />
         </Image>
       </Float>
 
       {project.images.length === 3 && (
         <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-0.6, 0, -0.25]}>
-          <Image ref={imageRef3} url={project?.images[2] ?? projectImage1.src} transparent>
+          <Image ref={imageRef3} url={project?.images[2]} transparent>
             <planeGeometry args={[0.96, 0.54]} />
           </Image>
         </Float>

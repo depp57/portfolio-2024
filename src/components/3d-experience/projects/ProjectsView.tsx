@@ -28,6 +28,8 @@ export default function ProjectsView({ visible }: Readonly<{ visible: boolean }>
   const Z_END = DEFAULT_Z + (OFFSET_Z * projects.length - 1);
 
   useFrame(() => {
+    if (!visible) return;
+
     carrouselZ.set(DEFAULT_Z + ((scroll.range(0, 1) * LENGTH) % Z_END));
   });
 

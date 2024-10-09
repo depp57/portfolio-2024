@@ -21,14 +21,11 @@
     width: 22px;
     height: 4px;
     opacity: 0.75;
-
-    transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
     transform-origin: right center;
 }
 
 .line.active {
     background: rgb(var(--text-primary));
     opacity: 1;
-    transform: scaleX(1.5);
     margin-left: 0.5rem;
 }

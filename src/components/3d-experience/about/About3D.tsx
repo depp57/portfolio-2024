@@ -23,7 +23,7 @@ export default function About3D({ visible }: Readonly<{ visible: boolean }>) {
     >
       <Earth key="earth" />
       <WaterSurface key="waterSurface">
-        <FluidFX key="fluidFx" />
+        <FluidFX key="fluidFx" visible={visible} />
       </WaterSurface>
     </motion.group>
   );

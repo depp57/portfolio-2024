@@ -3,9 +3,10 @@
 import ProjectPreview, { Project } from '@/components/pages/projects/ProjectPreview';
 import ProgressIndicator from '@/components/pages/projects/ProgressIndicator';
 import ProjectInfo from '@/components/pages/projects/ProjectInfo';
-import { useState } from 'react';
-import { useProjectStore } from '@/stores/projectStore';
+import { Fragment, useMemo, useState } from 'react';
 import { useThreeStore } from '@/stores/ThreeStore';
+import { useProjectStore } from '@/stores/projectStore';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function ProjectMain({ projects }: Readonly<{ projects: Project[] }>) {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -20,27 +21,44 @@ export default function ProjectMain({ projects }: Readonly<{ projects: Project[]
     setCurrentProjectIndex(currentProjectIndexComputed);
   }
 
+  const currentProject = useMemo(() => {
+    return projects[currentProjectIndex];
+  }, [projects, currentProjectIndex]);
+
   return (
-    <>
-      <main className="w-full h-dvh flex flex-col justify-between p-10">
-        <span className="h-16" />
+    <main className="w-full h-dvh flex flex-col justify-between p-10">
+      <span className="h-16" />
 
-        <div className="flex justify-between items-center">
-          <span />
-          <ProjectPreview project={projects[currentProjectIndex]} />
-          <ProgressIndicator currentProjectIndex={currentProjectIndex} projectCount={projects.length} />
-        </div>
+      <AnimatePresence mode="wait">
+        {projects.map((_, index) => {
+          if (index !== currentProjectIndex) return null;
+          return (
+            <Fragment key={index}>
+              <div className="flex justify-between items-center">
+                <span />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25, ease: 'easeInOut' }}
+                >
+                  <ProjectPreview project={currentProject} />
+                </motion.div>
+                <ProgressIndicator currentProjectIndex={currentProjectIndex} projectCount={projects.length} />
+              </div>
 
-        <ProjectInfo project={projects[currentProjectIndex]} />
-      </main>
-
-      {/*<div*/}
-      {/*  ref={scrollContainer}*/}
-      {/*  className="absolute w-full h-full overflow-x-hidden overflow-y-hidden top-0 left-0 pointer-events-none"*/}
-      {/*>*/}
-      {/*  <div className="sticky top-0 left-0 w-full h-full overflow-hidden" />*/}
-      {/*  <div ref={overflowDiv} className="w-full pointer-events-none" />*/}
-      {/*</div>*/}
-    </>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
+              >
+                <ProjectInfo project={currentProject} />
+              </motion.div>
+            </Fragment>
+          );
+        })}
+      </AnimatePresence>
+    </main>
   );
 }

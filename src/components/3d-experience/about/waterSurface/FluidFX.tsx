@@ -20,6 +20,7 @@ export type FXFluidProps = {
   curlStrength?: number;
   pressureIterations?: number;
   fluidColor?: (velocity: Vector2) => Vector3;
+  visible: boolean;
 };
 
 export default function FluidFX({
@@ -31,6 +32,7 @@ export default function FluidFX({
   curlStrength = 7.0,
   pressureIterations = 2,
   fluidColor = fluidColorFn,
+  visible,
 }: FXFluidProps) {
   const { ref: materialRef, refPointer } = useContext(WaterContext);
 
@@ -58,6 +60,8 @@ export default function FluidFX({
   const updatePointer = usePointer();
 
   useFrame((props) => {
+    if (!visible) return;
+
     const fluid = updateFluid(props, {
       pointerValues: updatePointer(refPointer.current),
     });

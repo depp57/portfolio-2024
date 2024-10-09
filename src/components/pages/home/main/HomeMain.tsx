@@ -17,7 +17,7 @@ export default function HomeMain() {
         {t('shortDescription.catchPhrase')}
       </h2>
       <div>
-        <Link href="/projects">
+        <Link href="/projects" scroll={false}>
           <Button size="lg" className="text-lg 2xl:text-xl">
             {t('shortDescription.discoverWork')}
             <ArrowTopRightIcon className="ml-2 h-6 w-6" />

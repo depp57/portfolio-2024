@@ -1,0 +1,49 @@
+{
+  "projects": [
+    {
+      "title": "Homelab",
+      "description": "Built a self-hosted Kubernetes cluster composed of two nodes, with GitOps automation and Prometheus monitoring.\nHosts personal projects like this portfolio.",
+      "keywords": ["DevOps", "Cloud", "Infrastructure", "Kubernetes"],
+      "dateRange": "Jan 2024 - Now",
+      "link": "https://dashboard.sachak8s.xyz",
+      "images": [
+        "/projects/homelab/homelab_1.webp",
+        "/projects/homelab/homelab_2.webp",
+        "/projects/homelab/homelab_3.webp"
+      ]
+    },
+    {
+      "title": "Freshbox",
+      "description": "Developed a microservices web application with Angular and NestJS for learning purposes.\nIntegrated Keycloak for authentication, and deployed via Docker.",
+      "keywords": ["Docker", "Microservices", "Angular", "Keycloak"],
+      "dateRange": "2023 - 2024",
+      "link": "https://github.com/depp57/freshbox",
+      "images": [
+        "/projects/freshbox/freshbox_1.webp",
+        "/projects/freshbox/freshbox_2.webp"
+      ]
+    },
+    {
+      "title": "Openshift accreditation",
+      "description": "Earned an Openshift accreditation during my internship at ITS4U in Luxembourg.\nThis internship was focused on Kubernetes/Openshift installation and administration.",
+      "keywords": ["Openshift", "Kubernetes", "Infrastructure", "Cloud"],
+      "dateRange": "Summer 2023",
+      "link": "https://sachak8s.xyz/projects/openshift/openshift_full.webp",
+      "images": [
+        "/projects/openshift/openshift_1.webp",
+        "/projects/openshift/openshift_2.webp"
+      ]
+    },
+    {
+      "title": "3D course",
+      "description": "Completed the excellent Three.js course by Bruno Simon.\nUsed the the knowledge gained to build this portfolio.",
+      "keywords": ["Three.js", "WebGl", "Computer graphics", "React"],
+      "dateRange": "2022 - 2024",
+      "link": "https://github.com/depp57/threejs-course",
+      "images": [
+        "/projects/threejs-course/threeJsCourse_1.webp",
+        "/projects/threejs-course/threeJsCourse_2.webp"
+      ]
+    }
+  ]
+}

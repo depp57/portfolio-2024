@@ -33,6 +33,8 @@ export default function SkyClouds({ visible }: Readonly<{ visible: boolean }>) {
   const CLOUDS_START_POSITION_Z = 2;
 
   useFrame((_, delta) => {
+    if (!visible) return;
+
     cloud1.current.position.z += delta * CLOUDS_SPEED;
     cloud2.current.position.z += delta * CLOUDS_SPEED;
 
