@@ -1,13 +1,10 @@
-import { getLocale } from 'next-intl/server';
-import fs from 'node:fs/promises';
+'use client';
+
 import { Project } from '@/components/pages/projects/ProjectPreview';
-import InitProjectStore from '@/components/pages/projects/InitProjectStore';
+import { useProjectStore } from '@/stores/projectStore';
 
-export default async function ProjectPreloader() {
-  const locale = (await getLocale()) as 'en' | 'fr';
+export default function ProjectPreloader({ projects }: Readonly<{ projects: Project[] }>) {
+  useProjectStore.setState({ projects: projects, currentProjectIndex: 0 });
 
-  const file = await fs.readFile(process.cwd() + `/data.${locale}.json`, 'utf8');
-  const data = JSON.parse(file) as { projects: Project[] };
-
-  return <InitProjectStore data={data} />;
+  return null;
 }
