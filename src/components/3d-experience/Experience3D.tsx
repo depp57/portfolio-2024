@@ -1,16 +1,18 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import Sky from '@/components/3d-experience/Sky';
 import { usePathname } from 'next/navigation';
 import { Suspense, useRef } from 'react';
 import { useThreeStore } from '@/stores/ThreeStore';
 import { ScrollControls } from '@react-three/drei';
-import SkyClouds from '@/components/3d-experience/SkyClouds';
 import ScrollListener from '@/components/3d-experience/ScrollListener';
-import ProjectsView from '@/components/3d-experience/projects/ProjectsView';
-import About3D from '@/components/3d-experience/about/About3D';
 import { useHomeStore } from '@/stores/homeStore';
+import useIsMobile from '@/hooks/use-is-mobile';
+import Sky from '@/components/3d-experience/Sky';
+import Aurora from '@/components/3d-experience/Aurora';
+import SkyClouds from '@/components/3d-experience/SkyClouds';
+import About3D from '@/components/3d-experience/about/About3D';
+import ProjectsView from '@/components/3d-experience/projects/ProjectsView';
 
 let messageAlreadyShowed = false;
 
@@ -40,8 +42,10 @@ export default function Experience3D() {
 
   showBannerInConsole();
 
+  const isMobile = useIsMobile();
+
   return (
-    <Canvas ref={canvasRef}>
+    <Canvas ref={canvasRef} gl={{ powerPreference: isMobile ? 'high-performance' : 'default' }}>
       <color attach="background" args={['#08131D']} />
       {/*<Perf />*/}
       <ScrollControls
@@ -53,6 +57,7 @@ export default function Experience3D() {
         <ScrollListener />
 
         <Suspense fallback={null}>
+          <Aurora />
           <Sky />
           <SkyClouds key="skyClouds" visible={lastPathSegment === 'home' || lastPathSegment === 'projects'} />
           <About3D key="about" visible={lastPathSegment === 'about'} />

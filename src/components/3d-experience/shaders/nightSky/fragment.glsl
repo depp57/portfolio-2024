@@ -6,7 +6,6 @@ uniform sampler2D uTexture;
 uniform sampler2D uFxTexture;
 uniform float uGlowBrightness; // { "value": 0.9, "min": 0, "max": 2 }
 uniform float uTime;
-uniform float uAuroraIteration; // { "value": 15, "min": 0, "max": 30 }
 
 
 float circ(vec2 uv, vec2 pos, float radius, float blur) {
@@ -53,69 +52,6 @@ vec4 moonglow(vec2 uv, float foreground) {
     return col;
 }
 
-
-
-// Auroras by nimitz 2017 (twitter: @stormoid)
-// License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
-// https://www.shadertoy.com/view/XtGGRt
-
-//AURORA STUFF
-mat2 mm2(in float a){float c = cos(a), s = sin(a);return mat2(c,s,-s,c);}
-mat2 m2 = mat2(0.95534, 0.29552, -0.29552, 0.95534);
-float tri(in float x){return clamp(abs(fract(x)-.5),0.01,0.49);}
-vec2 tri2(in vec2 p){return vec2(tri(p.x)+tri(p.y),tri(p.y+tri(p.x)));}
-
-float triNoise2d(in vec2 p, float spd)
-{
-    float z=1.8;
-    float z2=2.5;
-    float rz = 0.;
-    p *= mm2(p.x*0.06);
-    vec2 bp = p;
-    for (float i=0.; i<4.; i++ )
-    {
-        vec2 dg = tri2(bp*1.85)*.75;
-        dg *= mm2(uTime*spd);
-        p -= dg/z2;
-
-        bp *= 1.3;
-        z2 *= .45;
-        z *= .42;
-        p *= 1.21 + (rz-1.0)*.02;
-
-        rz += tri(p.x+tri(p.y))*z;
-        p*= -m2;
-    }
-    return clamp(1./pow(rz*29., 1.3),0.,.55);
-}
-
-float hash21(in vec2 n){ return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453); }
-vec4 aurora(vec3 ro, vec3 rd)
-{
-    vec4 col = vec4(0);
-    vec4 avgCol = vec4(0);
-
-    for(float i=0.;i<uAuroraIteration;i++)
-    {
-        float of = 0.006*hash21(gl_FragCoord.xy)*smoothstep(0.,15., i);
-        float pt = ((.8+pow(i,1.4)*.002)-ro.y)/(rd.y*2.+0.4);
-        pt -= of;
-        vec3 bpos = ro + pt*rd;
-        vec2 p = bpos.zx;
-        float rzt = triNoise2d(p, 0.06);
-        vec4 col2 = vec4(0,0,0, rzt);
-        col2.rgb = (sin(1.-vec3(2.15,-.5, 1.2)+i*0.043)*0.5+0.5)*rzt;
-        avgCol =  mix(avgCol, col2, .5);
-        col += avgCol*exp2(-i*0.065 - 2.5)*smoothstep(0.,5., i);
-
-    }
-
-    col *= (clamp(rd.y*15.+.4,0.,1.));
-
-    return col*1.8;
-}
-
-//END AURORA STUFF
 
 vec3 bg(in vec3 rd)
 {
@@ -228,13 +164,10 @@ void main() {
     vec4 moonGlowColor = moonglow(vUv, 1.0); // Calculate the color based on the moonglow function
 
 
-
-
     //Aurora
     float shiftAmount = -0.2;  // Adjust this value to control the shift
     //Center of the uv
     vec2 p = vec2(vUv.x, vUv.y - shiftAmount) - 0.5;
-    vec3 ro = vec3(0,0,-6.7);
     vec3 rd = normalize(vec3(p,1.3));
     float fade = smoothstep(0.,0.01,abs(rd.y))*0.1+0.9;
     // Calculate background color based on ray direction and apply the fade factor
@@ -244,17 +177,6 @@ void main() {
 
     //Adding Stars
     color += starsSky(rd, uTime * 2.);
-
-    if (uAuroraIteration > 0.0) {
-        vec4 aur = vec4(0.);
-
-        float loopSecond = 40.0;
-        float opacityCap = 0.2;
-        float oscillationFactor = 0.5 * (sin(uTime * (2.0 * 3.14159 / loopSecond)) + 1.0) * opacityCap;
-
-        aur = smoothstep(0.,1.5,aurora(ro,rd))*fade*oscillationFactor;
-        color = color*(1.-aur.a) + aur.rgb ;
-    }
 
 
     //Commet
