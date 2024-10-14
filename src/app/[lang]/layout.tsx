@@ -45,9 +45,8 @@ export default function RootLayout({ children, params: { lang } }: Readonly<Root
     <html lang={lang} suppressHydrationWarning>
       <body className={bricolageGrotesque.className}>
         <Providers lang={lang}>
-          <div className="background-canvas">
-            <Experience3D />
-          </div>
+          <Experience3D />
+
           <div className="html-overlay">{children}</div>
         </Providers>
       </body>

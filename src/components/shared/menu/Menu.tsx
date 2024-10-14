@@ -64,7 +64,7 @@ export default function Menu() {
         <div className="bg-primary rounded-lg p-3">
           {availableRoutes.map((route) => (
             <DropdownMenuItem className={cn('group', styles.dropDownMenuItem)} key={route}>
-              <Link href={`/${route}`} className="flex items-center w-full">
+              <Link href={`/${route}`} className="flex items-center w-full" scroll={false}>
                 {t(route !== '' ? route : 'home')}
                 <ArrowTopRightIcon className="ml-auto scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>

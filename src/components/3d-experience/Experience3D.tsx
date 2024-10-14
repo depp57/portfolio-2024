@@ -30,11 +30,13 @@ function showBannerInConsole() {
 
 export default function Experience3D() {
   const pathSegments = usePathname().split('/');
-  const lastPathSegment = pathSegments.length > 2 ? pathSegments.pop() : 'home';
+  const lastPathSegment = (pathSegments.length > 2 ? pathSegments.pop() : 'home') as string;
 
   const canvasRef = useRef<HTMLCanvasElement>(null!);
 
   const scrollPagesCount = useThreeStore((state) => state.scrollPagesCount);
+
+  const isMobile = useIsMobile();
 
   if (lastPathSegment !== 'home') {
     useHomeStore.setState({ isIntro: false });
@@ -42,29 +44,33 @@ export default function Experience3D() {
 
   showBannerInConsole();
 
-  const isMobile = useIsMobile();
+  if (!['home', 'projects', 'about'].includes(lastPathSegment)) {
+    return null;
+  }
 
   return (
-    <Canvas ref={canvasRef} gl={{ powerPreference: isMobile ? 'high-performance' : 'default' }}>
-      <color attach="background" args={['#08131D']} />
-      {/*<Perf />*/}
-      <ScrollControls
-        pages={scrollPagesCount}
-        distance={0.75}
-        infinite={true}
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        <ScrollListener />
+    <div className="background-canvas">
+      <Canvas ref={canvasRef} gl={{ powerPreference: isMobile ? 'high-performance' : 'default' }}>
+        <color attach="background" args={['#08131D']} />
+        {/*<Perf />*/}
+        <ScrollControls
+          pages={scrollPagesCount}
+          distance={0.75}
+          infinite={true}
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          <ScrollListener />
 
-        <Suspense fallback={null}>
-          <Aurora />
-          <Sky />
-          <SkyClouds key="skyClouds" visible={lastPathSegment === 'home' || lastPathSegment === 'projects'} />
-          <About3D key="about" visible={lastPathSegment === 'about'} />
-          <ProjectsView key="project" visible={lastPathSegment === 'projects'} />
-        </Suspense>
-      </ScrollControls>
-      {/*<OrbitControls />*/}
-    </Canvas>
+          <Suspense fallback={null}>
+            <Aurora />
+            <Sky />
+            <SkyClouds key="skyClouds" visible={lastPathSegment === 'home' || lastPathSegment === 'projects'} />
+            <About3D key="about" visible={lastPathSegment === 'about'} />
+            <ProjectsView key="project" visible={lastPathSegment === 'projects'} />
+          </Suspense>
+        </ScrollControls>
+        {/*<OrbitControls />*/}
+      </Canvas>
+    </div>
   );
 }

@@ -92,5 +92,3 @@ export default function Aurora(props: JSX.IntrinsicElements['group']) {
     </group>
   );
 }
-
-useGLTF.preload('/aurora.glb');
