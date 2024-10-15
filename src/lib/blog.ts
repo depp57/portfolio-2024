@@ -1,29 +1,46 @@
 import fs from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
-import sizeOf from 'image-size';
-import { IncomingMessage } from 'http';
-import https from 'https';
 import { randomInt } from 'node:crypto';
+import { unstable_cache } from 'next/cache';
 
 export type BlogPost = {
   id: number;
   title: string;
-  date: string;
+  date: Date;
   tags: string[];
   markdownContent: string;
-  imageSizes: ImageSizes;
+  language: 'en' | 'fr';
+  coverImage?: string;
+  catchPhrase: string;
+  slug: string;
 };
 
-export async function readMarkdownPosts(): Promise<BlogPost[]> {
-  const fileNames = fs.readdirSync(POSTS_DIRECTORY);
+export async function getAllPostsSortedByDate(): Promise<BlogPost[]> {
+  const posts = [...(await readMarkdownPosts()), ...(await fetchDevToPosts())];
 
-  const posts = await Promise.all(fileNames.map(readMarkdownPost));
+  // Fix https://github.com/vercel/next.js/issues/51613
+  // unstable_cache does not deserialize the Date object correctly
+  for (const post of posts) {
+    post.date = new Date(post.date);
+  }
 
-  return posts.sort((postA, postB) => (postA.date < postB.date ? 1 : -1));
+  return posts.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
-export async function fetchDevToPosts(): Promise<BlogPost[]> {
+export function filterPostsBySearchParams(posts: BlogPost[], tag?: string) {
+  return posts.filter((post, _) => {
+    return tag ? post.tags?.includes(tag) : true;
+  });
+}
+
+const readMarkdownPosts = unstable_cache(async (): Promise<BlogPost[]> => {
+  const fileNames = fs.readdirSync(POSTS_DIRECTORY);
+
+  return await Promise.all(fileNames.map(readMarkdownPost));
+});
+
+const fetchDevToPosts = unstable_cache(async (): Promise<BlogPost[]> => {
   const apiToken = process.env.DEV_TO_TOKEN;
 
   if (!apiToken) {
@@ -38,13 +55,16 @@ export async function fetchDevToPosts(): Promise<BlogPost[]> {
     devToPosts.map(async (post) => ({
       id: post.id,
       title: post.title,
-      date: post.published_at,
+      date: formatDate(post.published_at),
       tags: post.tag_list,
       markdownContent: post.body_markdown,
-      imageSizes: await getImagesSizesFromMarkdown(post.body_markdown),
+      language: 'en',
+      catchPhrase: post.description,
+      coverImage: post.cover_image ?? undefined,
+      slug: post.slug,
     })),
   );
-}
+});
 
 const POSTS_DIRECTORY = join(process.cwd(), 'data/posts');
 
@@ -56,77 +76,36 @@ async function readMarkdownPost(fileName: string): Promise<BlogPost> {
   const parsedFile = matter(fileContent);
 
   return {
-    id: randomInt(10000),
+    id: randomInt(100000),
     title: parsedFile.data.title,
-    date: parsedFile.data.date,
+    date: formatDate(parsedFile.data.date),
     tags: parsedFile.data.tags,
     markdownContent: parsedFile.content,
-    imageSizes: await getImagesSizesFromMarkdown(parsedFile.content),
+    language: parsedFile.data.language,
+    catchPhrase: parsedFile.data.catchPhrase,
+    coverImage: parsedFile.data.coverImage,
+    slug: slugify(parsedFile.data.title),
   };
 }
 
-type ImageSizes = Record<string, ImageSize>;
-type ImageSize = { width: number; height: number };
-
-async function getImagesSizesFromMarkdown(markdown: string): Promise<ImageSizes> {
-  const sizes: ImageSizes = {};
-
-  const iterator = markdown.matchAll(/!\[.*]\((.*)\)/g);
-  let match: IteratorResult<RegExpMatchArray> = iterator.next();
-  while (!match.done) {
-    const url = match.value[1];
-
-    if (url.startsWith('http')) {
-      sizes[url] = await fetchImageSize(url);
-    } else {
-      const { width, height } = sizeOf(join('public', url));
-      if (width && height) {
-        sizes[url] = { width, height };
-      } else {
-        throw new Error(`could not determine local image size from buffer, imagePath: ${url}`);
-      }
-    }
-
-    match = iterator.next();
+function formatDate(date: string): Date {
+  if (!date.includes('T')) {
+    date = date + 'T00:00:00Z';
   }
 
-  return sizes;
+  return new Date(date);
 }
 
-async function getStreamImageSize(stream: IncomingMessage) {
-  const chunks = [];
-  for await (const chunk of stream) {
-    chunks.push(chunk);
-    try {
-      /* stop requesting data after dimensions are known */
-      return sizeOf(Uint8Array.from(chunk));
-    } catch (error) {
-      /* Not enough buffer to determine sizes yet */
-    }
-  }
-  return sizeOf(Uint8Array.from(chunks));
+function slugify(str: string) {
+  return String(str)
+    .normalize('NFKD') // split accented characters into their base characters and diacritical marks
+    .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+    .trim() // trim leading or trailing whitespace
+    .toLowerCase() // convert to lowercase
+    .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+    .replace(/\s+/g, '-') // replace spaces with hyphens
+    .replace(/-+/g, '-'); // remove consecutive hyphens
 }
-
-export const fetchImageSize = async (imageUrl: string): Promise<ImageSize> => {
-  const promise = new Promise<ImageSize>((resolve, reject) => {
-    let w = 0;
-    let h = 0;
-
-    https.get(imageUrl, async (stream) => {
-      const { width, height } = await getStreamImageSize(stream);
-
-      if (width && height) {
-        w = width;
-        h = height;
-        resolve({ width: w, height: h });
-      } else {
-        reject(new Error(`could not determine remote image size from buffer, imageUrl: ${imageUrl}`));
-      }
-    });
-  });
-
-  return promise.then((result) => result);
-};
 
 type DevToPost = {
   type_of: string;

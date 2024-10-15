@@ -11,14 +11,17 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: s
   };
 }
 
-export default function Page({ params: { lang } }: Readonly<{ params: { lang: string } }>) {
+export default function Page({
+  params: { lang },
+  searchParams,
+}: Readonly<{ params: { lang: string }; searchParams?: { [key: string]: string | undefined } }>) {
   unstable_setRequestLocale(lang);
 
   const messages = useMessages();
 
   return (
     <NextIntlClientProvider messages={pick(messages, 'blog', 'menu')}>
-      <Blog />
+      <Blog searchParams={searchParams} />
     </NextIntlClientProvider>
   );
 }

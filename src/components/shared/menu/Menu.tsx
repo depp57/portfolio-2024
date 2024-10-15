@@ -51,7 +51,7 @@ export default function Menu() {
   }
 
   return (
-    <DropdownMenu onOpenChange={(isOpened) => onMenuOpenChange(isOpened)}>
+    <DropdownMenu modal={false} onOpenChange={(isOpened) => onMenuOpenChange(isOpened)}>
       <DropdownMenuTrigger asChild className="pointer-events-auto">
         <button className="rounded-full border-2 border-secondary-text hover:border-primary-text transition-[border-color] w-11 h-11">
           <HamburgerCrossIcon opened={menuOpened} />

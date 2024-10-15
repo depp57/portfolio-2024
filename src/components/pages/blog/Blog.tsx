@@ -1,62 +1,42 @@
-import { Link } from '@/lib/i18n/routing';
-import Menu from '@/components/shared/menu/Menu';
-import { fetchDevToPosts, readMarkdownPosts } from '@/lib/blog';
-import Markdown from 'react-markdown';
-import { Fragment } from 'react';
-import BlogImage from '@/components/pages/blog/BlogImage';
-import rehypeHighlight from 'rehype-highlight';
+import { filterPostsBySearchParams, getAllPostsSortedByDate } from '@/lib/blog';
 import './dracula.css';
+import BlogNavigationItem from '@/components/pages/blog/BlogNavigationItem';
+import BlogPagination from '@/components/pages/blog/BlogPagination';
+import { Badge } from '@/components/shared/badge';
+import { Link } from '@/lib/i18n/routing';
 
-export default async function Blog() {
-  const posts = await readMarkdownPosts();
-  const devToPosts = await fetchDevToPosts();
+export default async function Blog({
+  searchParams,
+}: Readonly<{
+  searchParams?: { [key: string]: string | undefined };
+}>) {
+  const posts = await getAllPostsSortedByDate();
+
+  const currentPage = Number(searchParams?.page) || 1;
+  const currentTag = searchParams?.tag;
+  const POSTS_PER_PAGE = 3;
+
+  const filteredPosts = filterPostsBySearchParams(posts, currentTag);
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+
+  const postsFilteredAndPaginated = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  );
 
   return (
     <>
-      <header className="fixed flex w-full justify-between items-center p-10 2xl:p-10 lg:h-32">
-        <Link href="/" className="text-3xl font-medium text-primary-text pointer-events-auto">
-          Sacha
+      {currentTag && (
+        <Link href="blog" className="flex justify-center text-2xl">
+          Posts tagged with <Badge className="mx-1.5 before:content-['#']">{currentTag}</Badge> | Click to remove filter
         </Link>
+      )}
 
-        <Menu />
-      </header>
+      {postsFilteredAndPaginated.map((post) => (
+        <BlogNavigationItem key={post.id} post={post} />
+      ))}
 
-      <main className={'w-full h-full flex items-center justify-center pointer-events-auto'}>
-        <section>
-          <h2 className="font-bold text-xl">Blog</h2>
-          <ul>
-            {posts.map((post) => (
-              <Fragment key={post.id}>
-                <li className="text-lg" key={post.id}>
-                  {post.title}
-                  <br />
-                  {post.id}
-                  <br />
-                  {post.date}
-                </li>
-                <Markdown
-                  rehypePlugins={[rehypeHighlight]}
-                  components={{ img: (image) => <BlogImage image={image} post={post} /> }}
-                >
-                  {post.markdownContent}
-                </Markdown>
-              </Fragment>
-            ))}
-          </ul>
-        </section>
-
-        <section>
-          {devToPosts.map((post) => (
-            <Markdown
-              key={post.id}
-              rehypePlugins={[rehypeHighlight]}
-              components={{ img: (image) => <BlogImage image={image} post={post} /> }}
-            >
-              {post.markdownContent}
-            </Markdown>
-          ))}
-        </section>
-      </main>
+      <BlogPagination totalPages={totalPages} />
     </>
   );
 }
