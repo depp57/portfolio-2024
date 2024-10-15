@@ -13,7 +13,7 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_PUBLIC_IS_OPEN_TO_WORK=true
-RUN npm run build
+RUN --mount=type=secret,id=dev_to_token,env=DEV_TO_TOKEN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner

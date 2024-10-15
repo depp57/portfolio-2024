@@ -26,3 +26,5 @@ jobs:
         with:
           push: true
           tags: depp57/portfolio-2024:latest
+          secrets: |
+            "dev_to_token=${{ secrets.DEV_TO_TOKEN }}"
