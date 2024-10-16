@@ -44,13 +44,20 @@ export default function Experience3D() {
 
   showBannerInConsole();
 
-  if (!['home', 'projects', 'about'].includes(lastPathSegment)) {
+  const hideCanvas = !['home', 'projects', 'about'].includes(lastPathSegment);
+
+  if (!canvasRef.current && hideCanvas) {
     return null;
   }
 
   return (
     <div className="background-canvas">
-      <Canvas ref={canvasRef} gl={{ powerPreference: isMobile ? 'high-performance' : 'default' }}>
+      <Canvas
+        ref={canvasRef}
+        gl={{ powerPreference: isMobile ? 'high-performance' : 'default' }}
+        frameloop={hideCanvas ? 'never' : 'always'}
+        hidden={hideCanvas}
+      >
         <color attach="background" args={['#08131D']} />
         {/*<Perf />*/}
         <ScrollControls

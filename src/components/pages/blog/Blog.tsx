@@ -4,12 +4,16 @@ import BlogNavigationItem from '@/components/pages/blog/BlogNavigationItem';
 import BlogPagination from '@/components/pages/blog/BlogPagination';
 import { Badge } from '@/components/shared/badge';
 import { Link } from '@/lib/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 
-export default async function Blog({
-  searchParams,
-}: Readonly<{
+type BlogProps = {
+  lang: string;
   searchParams?: { [key: string]: string | undefined };
-}>) {
+};
+
+export default async function Blog({ lang, searchParams }: Readonly<BlogProps>) {
+  const t = await getTranslations({ locale: lang, namespace: 'blog' });
+
   const posts = await getAllPostsSortedByDate();
 
   const currentPage = Number(searchParams?.page) || 1;
@@ -28,7 +32,8 @@ export default async function Blog({
     <>
       {currentTag && (
         <Link href="blog" className="flex justify-center text-2xl">
-          Posts tagged with <Badge className="mx-1.5 before:content-['#']">{currentTag}</Badge> | Click to remove filter
+          {t('postTaggedPrefix')} <Badge className="mx-1.5 before:content-['#']">{currentTag}</Badge> |
+          {t('postTaggedSuffix')}
         </Link>
       )}
 

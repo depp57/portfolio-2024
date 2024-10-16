@@ -27,7 +27,7 @@ export const viewport: Viewport = {
   themeColor: '#1c1c22',
 };
 
-type RootLayoutParams = {
+type RootLayoutProps = {
   children: ReactNode;
   params: {
     lang: string;
@@ -38,7 +38,7 @@ export async function generateStaticParams() {
   return routing.locales.map((lang) => ({ lang }));
 }
 
-export default function RootLayout({ children, params: { lang } }: Readonly<RootLayoutParams>) {
+export default function RootLayout({ children, params: { lang } }: Readonly<RootLayoutProps>) {
   unstable_setRequestLocale(lang);
 
   return (

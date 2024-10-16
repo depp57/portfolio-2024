@@ -46,6 +46,9 @@ const config = {
         destructive: {
           DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
         },
+        blogBackground: {
+          DEFAULT: 'var(--blog-background)',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -6,6 +6,15 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import './blog-markdown-content.style.css';
 import { Link } from '@/lib/i18n/routing';
+import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
+  return {
+    title: {
+      absolute: slug.charAt(0).toUpperCase() + slug.substring(1).replaceAll('-', ' '),
+    },
+  };
+}
 
 export const dynamicParams = false;
 
@@ -27,12 +36,14 @@ async function getPost(slug: string): Promise<BlogPost> {
   return post;
 }
 
-export default async function Page({ params }: Readonly<{ params: { slug: string } }>) {
+export default async function Page({ params }: Readonly<{ params: { slug: string; lang: string } }>) {
+  const t = await getTranslations({ locale: params.lang, namespace: 'blog' });
+
   const post = await getPost(params.slug);
 
   return (
     <>
-      <Link className="flex gap-1 items-center text-xl mb-4" href="/blog">
+      <Link className="flex gap-1 items-center text-xl mt-2 sm:mb-4" href="/blog">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -43,7 +54,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
         </svg>
-        Return to the blog
+        {t('returnToBlog')}
       </Link>
 
       <div className="relative w-auto h-[200px] sm:h-[250px] xl:h-[350px] mb-10">
@@ -72,7 +83,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
         </svg>
-        Return to the blog
+        {t('returnToBlog')}
       </Link>
     </>
   );

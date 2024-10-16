@@ -21,7 +21,7 @@ export default function Page({
 
   return (
     <NextIntlClientProvider messages={pick(messages, 'blog', 'menu')}>
-      <Blog searchParams={searchParams} />
+      <Blog lang={lang} searchParams={searchParams} />
     </NextIntlClientProvider>
   );
 }

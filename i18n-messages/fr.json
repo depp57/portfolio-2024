@@ -138,6 +138,11 @@
     "viewProject": "Voir le projet"
   },
   "blog": {
-
+    "postTaggedPrefix": "Posts tagués avec",
+    "postTaggedSuffix": " Cliquez pour supprimer le filtre",
+    "returnToBlog": "Retourner au blog",
+    "previousPage": "Page précédente",
+    "nextPage": "Page suivante",
+    "footerMessage": "Développé avec ❤\uFE0F par Sacha Thommet"
   }
 }

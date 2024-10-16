@@ -2,12 +2,15 @@
 
 import { Link, usePathname } from '@/lib/i18n/routing';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 type BlogPaginationProps = {
   totalPages: number;
 };
 
 export default function BlogPagination({ totalPages }: Readonly<BlogPaginationProps>) {
+  const t = useTranslations('blog');
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
@@ -32,13 +35,13 @@ export default function BlogPagination({ totalPages }: Readonly<BlogPaginationPr
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>
-          Previous page
+          {t('previousPage')}
         </Link>
       )}
 
       {currentPage < totalPages && (
         <Link className="absolute right-0 flex gap-1 items-center" href={createPageURL(currentPage + 1)}>
-          Next page
+          {t('nextPage')}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

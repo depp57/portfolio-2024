@@ -29,9 +29,11 @@ export async function getAllPostsSortedByDate(): Promise<BlogPost[]> {
 }
 
 export function filterPostsBySearchParams(posts: BlogPost[], tag?: string) {
-  return posts.filter((post, _) => {
-    return tag ? post.tags?.includes(tag) : true;
-  });
+  if (!tag) {
+    return posts;
+  }
+
+  return posts.filter((post, _) => post.tags?.includes(tag));
 }
 
 const readMarkdownPosts = unstable_cache(async (): Promise<BlogPost[]> => {
