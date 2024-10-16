@@ -2,7 +2,7 @@ import { Plane, useTexture } from '@react-three/drei';
 import { extend, useFrame, useThree } from '@react-three/fiber';
 import { NightSkyMaterial } from '@shader/nightSky/material';
 import { DaySkyMaterial } from '@shader/daySky/material';
-import moonTextureJpg from '@static/moon.jpg';
+import moonTextureJpg from '@static/3d/sky/moon.jpg';
 import { useTheme } from 'next-themes';
 import { useRef } from 'react';
 import { ShaderMaterial, Vector2 } from 'three';

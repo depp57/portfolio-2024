@@ -10,10 +10,10 @@
   z-index: 100;
   background-size: cover;
   background-color: #9cbee5;
-  background-image: url('/loading-bg-light.jpg');
+  background-image: url('/loading_bg_light.jpg');
 }
 
 html[data-theme='dark'] .overlay {
   background-color: #0e1524;
-  background-image: url('/loading-bg-dark.jpg');
+  background-image: url('/loading_bg_dark.jpg');
 }

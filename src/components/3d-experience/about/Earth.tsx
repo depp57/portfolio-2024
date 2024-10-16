@@ -5,9 +5,9 @@ import { BackSide, SRGBColorSpace } from 'three';
 import { EarthAtmosphereMaterial } from '@shader/earth/atmosphere/material';
 import { useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion-3d';
-import earthDayTextureJpg from '@static/earth/day.jpg';
-import earthNightTextureJpg from '@static/earth/night.jpg';
-import earthSpecularCloudsTextureJpg from '@static/earth/specularClouds.jpg';
+import earthDayTextureJpg from '@static/3d/earth/day.jpg';
+import earthNightTextureJpg from '@static/3d/earth/night.jpg';
+import earthSpecularCloudsTextureJpg from '@static/3d/earth/specular_clouds.jpg';
 
 extend({ EarthMaterial: EarthMaterial });
 extend({ EarthAtmosphereMaterial: EarthAtmosphereMaterial });

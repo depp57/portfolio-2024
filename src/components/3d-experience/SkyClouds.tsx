@@ -2,7 +2,7 @@ import { Cloud, Clouds } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Group, MeshBasicMaterial } from 'three';
-import cloudTexture from '@static/cloud.png';
+import cloudTexture from '@static/3d/sky/cloud.png';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion-3d';
 import { useTransitionDisappear } from '@/hooks/use-transition-disappear';

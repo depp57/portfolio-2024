@@ -59,7 +59,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
 
       <div className="relative w-auto h-[200px] sm:h-[250px] xl:h-[350px] mb-10">
         <Image
-          src={post.coverImage ?? '/post-placeholder.webp'}
+          src={post.coverImage ?? '/blog/post_placeholder.webp'}
           alt="Post cover image"
           fill
           style={{ objectFit: 'contain' }}

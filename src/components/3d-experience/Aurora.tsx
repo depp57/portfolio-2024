@@ -23,7 +23,7 @@ type GLTFResult = GLTF & {
 extend({ AuroraMaterial: AuroraMaterial });
 
 export default function Aurora(props: JSX.IntrinsicElements['group']) {
-  const { nodes } = useGLTF('/aurora.glb') as GLTFResult;
+  const { nodes } = useGLTF('/3d/sky/aurora.glb') as GLTFResult;
   const ref1 = useRef<ShaderMaterial & { [key: string]: any }>(null!);
   const ref2 = useRef<ShaderMaterial & { [key: string]: any }>(null!);
   const ref3 = useRef<ShaderMaterial & { [key: string]: any }>(null!);

@@ -30,7 +30,7 @@ export default async function BlogNavigationItem({ post }: Readonly<BlogNavigati
 
         <Link className="block relative w-auto h-[200px] sm:h-[250px] xl:h-[350px]" href={`blog/${post.slug}`}>
           <Image
-            src={post.coverImage ?? '/post-placeholder.webp'}
+            src={post.coverImage ?? '/blog/post_placeholder.webp'}
             alt={'Post cover image'}
             sizes="(min-width: 1280px) 66vw, (min-width: 640px) 90vw, 100vw"
             fill

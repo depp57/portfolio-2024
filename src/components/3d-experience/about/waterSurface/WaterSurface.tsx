@@ -3,8 +3,8 @@ import { PlaneGeometry, Vector2 } from 'three';
 import { useTexture } from '@react-three/drei';
 import { WaterMesh } from './WaterMesh';
 import { WaterContext } from './WaterContext';
-import waterSurfaceNormal1 from '@static/waterSurface/Water_1_M_Normal.jpg';
-import waterSurfaceNormal2 from '@static/waterSurface/Water_2_M_Normal.jpg';
+import waterSurfaceNormal1 from '@static/3d/waterSurface/water_1_normal.jpg';
+import waterSurfaceNormal2 from '@static/3d/waterSurface/water_2_normal.jpg';
 
 export default function WaterSurface({ children }: Readonly<{ children: ReactNode }>) {
   const ref = useRef<any>();

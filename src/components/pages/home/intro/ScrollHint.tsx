@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import scrollAnimation from '@static/scroll.webp';
+import scrollAnimation from '@static/icons/scroll.webp';
 import { useTranslations } from 'next-intl';
 
 export default function ScrollHint() {
