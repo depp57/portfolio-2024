@@ -1,42 +1,92 @@
-# TODO
+# Portfolio 2024
 
-- Explain ISR, prebuild cache Nextjs ...
-- Explain architecture ...
-- Explain environment variables ... & /data folder
+![Project image](readme_image.png)
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+My [personal portfolio website](https://sachathommet.fr), built with Next.js, TypeScript and Three.js.
 
-## Getting Started
+## Features
 
-First, run the development server:
+- Interactive 3D background using [Three.js](https://threejs.org/), a popular WebGL library.
+- Pre-rendered pages with Next.js : Improves SEO and performance by building pages at build time.
+  - While pages are pre-renderer, data (projects and blog posts) can be updated without rebuilding the entire website
+  using [Incremental Static Regeneration](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration).
+  Hitting the protected `/api/revalidate` endpoint will update the data.
+- Translated in English and French (`/fr` and `/en` routes).
+- Toggle between dark and light mode.
 
+## Deployment
+
+The website is deployed on my homelab Kubernetes cluster.
+
+### Steps:
+
+1. Create the following Github secrets used by the CI/CD pipeline:
+   - `DOCKERHUB_USERNAME`: Username to log in to the docker registry (DockerHub).
+   - `DOCKERHUB_TOKEN`: Token to log in to the docker registry (DockerHub).
+   - `DEV_TO_TOKEN`: Token to access the Dev.to API (used to fetch blog posts).
+   It is needed for the build process because Next.js fetches the data at build time to pre-render the pages.
+
+2. Push changes to the `main` branch:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# make changes and commit
+git push origin main
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. It will trigger a Github Actions workflow that builds the website, containerizes it and pushes it to the docker registry.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Then, I update the Kubernetes deployment to use the new image. https://github.com/depp57/ops/blob/main/homelab/k8s/portfolio/base/deployment.yaml
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portfolio
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+        - name: portfolio
+          image: depp57/portfolio-2024:<new_tag> # Update the image tag
+          envFrom:
+            - secretRef:
+                name: portfolio
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+5. Finally, ArgoCD will detect the change and update the deployment.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+The website uses also the following environment variables:
+- `EMAIL_USERNAME`: Username to log in to the email server.
+- `EMAIL_PASSWORD`: Password to log in to the email server.
+- `NEXT_PUBLIC_IS_OPEN_TO_WORK`: Boolean to indicate if I am open to work (a message will be displayed on the website).
+- `API_TOKEN`: Token to access the protected `/api/revalidate` endpoint.
+- `DEV_TO_TOKEN`: Token to access the Dev.to API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I provide them in a Kubernetes secret:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: portfolio
+type: Opaque
+data:
+  EMAIL_USERNAME: ...
+  EMAIL_PASSWORD: ...
+  NEXT_PUBLIC_IS_OPEN_TO_WORK: ...
+  API_TOKEN: ...
+  DEV_TO_TOKEN: ...
+```
 
-## Deploy on Vercel
+## Update data
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To update the data (projects and blog posts), I can mount a volume to the container in `/app/data`, with the same structure as the `data` folder in the repository.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Then, I hit the `/api/revalidate` endpoint to update the data.
