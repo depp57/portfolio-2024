@@ -73,7 +73,8 @@ html[data-theme='light'] body {
   height: 100vh;
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 

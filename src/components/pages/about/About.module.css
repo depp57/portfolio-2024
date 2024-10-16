@@ -1,9 +1,9 @@
 .contrastBackground {
-    background: linear-gradient(
-        to bottom,
-        var(--fade-secondary) 18%,
-        var(--fade-primary) 30%,
-        var(--fade-primary) 83%,
-        var(--fade-secondary) 95%
-    );
+  background: linear-gradient(
+    to bottom,
+    var(--fade-secondary) 18%,
+    var(--fade-primary) 30%,
+    var(--fade-primary) 83%,
+    var(--fade-secondary) 95%
+  );
 }

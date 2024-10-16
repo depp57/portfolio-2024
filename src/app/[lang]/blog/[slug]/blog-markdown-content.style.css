@@ -1,43 +1,50 @@
-#markdown-content h1,h2,h3,h4,h5,h6 {
-    font-size: revert;
+#markdown-content h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: revert;
 }
 
 #markdown-content a {
-    color: revert;
-    text-decoration: revert;
+  color: revert;
+  text-decoration: revert;
 }
 
 #markdown-content p {
-    margin: revert;
-    text-align: justify;
+  margin: revert;
+  text-align: justify;
 }
 
 #markdown-content table {
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-indent: revert;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-indent: revert;
 }
 
-#markdown-content th, td {
-    border: 1px solid;
-    padding: 7px;
-    text-wrap: nowrap;
+#markdown-content th,
+td {
+  border: 1px solid;
+  padding: 7px;
+  text-wrap: nowrap;
 }
 
 #markdown-content td:first-child {
-    font-weight: bold;
-    text-align: center;
+  font-weight: bold;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-    #markdown-content table {
-        display: block;
-        overflow-x: auto
-    }
+  #markdown-content table {
+    display: block;
+    overflow-x: auto;
+  }
 
-    #markdown-content th, td {
-        border: 1px solid;
-        padding: 3px;
-    }
+  #markdown-content th,
+  td {
+    border: 1px solid;
+    padding: 3px;
+  }
 }

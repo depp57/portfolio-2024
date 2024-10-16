@@ -18,11 +18,11 @@ Importantly, Next.js lets you **choose** which pre-rendering form to use for eac
 
 ```typescript
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
+  const allPostsData = getSortedPostsData();
   return {
     props: {
-      allPostsData
-    }
-  }
-}
+      allPostsData,
+    },
+  };
+};
 ```

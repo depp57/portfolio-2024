@@ -18,10 +18,7 @@
       "keywords": ["Docker", "Microservices", "Angular", "Keycloak"],
       "dateRange": "2023 - 2024",
       "link": "https://github.com/depp57/freshbox",
-      "images": [
-        "/projects/freshbox/freshbox_1.webp",
-        "/projects/freshbox/freshbox_2.webp"
-      ]
+      "images": ["/projects/freshbox/freshbox_1.webp", "/projects/freshbox/freshbox_2.webp"]
     },
     {
       "title": "Accréditation Openshift",
@@ -29,10 +26,7 @@
       "keywords": ["Openshift", "Kubernetes", "Infrastructure", "Cloud"],
       "dateRange": "Été 2023",
       "link": "https://sachak8s.xyz/projects/openshift/openshift_2.webp",
-      "images": [
-        "/projects/openshift/openshift_1.webp",
-        "/projects/openshift/openshift_2.webp"
-      ]
+      "images": ["/projects/openshift/openshift_1.webp", "/projects/openshift/openshift_2.webp"]
     },
     {
       "title": "Cours 3D",
@@ -40,10 +34,7 @@
       "keywords": ["Three.js", "WebGl", "Computer graphics", "React"],
       "dateRange": "2022 - 2024",
       "link": "https://github.com/depp57/threejs-course",
-      "images": [
-        "/projects/threejs-course/threeJsCourse_1.webp",
-        "/projects/threejs-course/threeJsCourse_2.webp"
-      ]
+      "images": ["/projects/threejs-course/threeJsCourse_1.webp", "/projects/threejs-course/threeJsCourse_2.webp"]
     }
   ]
 }

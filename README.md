@@ -9,8 +9,8 @@ My [personal portfolio website](https://sachathommet.fr), built with Next.js, Ty
 - Interactive 3D background using [Three.js](https://threejs.org/), a popular WebGL library.
 - Pre-rendered pages with Next.js : Improves SEO and performance by building pages at build time.
   - While pages are pre-renderer, data (projects and blog posts) can be updated without rebuilding the entire website
-  using [Incremental Static Regeneration](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration).
-  Hitting the protected `/api/revalidate` endpoint will update the data.
+    using [Incremental Static Regeneration](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration).
+    Hitting the protected `/api/revalidate` endpoint will update the data.
 - Translated in English and French (`/fr` and `/en` routes).
 - Toggle between dark and light mode.
 
@@ -21,12 +21,14 @@ The website is deployed on my homelab Kubernetes cluster.
 ### Steps:
 
 1. Create the following Github secrets used by the CI/CD pipeline:
+
    - `DOCKERHUB_USERNAME`: Username to log in to the docker registry (DockerHub).
    - `DOCKERHUB_TOKEN`: Token to log in to the docker registry (DockerHub).
    - `DEV_TO_TOKEN`: Token to access the Dev.to API (used to fetch blog posts).
-   It is needed for the build process because Next.js fetches the data at build time to pre-render the pages.
+     It is needed for the build process because Next.js fetches the data at build time to pre-render the pages.
 
 2. Push changes to the `main` branch:
+
 ```bash
 # make changes and commit
 git push origin main
@@ -35,6 +37,7 @@ git push origin main
 3. It will trigger a Github Actions workflow that builds the website, containerizes it and pushes it to the docker registry.
 
 4. Then, I update the Kubernetes deployment to use the new image. https://github.com/depp57/ops/blob/main/homelab/k8s/portfolio/base/deployment.yaml
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -63,6 +66,7 @@ spec:
 ---
 
 The website uses also the following environment variables:
+
 - `EMAIL_USERNAME`: Username to log in to the email server.
 - `EMAIL_PASSWORD`: Password to log in to the email server.
 - `NEXT_PUBLIC_IS_OPEN_TO_WORK`: Boolean to indicate if I am open to work (a message will be displayed on the website).

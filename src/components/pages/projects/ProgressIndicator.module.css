@@ -1,34 +1,36 @@
 .container {
-    gap: 0.625rem;
-    justify-content: center;
-    align-items: flex-end;
-    flex-direction: column;
-    width: 4rem;
-    display: flex;
+  gap: 0.625rem;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 4rem;
+  display: flex;
 }
 
 .indicator {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    height: 0.4rem;
-    color: rgb(var(--text-primary));
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 0.4rem;
+  color: rgb(var(--text-primary));
 }
 
 .line {
-    background: var(--text-tertiary);
-    border-radius: 20px;
-    width: 22px;
-    height: 4px;
-    opacity: 0.75;
+  background: var(--text-tertiary);
+  border-radius: 20px;
+  width: 22px;
+  height: 4px;
+  opacity: 0.75;
 
-    transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
-    transform-origin: right center;
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.5s ease-in-out;
+  transform-origin: right center;
 }
 
 .line.active {
-    background: rgb(var(--text-primary));
-    opacity: 1;
-    transform: scaleX(1.5);
-    margin-left: 0.5rem;
+  background: rgb(var(--text-primary));
+  opacity: 1;
+  transform: scaleX(1.5);
+  margin-left: 0.5rem;
 }
