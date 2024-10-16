@@ -45,12 +45,14 @@ export default function ProjectView({
   return (
     <motion.group position-z={positionZ}>
       <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, 0.25]}>
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <Image ref={imageRef1} url={project?.images[0]} transparent>
           <planeGeometry args={planeSize} />
         </Image>
       </Float>
 
       <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[planeDistance, 0, 0]}>
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <Image ref={imageRef2} url={project?.images[1]} transparent side={DoubleSide}>
           <planeGeometry args={planeSize} />
         </Image>
@@ -58,6 +60,7 @@ export default function ProjectView({
 
       {project.images.length === 3 && (
         <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, -0.25]}>
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <Image ref={imageRef3} url={project?.images[2]} transparent>
             <planeGeometry args={planeSize} />
           </Image>

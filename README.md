@@ -20,7 +20,7 @@ The website is deployed on my homelab Kubernetes cluster.
 
 ### Steps:
 
-1. Create the following Github secrets used by the CI/CD pipeline:
+1. Create the following GitHub secrets used by the CI/CD pipeline:
 
    - `DOCKERHUB_USERNAME`: Username to log in to the docker registry (DockerHub).
    - `DOCKERHUB_TOKEN`: Token to log in to the docker registry (DockerHub).
@@ -34,7 +34,7 @@ The website is deployed on my homelab Kubernetes cluster.
 git push origin main
 ```
 
-3. It will trigger a Github Actions workflow that builds the website, containerizes it and pushes it to the docker registry.
+3. It will trigger a GitHub Actions workflow that builds the website, containerizes it and pushes it to the docker registry.
 
 4. Then, I update the Kubernetes deployment to use the new image. https://github.com/depp57/ops/blob/main/homelab/k8s/portfolio/base/deployment.yaml
 

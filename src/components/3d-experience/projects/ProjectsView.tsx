@@ -18,7 +18,7 @@ export default function ProjectsView({ visible }: Readonly<{ visible: boolean }>
     return () => {
       useThreeStore.setState({ scrollPagesCount: 4 });
     };
-  }, [visible]);
+  }, [projects.length, visible]);
 
   const DEFAULT_Z = 3.05;
   const carrouselZ = useMotionValue(DEFAULT_Z);
