@@ -30,6 +30,7 @@ RUN addgroup --system --gid 1001 nodejs \
     && chown nextjs:nodejs .next
 
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/data ./data
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
