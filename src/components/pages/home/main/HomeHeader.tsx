@@ -32,7 +32,7 @@ export default function HomeHeader() {
   }
 
   return (
-    <header className="flex w-full justify-between items-center p-10">
+    <header className="fixed flex w-full justify-between items-center p-10">
       <Link href="/about" onClick={handleScrollToAnchor} scroll={false}>
         <MotionButton
           type="button"

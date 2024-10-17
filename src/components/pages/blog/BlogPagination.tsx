@@ -22,7 +22,7 @@ export default function BlogPagination({ totalPages }: Readonly<BlogPaginationPr
   };
 
   return (
-    <div className="mt-8 relative">
+    <div className="mt-8 relative h-6">
       {currentPage > 1 && (
         <Link className="absolute left-0 flex gap-1 items-center" href={createPageURL(currentPage - 1)}>
           <svg

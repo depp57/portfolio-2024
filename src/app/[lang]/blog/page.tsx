@@ -1,5 +1,3 @@
-import { pick } from '@/lib/utils';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Blog from '@/components/pages/blog/Blog';
 
@@ -17,11 +15,5 @@ export default function Page({
 }: Readonly<{ params: { lang: string }; searchParams?: { [key: string]: string | undefined } }>) {
   unstable_setRequestLocale(lang);
 
-  const messages = useMessages();
-
-  return (
-    <NextIntlClientProvider messages={pick(messages, 'blog', 'menu')}>
-      <Blog lang={lang} searchParams={searchParams} />
-    </NextIntlClientProvider>
-  );
+  return <Blog lang={lang} searchParams={searchParams} />;
 }

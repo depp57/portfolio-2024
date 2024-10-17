@@ -42,7 +42,7 @@ const readMarkdownPosts = unstable_cache(async (): Promise<BlogPost[]> => {
   return await Promise.all(fileNames.map(readMarkdownPost));
 });
 
-const fetchDevToPosts = unstable_cache(async (): Promise<BlogPost[]> => {
+async function fetchDevToPosts(): Promise<BlogPost[]> {
   const apiToken = process.env.DEV_TO_TOKEN;
 
   if (!apiToken) {
@@ -51,6 +51,7 @@ const fetchDevToPosts = unstable_cache(async (): Promise<BlogPost[]> => {
 
   const devToPosts: DevToPost[] = await fetch('https://dev.to/api/articles/me', {
     headers: { 'api-key': apiToken },
+    cache: 'force-cache',
   }).then((res) => res.json());
 
   return await Promise.all(
@@ -66,7 +67,7 @@ const fetchDevToPosts = unstable_cache(async (): Promise<BlogPost[]> => {
       slug: post.slug,
     })),
   );
-});
+}
 
 const POSTS_DIRECTORY = join(process.cwd(), 'data/posts');
 

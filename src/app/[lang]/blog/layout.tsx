@@ -14,7 +14,7 @@ export default async function BlogLayout({ children, params: { lang } }: Readonl
   const t = await getTranslations({ locale: lang, namespace: 'blog' });
 
   return (
-    <div className="bg-blogBackground">
+    <div className="bg-blogBackground min-h-dvh flex flex-col">
       <header className="fixed flex w-full justify-between items-center p-10 2xl:p-10 lg:h-32 z-10">
         <Link href="/" className="text-3xl font-medium text-primary-text pointer-events-auto">
           Sacha
@@ -23,12 +23,12 @@ export default async function BlogLayout({ children, params: { lang } }: Readonl
         <Menu />
       </header>
 
-      <main className="mt-20 lg:mt-32 mx-auto w-full max-w-screen-xl px-2.5 md:px-20 pointer-events-auto">
+      <main className="flex-grow mt-20 lg:mt-32 mx-auto w-full max-w-screen-xl px-2.5 md:px-20 pointer-events-auto">
         {children}
       </main>
 
       <footer className="pointer-events-auto">
-        <div className="text-primary-text mt-6 p-4 text-center">
+        <div className="text-primary-text p-4 text-center">
           <p>{t('footerMessage')}</p>
         </div>
       </footer>

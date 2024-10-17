@@ -4,7 +4,7 @@ import AboutMeLink from '@/components/pages/home/main/about-me-link/AboutMeLink'
 
 export default function HomeFooter() {
   return (
-    <footer className="flex w-full justify-between items-center p-10 h-32">
+    <footer className="fixed bottom-0 flex w-full justify-between items-center p-10 h-32">
       <div>
         <GithubLink />
       </div>

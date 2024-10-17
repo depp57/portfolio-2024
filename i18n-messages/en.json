@@ -143,6 +143,7 @@
     "returnToBlog": "Return to the blog",
     "previousPage": "Previous page",
     "nextPage": "Next page",
-    "footerMessage": "Made with ❤\uFE0F by Sacha Thommet"
+    "footerMessage": "Made with ❤\uFE0F by Sacha Thommet",
+    "postNotFound": "Post not found"
   }
 }

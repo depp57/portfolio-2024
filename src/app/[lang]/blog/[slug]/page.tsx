@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import './blog-markdown-content.style.css';
 import { Link } from '@/lib/i18n/routing';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
 export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
   return {
@@ -16,7 +16,7 @@ export async function generateMetadata({ params: { slug } }: { params: { slug: s
   };
 }
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const allPosts = await getAllPostsSortedByDate();
@@ -37,6 +37,8 @@ async function getPost(slug: string): Promise<BlogPost> {
 }
 
 export default async function Page({ params }: Readonly<{ params: { slug: string; lang: string } }>) {
+  unstable_setRequestLocale(params.lang);
+
   const t = await getTranslations({ locale: params.lang, namespace: 'blog' });
 
   const post = await getPost(params.slug);

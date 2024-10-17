@@ -143,6 +143,7 @@
     "returnToBlog": "Retourner au blog",
     "previousPage": "Page précédente",
     "nextPage": "Page suivante",
-    "footerMessage": "Développé avec ❤\uFE0F par Sacha Thommet"
+    "footerMessage": "Développé avec ❤\uFE0F par Sacha Thommet",
+    "postNotFound": "Post non trouvé"
   }
 }
