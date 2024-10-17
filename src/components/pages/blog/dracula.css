@@ -3,6 +3,8 @@
   padding: 0.2rem;
   color: #abb2bf;
   background: #282c34;
+  text-wrap: wrap;
+  overflow-x: auto;
 }
 
 .hljs-comment,
