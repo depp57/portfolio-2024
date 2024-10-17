@@ -36,9 +36,11 @@ export default function FluidFX({
 }: FXFluidProps) {
   const { ref: materialRef, refPointer } = useContext(WaterContext);
 
-  const { size, dpr } = useThree((state) => {
+  const { size } = useThree((state) => {
     return { size: state.size, dpr: state.viewport.dpr };
   });
+
+  const dpr = 0.65;
 
   const [updateFluid, setFluid] = useFluid({
     size,

@@ -4,15 +4,15 @@ import { Canvas } from '@react-three/fiber';
 import { usePathname } from 'next/navigation';
 import { Suspense, useRef } from 'react';
 import { useThreeStore } from '@/stores/ThreeStore';
-import { ScrollControls } from '@react-three/drei';
+import { ScrollControls, Stats } from '@react-three/drei';
 import ScrollListener from '@/components/3d-experience/ScrollListener';
 import { useHomeStore } from '@/stores/homeStore';
 import useIsMobile from '@/hooks/use-is-mobile';
 import Sky from '@/components/3d-experience/Sky';
-import Aurora from '@/components/3d-experience/Aurora';
 import SkyClouds from '@/components/3d-experience/SkyClouds';
 import About3D from '@/components/3d-experience/about/About3D';
 import ProjectsView from '@/components/3d-experience/projects/ProjectsView';
+import Aurora from '@/components/3d-experience/Aurora';
 
 let messageAlreadyShowed = false;
 
@@ -54,11 +54,14 @@ export default function Experience3D() {
     <div className="background-canvas">
       <Canvas
         ref={canvasRef}
-        gl={{ powerPreference: isMobile ? 'high-performance' : 'default' }}
+        gl={{ powerPreference: isMobile ? 'default' : 'high-performance' }}
         frameloop={hideCanvas ? 'never' : 'always'}
         hidden={hideCanvas}
+        dpr={isMobile ? 0.85 : 1}
       >
+        {/* TODO 1 -> 0.75 on mobile and pc portable petits écrans */}
         <color attach="background" args={['#08131D']} />
+        <Stats />
         {/*<Perf />*/}
         <ScrollControls
           pages={scrollPagesCount}

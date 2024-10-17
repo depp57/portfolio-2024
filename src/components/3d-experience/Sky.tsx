@@ -24,10 +24,10 @@ export default function Sky() {
     refPointer.current = e.uv.multiplyScalar(2).subScalar(1);
   };
 
-  const { size, dpr } = useThree((state) => ({ size: state.size, dpr: state.viewport.dpr }));
+  const { size } = useThree((state) => ({ size: state.size, dpr: state.viewport.dpr }));
   const [updateFluid, setFluid, { output }] = useFluid({
     size,
-    dpr,
+    dpr: 0.75,
   });
 
   useFrame((_, delta) => {
