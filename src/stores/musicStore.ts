@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
 
 type MusicState = {
   isPlaying: boolean;
@@ -8,14 +7,9 @@ type MusicState = {
   toggleMusic: () => void;
 };
 
-export const useMusicStore = create<MusicState>()(
-  devtools(
-    (set) => ({
-      isPlaying: false,
-      playMusic: () => set(() => ({ isPlaying: true }), undefined, 'playMusic'),
-      stopMusic: () => set(() => ({ isPlaying: false }), undefined, 'stopMusic'),
-      toggleMusic: () => set((state) => ({ isPlaying: !state.isPlaying }), undefined, 'toggleMusic'),
-    }),
-    { name: 'musicStore', store: 'musicStore' },
-  ),
-);
+export const useMusicStore = create<MusicState>()((set) => ({
+  isPlaying: false,
+  playMusic: () => set(() => ({ isPlaying: true })),
+  stopMusic: () => set(() => ({ isPlaying: false })),
+  toggleMusic: () => set((state) => ({ isPlaying: !state.isPlaying })),
+}));

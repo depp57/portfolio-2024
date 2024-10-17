@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
 import { Project } from '@/components/pages/projects/ProjectPreview';
 
 type ProjectStore = {
@@ -7,12 +6,7 @@ type ProjectStore = {
   currentProjectIndex: number;
 };
 
-export const useProjectStore = create<ProjectStore>()(
-  devtools(
-    (_) => ({
-      projects: [],
-      currentProjectIndex: null!,
-    }),
-    { name: 'projectStore', store: 'projectStore' },
-  ),
-);
+export const useProjectStore = create<ProjectStore>()((_) => ({
+  projects: [],
+  currentProjectIndex: null!,
+}));
