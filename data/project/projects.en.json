@@ -13,6 +13,14 @@
       ]
     },
     {
+      "title": "CKAD",
+      "description": "Earned the CKAD certification (Certified Kubernetes Application Developer).",
+      "keywords": ["Kubernetes", "DevOps", "Cloud"],
+      "dateRange": "October 2024",
+      "link": "https://sachak8s.xyz/projects/ckad/ckad-certificate.pdf",
+      "images": ["/projects/ckad/certificate.webp"]
+    },
+    {
       "title": "Freshbox",
       "description": "Developed a microservices web application with Angular and NestJS for learning purposes.\nIntegrated Keycloak for authentication, and deployed via Docker.",
       "keywords": ["Docker", "Microservices", "Angular", "Keycloak"],

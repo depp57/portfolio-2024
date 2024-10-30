@@ -15,28 +15,24 @@ export default function ProjectView({
   const OFFSET_Z = 1.9;
   const positionZ = useTransform(() => positionReferenceZ.get() - index * OFFSET_Z);
 
-  const adjustedPositionZ = useTransform(positionZ, (value) => value + 0.25);
-  const adjustedPositionZ2 = useTransform(positionZ, (value) => value - 0.25);
-  const opacity1 = useTransform(adjustedPositionZ, [3, 3.6, 4.2, 4.4], [0, 1, 1, 0]);
-  const opacity2 = useTransform(positionZ, [3, 3.6, 4.2, 4.4], [0, 1, 1, 0]);
-  const opacity3 = useTransform(adjustedPositionZ2, [3, 3.6, 4.2, 4.4], [0, 1, 1, 0]);
+  const offsetPosZ1 = useTransform(positionZ, (value) => value - 0.25);
+  const offsetPosZ2 = useTransform(positionZ, (value) => value - 0.5);
 
-  const imageRef1 = useRef<Mesh>(null!);
-  const imageRef2 = useRef<Mesh>(null!);
-  const imageRef3 = useRef<Mesh>(null!);
+  const imageOpacities = [
+    useTransform(positionZ, [3, 3.6, 4.25, 4.5], [0, 1, 1, 0]),
+    useTransform(offsetPosZ1, [3, 3.6, 4.25, 4.5], [0, 1, 1, 0]),
+    useTransform(offsetPosZ2, [3, 3.6, 4.25, 4.5], [0, 1, 1, 0]),
+  ];
+
+  const imageRefs = useRef<Mesh[]>([]);
 
   const isMobile = useIsMobile();
 
   useFrame(() => {
-    // @ts-ignore
-    imageRef1.current.material.uniforms.opacity.value = opacity1.get();
-    // @ts-ignore
-    imageRef2.current.material.uniforms.opacity.value = opacity2.get();
-
-    if (project.images.length === 3) {
+    imageRefs.current.forEach((imageRef, i) => {
       // @ts-ignore
-      imageRef3.current.material.uniforms.opacity.value = opacity3.get();
-    }
+      imageRef.material.uniforms.opacity.value = imageOpacities[i].get();
+    });
   });
 
   const planeSize: [number, number] = !isMobile ? [0.96, 0.54] : [0.64, 0.36];
@@ -44,24 +40,31 @@ export default function ProjectView({
 
   return (
     <motion.group position-z={positionZ}>
-      <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, 0.25]}>
+      <Float
+        rotationIntensity={0.4}
+        floatIntensity={0.4}
+        speed={0.75}
+        position={[project.images.length > 1 ? -planeDistance : 0, 0, 0]}
+      >
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <Image ref={imageRef1} url={project?.images[0]} transparent>
+        <Image ref={(el) => (imageRefs.current[0] = el!)} url={project?.images[0]} transparent>
           <planeGeometry args={planeSize} />
         </Image>
       </Float>
 
-      <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[planeDistance, 0, 0]}>
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <Image ref={imageRef2} url={project?.images[1]} transparent side={DoubleSide}>
-          <planeGeometry args={planeSize} />
-        </Image>
-      </Float>
-
-      {project.images.length === 3 && (
-        <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, -0.25]}>
+      {project.images.length > 1 && (
+        <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[planeDistance, 0, -0.25]}>
           {/* eslint-disable-next-line jsx-a11y/alt-text */}
-          <Image ref={imageRef3} url={project?.images[2]} transparent>
+          <Image ref={(el) => (imageRefs.current[1] = el!)} url={project?.images[1]} transparent side={DoubleSide}>
+            <planeGeometry args={planeSize} />
+          </Image>
+        </Float>
+      )}
+
+      {project.images.length > 2 && (
+        <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, -0.5]}>
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
+          <Image ref={(el) => (imageRefs.current[2] = el!)} url={project?.images[2]} transparent>
             <planeGeometry args={planeSize} />
           </Image>
         </Float>
