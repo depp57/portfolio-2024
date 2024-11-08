@@ -18,7 +18,7 @@ export default async function Blog({ lang, searchParams }: Readonly<BlogProps>) 
 
   const currentPage = Number(searchParams?.page) || 1;
   const currentTag = searchParams?.tag;
-  const POSTS_PER_PAGE = 3;
+  const POSTS_PER_PAGE = 5;
 
   const filteredPosts = filterPostsBySearchParams(posts, currentTag);
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
