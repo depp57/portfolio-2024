@@ -5,7 +5,7 @@
       "description": "Création d'un cluster Kubernetes composé de deux nœuds, avec automatisation GitOps et monitoring Prometheus.\nJ'y héberge des projets personnels comme ce portfolio.",
       "keywords": ["DevOps", "Cloud", "Infrastructure", "Kubernetes"],
       "dateRange": "Janvier 2024 - Aujourd'hui",
-      "link": "https://dashboard.sachak8s.xyz",
+      "link": "https://dashboard.sachathommet.fr",
       "images": [
         "/projects/homelab/homelab_1.webp",
         "/projects/homelab/homelab_2.webp",
@@ -17,7 +17,7 @@
       "description": "Obtention de la certification CKAD (Certified Kubernetes Application Developer).",
       "keywords": ["Kubernetes", "DevOps", "Cloud"],
       "dateRange": "Octobre 2024",
-      "link": "https://sachak8s.xyz/projects/ckad/ckad-certificate.pdf",
+      "link": "https://sachathommet.fr/projects/ckad/ckad-certificate.pdf",
       "images": ["/projects/ckad/certificate.webp"]
     },
     {
@@ -33,7 +33,7 @@
       "description": "Obtention d'une accréditation Openshift lors de mon stage chez ITS4U au Luxembourg.\nCe stage était axé sur l'installation et l'administration de Kubernetes/Openshift.",
       "keywords": ["Openshift", "Kubernetes", "Infrastructure", "Cloud"],
       "dateRange": "Été 2023",
-      "link": "https://sachak8s.xyz/projects/openshift/openshift_2.webp",
+      "link": "https://sachathommet.fr/projects/openshift/openshift_full.webp",
       "images": ["/projects/openshift/openshift_1.webp", "/projects/openshift/openshift_2.webp"]
     },
     {
