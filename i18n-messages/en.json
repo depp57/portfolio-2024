@@ -110,15 +110,16 @@
     "skills": {
       "title": "Area of expertise",
       "skillsList": [
-        "Backend (Java, Node.js, Go)",
-        "Frontend (Angular, React)",
-        "Software architecture",
-        "Databases (SQL, NoSQL)",
-        "DevOps (CI/CD, IaC)",
-        "Docker",
-        "Kubernetes & Openshift",
+        "Kubernetes & OpenShift",
+        "CKA · CKS · CKAD",
+        "ArgoCD / GitOps",
+        "Terraform / IaC",
+        "Ansible",
+        "CI/CD (GitLab CI, Azure DevOps)",
+        "Docker / OCI",
         "Linux (Debian, Red Hat)",
-        "Git"
+        "Backend (Java, Go, Node.js)",
+        "Teaching / Empathy"
       ]
     },
     "contact": {
