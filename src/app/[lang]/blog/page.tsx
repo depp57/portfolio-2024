@@ -1,7 +1,9 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Blog from '@/components/pages/blog/Blog';
+import { Metadata } from 'next';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'metadata.titles' });
 
   return {
@@ -9,11 +11,15 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: s
   };
 }
 
-export default function Page({
-  params: { lang },
+export default async function Page({
+  params,
   searchParams,
-}: Readonly<{ params: { lang: string }; searchParams?: { [key: string]: string | undefined } }>) {
-  unstable_setRequestLocale(lang);
+}: Readonly<{
+  params: Promise<{ lang: string }>;
+  searchParams?: Promise<{ [key: string]: string | undefined }>;
+}>) {
+  const { lang } = await params;
+  setRequestLocale(lang);
 
-  return <Blog lang={lang} searchParams={searchParams} />;
+  return <Blog lang={lang} searchParams={await searchParams} />;
 }

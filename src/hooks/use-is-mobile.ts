@@ -4,9 +4,12 @@ export default function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 600px)').matches) {
-      setIsMobile(true);
-    }
+    const checkIsMobile = () => {
+      const mediaQuery = window.matchMedia('(max-width: 768px)');
+      setIsMobile(mediaQuery.matches);
+    };
+
+    checkIsMobile();
   }, []);
 
   return isMobile;

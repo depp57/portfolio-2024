@@ -7,7 +7,7 @@ import waterSurfaceNormal1 from '@static/3d/waterSurface/water_1_normal.jpg';
 import waterSurfaceNormal2 from '@static/3d/waterSurface/water_2_normal.jpg';
 
 export default function WaterSurface({ children }: Readonly<{ children: ReactNode }>) {
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
   const refPointer = useRef(new Vector2(0, 0));
 
   const [waterNormals1, waterNormals2] = useTexture([waterSurfaceNormal1.src, waterSurfaceNormal2.src]);

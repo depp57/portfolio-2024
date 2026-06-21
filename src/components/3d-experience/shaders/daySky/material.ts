@@ -1,6 +1,6 @@
 import { shaderMaterial } from '@react-three/drei';
 import { ShaderMaterial, Vector3 } from 'three';
-import { Object3DNode } from '@react-three/fiber';
+import { ThreeElement } from '@react-three/fiber';
 import daySkyVertexShader from '@shader/daySky/vertex.glsl';
 import daySkyFragmentShader from '@shader/daySky/fragment.glsl';
 
@@ -22,9 +22,6 @@ export const DaySkyMaterial = shaderMaterial(
 // Typescript types for the custom shader material
 declare module '@react-three/fiber' {
   interface ThreeElements {
-    daySkyMaterial: Object3DNode<
-      ShaderMaterial & { [key: string]: any },
-      typeof ShaderMaterial & { [key: string]: any }
-    >;
+    daySkyMaterial: ThreeElement<typeof ShaderMaterial> & { [key: string]: any };
   }
 }

@@ -152,7 +152,13 @@ export default function SkillsSection() {
           viewport={{ once: true }}
         >
           {skills.map((skill, i) => (
-            <Skill key={skill} name={skill} ref={(el) => (divRefs.current[i] = el!)} />
+            <Skill
+              key={skill}
+              name={skill}
+              ref={(el) => {
+                divRefs.current[i] = el!;
+              }}
+            />
           ))}
         </motion.div>
       </div>

@@ -1,5 +1,5 @@
 import { useFrame, useThree } from '@react-three/fiber';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
 import { SpringOptions, useSpring, useTransform } from 'framer-motion';
 
@@ -14,7 +14,7 @@ export default function MouseMoveControls({
 }: MouseMoveControlsProps) {
   const { camera, pointer } = useThree();
 
-  const lookAtPoint = useMemo(() => new Vector3(0, 0, 0), []);
+  const lookAtPoint = useRef(new Vector3(0, 0, 0));
 
   const x = useSpring(0, { ...springConfig });
   const y = useSpring(0, { ...springConfig });
@@ -25,11 +25,11 @@ export default function MouseMoveControls({
   useFrame(() => {
     x.set(pointer.x);
     y.set(pointer.y);
-    lookAtPoint.x = xTransform.get();
-    lookAtPoint.y = yTransform.get();
+    lookAtPoint.current.x = xTransform.get();
+    lookAtPoint.current.y = yTransform.get();
 
     camera.position.set(-xTransform.get() * 0.25, -yTransform.get() * 0.25, camera.position.z);
-    camera.lookAt(lookAtPoint);
+    camera.lookAt(lookAtPoint.current);
   });
 
   useEffect(() => {

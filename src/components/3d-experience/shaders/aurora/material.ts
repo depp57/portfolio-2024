@@ -1,6 +1,6 @@
 import { shaderMaterial } from '@react-three/drei';
 import { Color, ShaderMaterial } from 'three';
-import { Object3DNode } from '@react-three/fiber';
+import { ThreeElement } from '@react-three/fiber';
 import auroraVertexShader from '@shader/aurora/vertex.glsl';
 import auroraFragmentShader from '@shader/aurora/fragment.glsl';
 
@@ -22,9 +22,6 @@ export const AuroraMaterial = shaderMaterial(
 // Typescript types for the custom shader material
 declare module '@react-three/fiber' {
   interface ThreeElements {
-    auroraMaterial: Object3DNode<
-      ShaderMaterial & { [key: string]: any },
-      typeof ShaderMaterial & { [key: string]: any }
-    >;
+    auroraMaterial: ThreeElement<typeof ShaderMaterial> & { [key: string]: any };
   }
 }

@@ -5,12 +5,13 @@ import { getTranslations } from 'next-intl/server';
 
 type BlogLayoutProps = {
   children: ReactNode;
-  params: {
+  params: Promise<{
     lang: string;
-  };
+  }>;
 };
 
-export default async function BlogLayout({ children, params: { lang } }: Readonly<BlogLayoutProps>) {
+export default async function BlogLayout({ children, params }: Readonly<BlogLayoutProps>) {
+  const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'blog' });
 
   return (

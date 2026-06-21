@@ -12,23 +12,27 @@ coverImage: '/projects/ckad/certificate.webp'
 Le contenu de l'examen évolue régulièrement selon la version, mais voici les grandes lignes des sujets abordés lors de mon passage (version 1.31) :
 
 - **Application design and build** (20%)
+
   - Comprendre le concept d'images de conteneurs.
   - Connaitre et utiliser les ressources liées au déploiement d'applications (pods, services, cronjobs, etc.).
   - Utiliser des pods multi-conteneurs (sidecars, init-container, etc.).
   - Comprendre les concepts de volumes et de persistance.
 
 - **Application deployment** (20%)
+
   - Déployer avec Helm et Kustomize.
   - Déploiements, rolling update et rollbacks.
   - Connaitre quelques stratégies de déploiement (blue/green, canary).
 
 - **Application observability and maintenance** (15%)
+
   - Comprendre le fonctionnement des LivenessProbes & ReadinessProbes.
   - Manipulation des logs d’un conteneur.
   - Debugging dans Kubernetes.
   - Comprendre le système de dépréciation de l’API Kubernetes.
 
 - **Application environment, configuration, and security** (25%)
+
   - ConfigMaps et Secrets.
   - SecurityContexts, capabilities, etc.
   - Définir des ressources pour les conteneurs (requests, limits, quotas).

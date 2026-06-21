@@ -4,13 +4,13 @@
  */
 
 import {
-  Clock,
   Color,
   Matrix4,
   Mesh,
   RepeatWrapping,
   ShaderMaterial,
   Texture,
+  Timer,
   UniformsLib,
   UniformsUtils,
   Vector2,
@@ -225,7 +225,7 @@ class WaterMesh extends Mesh {
     const cycle = 0.15; // a cycle of a flow map phase
     const halfCycle = cycle * 0.5;
     const textureMatrix = new Matrix4();
-    const clock = new Clock();
+    const timer = new Timer();
 
     // internal components
 
@@ -318,7 +318,8 @@ class WaterMesh extends Mesh {
     }
 
     function updateFlow() {
-      const delta = clock.getDelta();
+      timer.update();
+      const delta = timer.getDelta();
       const config = (scope.material as any).uniforms['config'];
 
       config.value.x += flowSpeed * delta; // flowMapOffset0

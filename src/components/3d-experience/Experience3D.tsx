@@ -2,7 +2,6 @@
 
 import { Canvas } from '@react-three/fiber';
 import { usePathname } from 'next/navigation';
-import { Suspense, useRef } from 'react';
 import { useThreeStore } from '@/stores/ThreeStore';
 import { ScrollControls } from '@react-three/drei';
 import ScrollListener from '@/components/3d-experience/ScrollListener';
@@ -13,6 +12,7 @@ import SkyClouds from '@/components/3d-experience/SkyClouds';
 import About3D from '@/components/3d-experience/about/About3D';
 import ProjectsView from '@/components/3d-experience/projects/ProjectsView';
 import Aurora from '@/components/3d-experience/Aurora';
+import { Suspense, useState } from 'react';
 
 let messageAlreadyShowed = false;
 
@@ -32,11 +32,11 @@ export default function Experience3D() {
   const pathSegments = usePathname().split('/');
   const lastPathSegment = (pathSegments.length > 2 ? pathSegments.pop() : 'home') as string;
 
-  const canvasRef = useRef<HTMLCanvasElement>(null!);
-
   const scrollPagesCount = useThreeStore((state) => state.scrollPagesCount);
 
   const isMobile = useIsMobile();
+
+  const [canvasCreated, setCanvasCreated] = useState(false);
 
   if (lastPathSegment !== 'home') {
     useHomeStore.setState({ isIntro: false });
@@ -45,22 +45,18 @@ export default function Experience3D() {
   showBannerInConsole();
 
   const hideCanvas = !['home', 'projects', 'about'].includes(lastPathSegment);
-
-  if (!canvasRef.current && hideCanvas) {
-    return null;
-  }
+  if (!canvasCreated && hideCanvas) return null;
 
   return (
     <div className="background-canvas">
       <Canvas
-        ref={canvasRef}
+        onCreated={() => setCanvasCreated(true)}
         gl={{ powerPreference: isMobile ? 'default' : 'high-performance' }}
         frameloop={hideCanvas ? 'never' : 'always'}
         hidden={hideCanvas}
         dpr={isMobile ? 0.85 : 1}
       >
         <color attach="background" args={['#08131D']} />
-        {/*<Perf />*/}
         <ScrollControls
           pages={scrollPagesCount}
           distance={0.75}

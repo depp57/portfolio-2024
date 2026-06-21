@@ -4,6 +4,7 @@ const withNextIntl = createNextIntlPlugin('./src/lib/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   transpilePackages: ['three'],
   images: {
     remotePatterns: [
@@ -46,17 +47,15 @@ const nextConfig = {
     return config;
   },
 
-  experimental: {
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-        '*.glsl': {
-          loaders: ['raw-loader'],
-          as: '*.js',
-        },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+      '*.glsl': {
+        loaders: ['raw-loader'],
+        as: '*.js',
       },
     },
   },

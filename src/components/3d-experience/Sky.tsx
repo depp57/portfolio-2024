@@ -10,8 +10,8 @@ import SkyFluidFX from '@/components/3d-experience/SkyFluidFX';
 import { useFluid } from '@funtech-inc/use-shader-fx';
 import useIsMobile from '@/hooks/use-is-mobile';
 
-extend({ NightSkyMaterial: NightSkyMaterial });
-extend({ DaySkyMaterial: DaySkyMaterial });
+extend({ NightSkyMaterial });
+extend({ DaySkyMaterial });
 
 export default function Sky() {
   const moonTexture = useTexture(moonTextureJpg.src);

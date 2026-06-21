@@ -19,12 +19,12 @@ Dans cet article, j'explique brièvement comment je déploie ce portfolio sur mo
      Il est nécessaire pour le processus de build car Next.js récupère les données au moment du build pour pré-rendre les pages.
 
 2. Pousser les changements sur la branche `main` :
-    
+
 ```bash
 # effectuer des changements et commiter
 git push origin main
 ```
-   
+
 3. Cela déclenchera un workflow GitHub Actions qui buildera le site, le conteneurisera et poussera l'image sur la registry DockerHub.
 
 4. Ensuite, je mets à jour le déploiement Kubernetes pour utiliser la nouvelle image (fichier versionné sur Git) :

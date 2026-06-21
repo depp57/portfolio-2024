@@ -1,8 +1,10 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Projects from '@/components/pages/projects/Projects';
 import { fetchProjects } from '@/lib/projects';
+import { Metadata } from 'next';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'metadata.titles' });
 
   return {
@@ -10,8 +12,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: s
   };
 }
 
-export default async function Page({ params: { lang } }: Readonly<{ params: { lang: string } }>) {
-  unstable_setRequestLocale(lang);
+export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
+  const { lang } = await params;
+  setRequestLocale(lang);
 
   const projects = await fetchProjects(lang);
 

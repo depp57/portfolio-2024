@@ -26,7 +26,7 @@
       "keywords": ["Docker", "Microservices", "Angular", "Keycloak"],
       "dateRange": "2023 - 2024",
       "link": "https://github.com/depp57/freshbox",
-      "images": ["/projects/freshbox/freshbox_1.webp","/projects/freshbox/freshbox_2.webp"]
+      "images": ["/projects/freshbox/freshbox_1.webp", "/projects/freshbox/freshbox_2.webp"]
     },
     {
       "title": "Accréditation Openshift",

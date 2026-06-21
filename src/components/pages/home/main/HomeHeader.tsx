@@ -16,12 +16,12 @@ const variants2 = {
   hidden: { x: 0, y: '-50%', opacity: 1 },
 };
 
+const MotionButton = motion.create(Button);
+
 export default function HomeHeader() {
   const t = useTranslations('home');
 
   const isOpenToWork = process.env.NEXT_PUBLIC_IS_OPEN_TO_WORK === 'true';
-
-  const MotionButton = motion.create(Button);
 
   function handleScrollToAnchor() {
     // Hacky way to scroll to the contact form as the form is in a different page,

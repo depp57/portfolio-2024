@@ -1,8 +1,7 @@
 import { Float, Image } from '@react-three/drei';
 import { Project } from '@/components/pages/projects/ProjectPreview';
-import { motion } from 'framer-motion-3d';
 import { MotionValue, useTransform } from 'framer-motion';
-import { DoubleSide, Mesh } from 'three';
+import { DoubleSide, Group, Mesh } from 'three';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import useIsMobile from '@/hooks/use-is-mobile';
@@ -25,10 +24,13 @@ export default function ProjectView({
   ];
 
   const imageRefs = useRef<Mesh[]>([]);
+  const groupRef = useRef<Group>(null!);
 
   const isMobile = useIsMobile();
 
   useFrame(() => {
+    groupRef.current.position.z = positionZ.get();
+
     imageRefs.current.forEach((imageRef, i) => {
       // @ts-ignore
       imageRef.material.uniforms.opacity.value = imageOpacities[i].get();
@@ -39,7 +41,7 @@ export default function ProjectView({
   const planeDistance = !isMobile ? 0.6 : 0.35;
 
   return (
-    <motion.group position-z={positionZ}>
+    <group ref={groupRef}>
       <Float
         rotationIntensity={0.4}
         floatIntensity={0.4}
@@ -47,7 +49,13 @@ export default function ProjectView({
         position={[project.images.length > 1 ? -planeDistance : 0, 0, 0]}
       >
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <Image ref={(el) => (imageRefs.current[0] = el!)} url={project?.images[0]} transparent>
+        <Image
+          ref={(el) => {
+            imageRefs.current[0] = el!;
+          }}
+          url={project?.images[0]}
+          transparent
+        >
           <planeGeometry args={planeSize} />
         </Image>
       </Float>
@@ -55,7 +63,14 @@ export default function ProjectView({
       {project.images.length > 1 && (
         <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[planeDistance, 0, -0.25]}>
           {/* eslint-disable-next-line jsx-a11y/alt-text */}
-          <Image ref={(el) => (imageRefs.current[1] = el!)} url={project?.images[1]} transparent side={DoubleSide}>
+          <Image
+            ref={(el) => {
+              imageRefs.current[1] = el!;
+            }}
+            url={project?.images[1]}
+            transparent
+            side={DoubleSide}
+          >
             <planeGeometry args={planeSize} />
           </Image>
         </Float>
@@ -64,11 +79,17 @@ export default function ProjectView({
       {project.images.length > 2 && (
         <Float rotationIntensity={0.4} floatIntensity={0.4} speed={0.75} position={[-planeDistance, 0, -0.5]}>
           {/* eslint-disable-next-line jsx-a11y/alt-text */}
-          <Image ref={(el) => (imageRefs.current[2] = el!)} url={project?.images[2]} transparent>
+          <Image
+            ref={(el) => {
+              imageRefs.current[2] = el!;
+            }}
+            url={project?.images[2]}
+            transparent
+          >
             <planeGeometry args={planeSize} />
           </Image>
         </Float>
       )}
-    </motion.group>
+    </group>
   );
 }

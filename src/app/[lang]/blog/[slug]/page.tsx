@@ -6,9 +6,11 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import './blog-markdown-content.style.css';
 import { Link } from '@/lib/i18n/routing';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Metadata } from 'next';
 
-export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
   return {
     title: {
       absolute: slug.charAt(0).toUpperCase() + slug.substring(1).replaceAll('-', ' '),
@@ -36,12 +38,13 @@ async function getPost(slug: string): Promise<BlogPost> {
   return post;
 }
 
-export default async function Page({ params }: Readonly<{ params: { slug: string; lang: string } }>) {
-  unstable_setRequestLocale(params.lang);
+export default async function Page({ params }: Readonly<{ params: Promise<{ slug: string; lang: string }> }>) {
+  const { slug, lang } = await params;
+  setRequestLocale(lang);
 
-  const t = await getTranslations({ locale: params.lang, namespace: 'blog' });
+  const t = await getTranslations({ locale: lang, namespace: 'blog' });
 
-  const post = await getPost(params.slug);
+  const post = await getPost(slug);
 
   return (
     <>

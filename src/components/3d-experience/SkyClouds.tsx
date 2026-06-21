@@ -4,8 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { Group, MeshBasicMaterial } from 'three';
 import cloudTexture from '@static/3d/sky/cloud.png';
 import { useTheme } from 'next-themes';
-import { motion } from 'framer-motion-3d';
-import { useTransitionDisappear } from '@/hooks/use-transition-disappear';
+import AnimatedDisappearGroup from '@/components/3d-experience/AnimatedDisappearGroup';
 
 export default function SkyClouds({ visible }: Readonly<{ visible: boolean }>) {
   const { theme } = useTheme() as { theme: 'light' | 'dark' };
@@ -47,22 +46,8 @@ export default function SkyClouds({ visible }: Readonly<{ visible: boolean }>) {
     }
   });
 
-  const { render, startTransition, endTransition } = useTransitionDisappear(visible);
-
   return (
-    <motion.group
-      visible={render}
-      animate={{ y: visible ? 0 : 5 }}
-      transition={{ duration: 1 }}
-      onAnimationStart={() => {
-        startTransition();
-      }}
-      onAnimationComplete={(definition: { y: number }) => {
-        if (definition.y === 5) {
-          endTransition();
-        }
-      }}
-    >
+    <AnimatedDisappearGroup visible={visible} hiddenY={5}>
       <Clouds material={MeshBasicMaterial} texture={cloudTexture.src}>
         <Cloud
           key={1}
@@ -85,6 +70,6 @@ export default function SkyClouds({ visible }: Readonly<{ visible: boolean }>) {
           fade={2.6}
         />
       </Clouds>
-    </motion.group>
+    </AnimatedDisappearGroup>
   );
 }

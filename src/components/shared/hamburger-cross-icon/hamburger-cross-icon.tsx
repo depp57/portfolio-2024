@@ -6,20 +6,8 @@ export default function HamburgerCrossIcon({ opened = true }: Readonly<{ opened:
   const menu = useRef<HTMLSpanElement>(null!);
 
   useEffect(() => {
-    if (opened) {
-      openMenu();
-    } else {
-      closeMenu();
-    }
-  });
-
-  function openMenu() {
-    menu.current.classList.add(styles.open);
-  }
-
-  function closeMenu() {
-    menu.current.classList.remove(styles.open);
-  }
+    menu.current.classList.toggle(styles.open, opened);
+  }, [opened]);
 
   return (
     <span ref={menu} className={styles.menuBtn}>
