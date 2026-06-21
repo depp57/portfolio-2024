@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "description": "Passionate junior software engineer currently living in France.I love the DevOps culture and building cloud native apps",
+    "description": "DevOps & Cloud Engineer based in France, passionate about Kubernetes, cloud-native platforms and infrastructure automation.",
     "keywords": {
-      "role": "Software Engineer"
+      "role": "Cloud Infrastructure & Platform Engineer"
     },
     "titles": {
       "about": "About",
@@ -27,8 +27,8 @@
     "contactMe": "Contact me",
     "contactMeAnyway": "Contact me anyway",
     "shortDescription": {
-      "role": "Software Engineer",
-      "catchPhrase": "Passionate about cloud infrastructure",
+      "role": "Cloud Infrastructure & Platform Engineer",
+      "catchPhrase": "Building resilient, scalable and secure infrastructure",
       "discoverWork": "Discover my work"
     }
   },
@@ -50,57 +50,63 @@
   "about": {
     "welcome": "Hello",
     "namePrefix": "My name is",
-    "catchPhrase": "I am a software engineer passionate about cloud technologies, based in France.",
-    "experience": {
-      "experience1": {
+    "catchPhrase": "I am a DevOps & Cloud Engineer passionate about Kubernetes, cloud-native platforms and infrastructure automation, based in France.",
+    "experiences": [
+      {
+        "company": "Wyll, France",
+        "role": "DevOps & Cloud Engineer",
+        "date": "2025 - present",
+        "description": "Long-term mission in aerospace, evolving from fullstack developer to DevOps & Cloud engineer within a dedicated infrastructure team.",
+        "tasks": [
+          "Built a cybersecurity incident management app from scratch as sole developer — requirements to production (Angular 21, Spring Boot 4, MariaDB, Docker) — then onboarded two developers.",
+          "Joined a dedicated infrastructure team to design and build a hybrid cloud platform (OVH Cloud + on-premises) hosting internal applications.",
+          "Automated infrastructure provisioning with IaC.",
+          "Configured and secured a managed Kubernetes cluster (ArgoCD, Kyverno)."
+        ]
+      },
+      {
         "company": "SII, France",
         "role": "DevOps Engineer",
         "date": "2023 - 2024 · 1 year",
-        "description": "In the same project as before at SII, I switched to a DevOps role to help the team migrate the application to a Kubernetes cluster.",
-        "mainTasks": {
-          "task1": "Developed CI/CD pipelines using Gitlab CI.",
-          "task2": "Helped the team to make the application more cloud-native (stateless, scalable, resilient to failures, etc).",
-          "task3": "Deployed the application on a Kubernetes cluster.",
-          "task4": "The goals are to reduce the cost of the infrastructure and improve the quality of service for the users."
-        }
+        "description": "Brought back on the same project in a DevOps capacity, leading the migration of the application to Kubernetes to reduce costs and improve reliability.",
+        "tasks": [
+          "Built and maintained CI/CD pipelines with GitLab CI.",
+          "Guided development teams in adopting cloud-native practices (stateless, scalable, resilient services).",
+          "Deployed and operated the application on a Kubernetes cluster."
+        ]
       },
-      "experience2": {
+      {
         "company": "ITS4U, Luxembourg",
         "role": "Kubernetes consultant",
         "date": "2023 · 6 months",
-        "description": "As part of a team of Kubernetes consultants, I helped a major client in Luxembourg (financial sector) to build a private cloud platform.",
-        "mainTasks": {
-          "task1": "Installed Openshift on different infrastructures (bare-metal, VMware, Nutanix).",
-          "task2": "Configured Openshift to meet the client's requirements (LDAP integration, external storage and monitoring, security policies).",
-          "task3": "Wrote a technical documentation to help the client start using the platform."
-        }
+        "description": "Built a private cloud platform for a major financial client in Luxembourg, as part of a team of Kubernetes consultants.",
+        "tasks": [
+          "Deployed OpenShift on bare-metal, VMware, and Nutanix infrastructures.",
+          "Configured LDAP integration, external storage, monitoring, and security policies.",
+          "Produced technical documentation to onboard the client onto the platform."
+        ]
       },
-      "experience3": {
+      {
         "company": "SII, France",
         "role": "Software Engineer",
         "date": "2021 - 2023 · 2 years",
-        "description": "As a member of Agile scrum team, I contributed to the full-stack development of a web application used by thousands of users.",
-        "mainTasks": {
-          "task1": "Migrated a web front-end from Perl to Angular and developed new UI features.",
-          "task2": "Maintained a large Perl backend (1,000,000+ lines of code, 15+ years of history) using a MVC architecture.",
-          "task3": "Developed new back-end features using Typescript with Next.js"
-        }
+        "description": "Full-stack development of an internal web application serving thousands of daily users, within an 8-person Scrum team.",
+        "tasks": [
+          "Developed UI features on an Angular frontend.",
+          "Maintained a large-scale Java backend (1M+ lines of code, 15+ year history)."
+        ]
       },
-      "experience4": {
+      {
         "company": "INRS, France",
         "role": "Java developer",
         "date": "2020 · 3 months",
-        "description": "Full time internship. Work with my supervisor on a research project aiming to develop an app to protect workers' eyes.",
-        "mainTasks": {
-          "task1": "Developed an Android augmented reality application using Java and OpenGL ES.",
-          "task2": {
-            "text1": "Co-authored a ",
-            "link": "scientific paper",
-            "text2": " with my supervisor detailing the application."
-          }
-        }
+        "description": "Research internship developing an augmented reality application to protect workers' eyesight from LED exposure.",
+        "tasks": [
+          "Built an Android AR application in Java with OpenGL ES.",
+          "Co-authored a [scientific paper](https://www.researchgate.net/publication/358315478_Occupational_eye_protection_using_Augmented_Reality_a_proof_of_concept) with my supervisor on the application."
+        ]
       }
-    },
+    ],
     "skills": {
       "title": "Area of expertise",
       "skillsList": [

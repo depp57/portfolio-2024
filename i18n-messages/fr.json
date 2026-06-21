@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "description": "Ingénieur logiciel junior vivant actuellement en France. J'adore la culture DevOps et créer des applications Cloud",
+    "description": "Ingénieur DevOps & Cloud, passionné par Kubernetes, les plateformes cloud-native et l'automatisation d'infrastructure.",
     "keywords": {
-      "role": "Ingénieur logiciel"
+      "role": "Ingénieur Infrastructure Cloud & Plateforme"
     },
     "titles": {
       "about": "A propos",
@@ -27,8 +27,8 @@
     "contactMe": "Me contacter",
     "contactMeAnyway": "Discuter quand même",
     "shortDescription": {
-      "role": "Ingénieur logiciel",
-      "catchPhrase": "Passionné par les infrastructures cloud",
+      "role": "Ingénieur Infrastructure Cloud & Plateforme",
+      "catchPhrase": "Passionné par les infras résilientes, scalables et sécurisées",
       "discoverWork": "Découvrir mes projets"
     }
   },
@@ -50,57 +50,63 @@
   "about": {
     "welcome": "Bonjour",
     "namePrefix": "Je m'appelle",
-    "catchPhrase": "Je suis un ingénieur logiciel junior, passionné par les technologies cloud.",
-    "experience": {
-      "experience1": {
+    "catchPhrase": "Je suis un ingénieur DevOps & Cloud, passionné par Kubernetes, les plateformes cloud-native et l'automatisation d'infrastructure.",
+    "experiences": [
+      {
+        "company": "Wyll, France",
+        "role": "Ingénieur DevOps & Cloud",
+        "date": "2025 - aujourd'hui",
+        "description": "Mission longue dans l'aéronautique, avec une évolution d'un rôle développeur fullstack vers ingénieur DevOps & Cloud au sein d'une équipe infrastructure dédiée.",
+        "tasks": [
+          "Développé from scratch une application de gestion d'incidents de cybersécurité en tant qu'unique développeur — de l'analyse du besoin à la mise en production (Angular 21, Spring Boot 4, MariaDB, Docker) — puis accompagné deux développeurs.",
+          "Rejoint une équipe infrastructure dédiée pour concevoir une plateforme cloud hybride (OVH Cloud + on-premise) hébergeant les applications internes.",
+          "Automatisé le provisioning de l'infrastructure via IaC.",
+          "Configuré et sécurisé un cluster Kubernetes managé (ArgoCD, Kyverno)."
+        ]
+      },
+      {
         "company": "SII, Toulouse",
         "role": "Ingénieur DevOps",
         "date": "2023 - 2024 · 1 an",
-        "description": "Au sein du même projet que précédemment chez SII, j'ai rejoins l'équipe DevOps/infrastructure pour assister à la migration de l'application vers un cluster Kubernetes.",
-        "mainTasks": {
-          "task1": "Développement de pipelines CI/CD avec Gitlab CI.",
-          "task2": "Contribué à rendre l'application plus orientée Cloud (stateless, scalable, résiliente aux pannes, etc.) en aidant les équipes de développement.",
-          "task3": "Déployé l'application dans un cluster Kubernetes.",
-          "task4": "Les buts sont multiples, allant de la réduction du coût de l'infrastructure jusqu'à une qualité de service améliorée."
-        }
+        "description": "Rappelé sur le même projet en tant que DevOps, en charge de la migration de l'application vers Kubernetes pour réduire les coûts et améliorer la fiabilité.",
+        "tasks": [
+          "Développé les pipelines CI/CD avec GitLab CI.",
+          "Accompagné les équipes de développement dans l'adoption de pratiques cloud-native (stateless, scalable, résilient).",
+          "Déployé et opéré l'application sur un cluster Kubernetes."
+        ]
       },
-      "experience2": {
+      {
         "company": "ITS4U, Luxembourg",
         "role": "Consultant Kubernetes",
         "date": "2023 · 6 mois",
-        "description": "Au sein d'une équipe de consultants Kubernetes, j'ai accompagné un client majeur au Luxembourg (secteur financier) à mettre en place une plateforme de Cloud privé.",
-        "mainTasks": {
-          "task1": "Installation d'Openshift sur différentes infrastructures (bare-metal, VMware, Nutanix).",
-          "task2": "Configuration d'Openshift pour répondre aux exigences du client (intégration LDAP, stockage et monitoring externe, règles de sécurité).",
-          "task3": "Rédaction d'un document technique en anglais, afin d'aider le client à commencer à utiliser Openshift."
-        }
+        "description": "Construction d'une plateforme de cloud privé pour un grand client du secteur financier au Luxembourg, au sein d'une équipe de consultants Kubernetes.",
+        "tasks": [
+          "Déployé OpenShift sur des infrastructures bare-metal, VMware et Nutanix.",
+          "Configuré l'intégration LDAP, le stockage externe, le monitoring et les politiques de sécurité.",
+          "Rédigé la documentation technique anglaise, afin d'accompagner le client sur l'utilisation d'OpenShift."
+        ]
       },
-      "experience3": {
+      {
         "company": "SII, Toulouse",
         "role": "Ingénieur logiciel",
         "date": "2021 - 2023 · 2 ans",
-        "description": "Au sein d'une équipe Scrum, j'ai contribué au développement full-stack d'une application web utilisée par des milliers d'utilisateurs.",
-        "mainTasks": {
-          "task1": "Migration d'un front-end en Perl vers Angular, et développement de nouvelles fonctionnalités.",
-          "task2": "Maintenance d'un back-end en Perl (1.000.000+ lignes de code, 15+ années d'historique), suivant une architecture MVC.",
-          "task3": "Développement de nouvelles fonctionnalités back-end en Typescript avec le framework Next.js."
-        }
+        "description": "Développement full stack d'une application web interne pour plusieurs milliers d'utilisateurs journaliers, au sein d'une équipe Scrum de 8 développeurs.",
+        "tasks": [
+          "Développé de nouvelles fonctionnalités sur un frontend Angular.",
+          "Maintenu un backend Java (1M+ lignes de code, 15+ ans d'historique)."
+        ]
       },
-      "experience4": {
+      {
         "company": "INRS, Nancy",
         "role": "Développeur Java",
         "date": "2020 · 3 mois",
-        "description": "Stage de fin de DUT informatique. J'ai travaillé avec mon tuteur sur un projet de recherche ayant pour but de développer une application protégeant la vue de techniciens au contact de LED.",
-        "mainTasks": {
-          "task1": "Développement d'une application Android en réalité augmenté avec Java et OpenGL ES.",
-          "task2": {
-            "text1": "Co-publication d'un ",
-            "link": "article scientifique",
-            "text2": " avec mon tuteur."
-          }
-        }
+        "description": "Stage de recherche sur le développement d'une application en réalité augmentée pour protéger la vue de travailleurs exposés aux LED.",
+        "tasks": [
+          "Développé une application Android en réalité augmentée avec Java et OpenGL ES.",
+          "Co-publié un [article scientifique](https://www.researchgate.net/publication/358315478_Occupational_eye_protection_using_Augmented_Reality_a_proof_of_concept) avec mon tuteur."
+        ]
       }
-    },
+    ],
     "skills": {
       "title": "Compétences",
       "skillsList": [
