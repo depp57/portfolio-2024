@@ -48,6 +48,10 @@ const nextConfig = {
   },
 
   turbopack: {
+    resolveAlias: {
+      '../build/polyfills/polyfill-module': './src/lib/modern-polyfill.js',
+      'next/dist/build/polyfills/polyfill-module': './src/lib/modern-polyfill.js',
+    },
     rules: {
       '*.svg': {
         loaders: ['@svgr/webpack'],
