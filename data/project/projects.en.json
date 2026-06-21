@@ -5,7 +5,7 @@
       "description": "Built a self-hosted Kubernetes cluster composed of two nodes, with GitOps automation and Prometheus monitoring.\nHosts personal projects like this portfolio.",
       "keywords": ["DevOps", "Cloud", "Infrastructure", "Kubernetes"],
       "dateRange": "Jan 2024 - Now",
-      "link": "https://dashboard.sachathommet.fr",
+      "link": "https://argocd.sachathommet.fr",
       "images": [
         "/projects/homelab/homelab_1.webp",
         "/projects/homelab/homelab_2.webp",

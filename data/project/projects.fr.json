@@ -5,7 +5,7 @@
       "description": "Création d'un cluster Kubernetes composé de deux nœuds, avec automatisation GitOps et monitoring Prometheus.\nJ'y héberge des projets personnels comme ce portfolio.",
       "keywords": ["DevOps", "Cloud", "Infrastructure", "Kubernetes"],
       "dateRange": "Janvier 2024 - Aujourd'hui",
-      "link": "https://dashboard.sachathommet.fr",
+      "link": "https://argocd.sachathommet.fr",
       "images": [
         "/projects/homelab/homelab_1.webp",
         "/projects/homelab/homelab_2.webp",
